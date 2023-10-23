@@ -1,11 +1,11 @@
-import { createClient } from 'microcms-js-sdk';
+import { createClient } from "microcms-js-sdk";
 
 if (!process.env.API_SERVICE_DOMAIN) {
-  throw new Error("microCMSのサービスドメインが設定されていません。")
+  throw new Error("microCMSのサービスドメインが設定されていません。");
 }
 
 if (!process.env.API_KEY) {
-  throw new Error("microCMSのAPIキーが設定されていません。")
+  throw new Error("microCMSのAPIキーが設定されていません。");
 }
 
 export const client = createClient({

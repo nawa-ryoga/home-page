@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Top from '@/components/Routes/Top';
-export const runtime = 'experimental-edge';
+import Top from "@/components/Routes/Top";
+import Head from "next/head";
+export const runtime = "experimental-edge";
 
 export default function Home() {
   return (
@@ -13,7 +13,6 @@ export default function Home() {
       </Head>
 
       <Top />
-      
     </>
-  )
+  );
 }
