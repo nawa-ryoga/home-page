@@ -1,11 +1,8 @@
-const {
-  createVanillaExtractPlugin
-} = require('@vanilla-extract/next-plugin');
-const withVanillaExtract = createVanillaExtractPlugin();
-
+const { withKumaUI } = require("@kuma-ui/next-plugin");
+ 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-}
-
-module.exports = withVanillaExtract(nextConfig);
+};
+ 
+module.exports = withKumaUI(nextConfig);
