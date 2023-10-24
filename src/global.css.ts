@@ -8,4 +8,9 @@ import { DEFAULT_BACKGROUND_COLOR } from "../kuma.config";
 globalStyle("html, body", {
   background: DEFAULT_BACKGROUND_COLOR,
   color: "white",
+  margin: 0,
+});
+
+globalStyle("a", {
+  textDecoration: "none",
 });
