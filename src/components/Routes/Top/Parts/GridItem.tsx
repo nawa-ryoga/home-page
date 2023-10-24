@@ -7,11 +7,5 @@ type Props = {
 };
 
 export default function GridItem({ griRowNumber, children }: Props) {
-  return (
-    <Box
-      gridColumn={`span ${griRowNumber} / auto`}
-    >
-      {children}
-    </Box>
-  );
+  return <Box gridColumn={`span ${griRowNumber} / auto`}>{children}</Box>;
 }

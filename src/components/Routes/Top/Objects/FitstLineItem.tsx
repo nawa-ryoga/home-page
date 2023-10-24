@@ -7,7 +7,7 @@ type Props = {
   imageSize: {
     small: number;
     large: number;
-  }
+  };
 };
 
 export default function FirstLineItem({ link, text, imageUrl, imageSize }: Props) {
