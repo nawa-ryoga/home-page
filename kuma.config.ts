@@ -2,7 +2,7 @@ import { createTheme } from "@kuma-ui/core";
 
 export const DEFAULT_BACKGROUND_COLOR = "#232136" as const;
 
-const theme = createTheme({
+export const theme = createTheme({
   colors: {
     background: {
       default: DEFAULT_BACKGROUND_COLOR,
@@ -21,8 +21,24 @@ const theme = createTheme({
     md: "1.125rem",
     lg: "1.25rem",
     xl: "1.5rem",
+    "2xl": "1.875rem",
+    "3xl": "2.25rem",
+    "4xl": "3rem",
+    "5xl": "3.75rem",
   },
-});
+} as const);
+
+export const themeConfig = {
+  image: {
+    background: {
+      experience:
+        "https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/89bcd028976645cfac8b64f1331ed9c0/IMG_3077.png",
+      blog: "https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/82d2e96f6f69490bb589da104ca87bd8/Frame%2015.png",
+      about:
+        "https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/b5ca92ea642e40a5abfe6c2545470774/Frame%2016.png",
+    },
+  },
+} as const;
 
 type UserTheme = typeof theme;
 
