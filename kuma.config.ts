@@ -1,9 +1,11 @@
 import { createTheme } from "@kuma-ui/core";
 
+export const DEFAULT_BACKGROUND_COLOR = "#232136" as const;
+
 const theme = createTheme({
   colors: {
     background: {
-      default: "#232136",
+      default: DEFAULT_BACKGROUND_COLOR,
       lighten: { 1: "#2A283C" },
       darken: { 1: "#151424" },
     },
@@ -13,11 +15,12 @@ const theme = createTheme({
     },
   },
   fontSizes: {
-    xs: "12px",
-    sm: "14px",
-    md: "16px",
-    lg: "20px",
-    xl: "24px",
+    xs: "0.75rem",
+    sm: "0.875rem",
+    base: "1rem",
+    md: "1.125rem",
+    lg: "1.25rem",
+    xl: "1.5rem",
   },
 });
 
