@@ -7,10 +7,11 @@ type Props = {
 export default function HeaderText({ content }: Props) {
   return (
     <Text
-      fontSize={["xs", "xs"]}
+      fontSize={"fontSizes.xs"}
       letterSpacing={"0.08rem"}
       fontWeight={"700"}
       textAlign={"center"}
+      color={"colors.font.default"}
     >
       {content}
     </Text>

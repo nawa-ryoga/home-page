@@ -34,12 +34,11 @@ export default function Header({ isTopPage, title }: Props) {
       </Flex>
 
       <Flex
+        height="148px"
         justifyContent={"center"}
         alignItems={"center"}
         letterSpacing={"0.05rem"}
-        paddingX={4}
-        marginTop={[6, 10]}
-        marginBottom={[8, 14]}
+        paddingX={"16px"}
       >
         <Text
           as={"h1"}
