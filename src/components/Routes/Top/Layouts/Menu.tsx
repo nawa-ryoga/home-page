@@ -9,7 +9,7 @@ export default function Menu() {
   const imageUrlList = themeConfig.image.background;
   return (
     <GridContainer>
-      <GridItem griRowNumber={1}>
+      <GridItem griRowNumber={2}>
         <FirstLineItem
           link={"blogs"}
           text={"Blog"}
@@ -17,7 +17,7 @@ export default function Menu() {
           imageSize={{ small: 250, large: 390 }}
         />
       </GridItem>
-      <GridItem griRowNumber={2}>
+      <GridItem griRowNumber={1}>
         <FirstLineItem
           link={"about"}
           text={"About"}

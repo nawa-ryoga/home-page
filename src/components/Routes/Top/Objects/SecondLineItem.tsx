@@ -12,20 +12,28 @@ export default function SecondLineItem({ link, text, imageUrl }: Props) {
     <Box
       as={"a"}
       href={`/${link}`}
-      height={["360px", "620px"]}
+      height={["360px", "504px", "620px"]}
       borderRadius={10}
-      padding={16}
+      paddingX={[12, 16]}
       display={"block"}
       bgRepeat={"no-repeat"}
       bgSize={"cover"}
+      bgPosition={["right", "bottom"]}
       bgImage={[`url('${imageUrl}?w=320')`, `url('${imageUrl}?w=720')`]}
     >
       <Text
         as={"h2"}
         fontWeight={700}
-        fontSize={[theme.fontSizes["fontSizes.3xl"], theme.fontSizes["fontSizes.5xl"]]}
+        fontSize={[
+          theme.fontSizes["fontSizes.2xl"],
+          theme.fontSizes["fontSizes.3xl"],
+          theme.fontSizes["fontSizes.5xl"],
+        ]}
         color={"colors.font.default"}
         textAlign={"end"}
+        letterSpacing={[2.2, 3.2]}
+        paddingTop={["260px", "380px", "460px"]}
+        margin={0}
       >
         {text}
       </Text>

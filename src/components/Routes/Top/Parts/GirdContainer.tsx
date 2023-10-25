@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Grid } from "@kuma-ui/core";
+import { Box, Grid } from "@kuma-ui/core";
 
 type Props = {
   children: ReactNode;
@@ -7,16 +7,20 @@ type Props = {
 
 export default function GridContainer({ children }: Props) {
   return (
-    <Grid
-      gridTemplateColumns={"repeat(3, 1fr)"}
-      gridTemplateRows="repeat(1fr)"
-      gap={16}
-      marginX={"auto"}
-      width={["100%", "774px"]}
-      height={"auto"}
+    <Box
       paddingTop={["24px", "40px"]}
+      paddingX={"16px"}
     >
-      {children}
-    </Grid>
+      <Grid
+        gridTemplateColumns={"repeat(3, 1fr)"}
+        gridTemplateRows="repeat(1fr)"
+        gap={16}
+        marginX={"auto"}
+        width={["100%", "524px", "768px"]}
+        height={"auto"}
+      >
+        {children}
+      </Grid>
+    </Box>
   );
 }
