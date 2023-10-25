@@ -1,5 +1,12 @@
 import { createTheme } from "@kuma-ui/core";
 
+export const SITE_TITLE = "NAARY.ME";
+export const DOMAIN = "naary.me";
+export const OG_IMAGE_LOGO =
+  "https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/a506264fe419439398e933d3c8ce1713/nenn-jp-ping-logo.png";
+export const OG_IMAGE_BACKGROUND =
+  "https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/824b2256fbe44374934f53fa110d23d7/og-image-background.png?w=1200&mark-align=center%2Cmiddle&mark64=";
+
 export const DEFAULT_BACKGROUND_COLOR = "#232136" as const;
 
 export const theme = createTheme({
