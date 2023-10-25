@@ -28,6 +28,7 @@ export default function ThirdLineItem({ social }: Props) {
           src={social.icon}
           width={[size.small, size.large]}
           height={[size.small, size.large]}
+          alt={social.target}
         />
       </Link>
     </Flex>
