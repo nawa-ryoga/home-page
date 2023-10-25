@@ -22,6 +22,7 @@ export default function FirstLineItem({ link, text, imageUrl, imageSize }: Props
       alignItems={"center"}
       bgRepeat={"no-repeat"}
       bgSize={"cover"}
+      bgPosition={"center"}
       bgImage={[
         `url('${imageUrl}?w=${imageSize.small}')`,
         `url('${imageUrl}?w=${imageSize.large}')`,
