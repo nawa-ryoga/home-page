@@ -23,8 +23,13 @@ export default function Header({ isTopPage, title }: Props) {
           justifyContent={"center"}
           alignItems={"center"}
           paddingX={[9, 0]}
+          paddingBottom={"8px"}
         >
-          {isTopPage && <HeaderText content={""} />}
+          {isTopPage && (
+            <HeaderText
+              content={"Amateur writer, software engineer, and Japanese company employee"}
+            />
+          )}
           {!isTopPage && (
             <Link href="/">
               <HeaderText content={"NAARY.ME /"} />
@@ -34,7 +39,7 @@ export default function Header({ isTopPage, title }: Props) {
       </Flex>
 
       <Flex
-        height={["104px", "148px"]}
+        height={["58px", "96px"]}
         justifyContent={"center"}
         alignItems={"center"}
         letterSpacing={"0.05rem"}

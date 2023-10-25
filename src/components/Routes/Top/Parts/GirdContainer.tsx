@@ -8,7 +8,7 @@ type Props = {
 export default function GridContainer({ children }: Props) {
   return (
     <Box
-      paddingTop={["24px", "40px"]}
+      paddingTop={["48px", "80px"]}
       paddingX={"16px"}
     >
       <Grid
