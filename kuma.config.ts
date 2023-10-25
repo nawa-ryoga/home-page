@@ -35,7 +35,7 @@ export const theme = createTheme({
   },
 } as const);
 
-type SocialTarget = "twitter" | "instagram" | "facebook" | "note" | "github";
+type SocialTarget = "twitter" | "instagram" | "facebook" | "note" | "github" | "zenn";
 
 type Social = {
   target: SocialTarget;
@@ -55,6 +55,11 @@ const userSocialLinks: UserSocialLinks = [
     target: "instagram",
     link: "https://www.instagram.com/naary.me/",
     icon: "/assets/image/social/instagram.svg",
+  },
+  {
+    target: "zenn",
+    link: "https://zenn.dev/nawa",
+    icon: "/assets/image/social/zenn.svg",
   },
 ];
 
