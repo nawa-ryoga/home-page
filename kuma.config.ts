@@ -36,7 +36,7 @@ type Social = {
   icon: string;
 };
 
-type UserSocialLinks = Social[];
+type UserSocialLinks = [Social] | [Social, Social] | [Social, Social, Social];
 
 const userSocialLinks: UserSocialLinks = [
   {
