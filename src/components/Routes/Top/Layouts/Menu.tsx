@@ -33,9 +33,14 @@ export default function Menu() {
         />
       </GridItem>
 
-      <GridItem griRowNumber={1}>
-        <ThirdLineItem />
-      </GridItem>
+      {themeConfig.social.map((social) => (
+        <GridItem
+          griRowNumber={1}
+          key={social.target}
+        >
+          <ThirdLineItem social={social} />
+        </GridItem>
+      ))}
     </GridContainer>
   );
 }

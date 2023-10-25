@@ -28,6 +28,29 @@ export const theme = createTheme({
   },
 } as const);
 
+type SocialTarget = "twitter" | "instagram" | "facebook" | "note" | "github";
+
+type Social = {
+  target: SocialTarget;
+  link: string;
+  icon: string;
+};
+
+type UserSocialLinks = Social[];
+
+const userSocialLinks: UserSocialLinks = [
+  {
+    target: "note",
+    link: "https://note.com/naary",
+    icon: "/assets/image/social/note.svg",
+  },
+  {
+    target: "instagram",
+    link: "https://www.instagram.com/naary.me/",
+    icon: "/assets/image/social/instagram.svg",
+  },
+];
+
 export const themeConfig = {
   image: {
     background: {
@@ -38,6 +61,7 @@ export const themeConfig = {
         "https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/b5ca92ea642e40a5abfe6c2545470774/Frame%2016.png",
     },
   },
+  social: userSocialLinks,
 } as const;
 
 type UserTheme = typeof theme;
