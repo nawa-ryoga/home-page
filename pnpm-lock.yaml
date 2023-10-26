@@ -14,6 +14,9 @@ dependencies:
   base64url:
     specifier: ^3.0.1
     version: 3.0.1
+  dotenv:
+    specifier: ^16.3.1
+    version: 16.3.1
   fs-extra:
     specifier: ^11.1.1
     version: 11.1.1
@@ -43,6 +46,9 @@ devDependencies:
   '@kuma-ui/next-plugin':
     specifier: ^1.1.12
     version: 1.1.12(@babel/core@7.23.2)(@types/react@18.0.0)(next@13.5.6)(react@18.0.0)(webpack@5.89.0)
+  '@types/dotenv':
+    specifier: ^8.2.0
+    version: 8.2.0
   '@types/fs-extra':
     specifier: ^11.0.3
     version: 11.0.3
@@ -2456,6 +2462,13 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
+  /@types/dotenv@8.2.0:
+    resolution: {integrity: sha512-ylSC9GhfRH7m1EUXBXofhgx4lUWmFeQDINW5oLuS+gxWdfUeW4zJdeVTYVkexEW+e2VUvlZR2kGnGGipAWR7kw==}
+    deprecated: This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.
+    dependencies:
+      dotenv: 16.3.1
+    dev: true
+
   /@types/eslint-scope@3.7.6:
     resolution: {integrity: sha512-zfM4ipmxVKWdxtDaJ3MP3pBurDXOCoyjvlpE3u6Qzrmw4BPbfm4/ambIeTk/r/J0iq/+2/xp0Fmt+gFvXJY2PQ==}
     dependencies:
@@ -3802,6 +3815,10 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+    engines: {node: '>=12'}
 
   /edge-runtime@2.5.1:
     resolution: {integrity: sha512-E0kY1Dqvwvk9yh7dvR56KnCjXf/dlbrrGjO5Sjnz9Ja3WqYT3csv2B8O4erxJiOWfWy9NTukBk4Kb3yrR66gBw==}
