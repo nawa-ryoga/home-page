@@ -9,6 +9,7 @@ const generateRssFeed = async () => {
     description: OG_DESCRIPTION,
     site_url: `https://${DOMAIN}`,
     feed_url: `https://${DOMAIN}/feed.xml`,
+    image_url: "/icon.svg",
     language: "ja",
   });
 
