@@ -9,7 +9,8 @@ export default function App({ Component, pageProps }: AppProps) {
         jsx
         global
       >{`
-        html, body {
+        html,
+        body {
           font-family: ${NOTO.style.fontFamily};
         }
       `}</style>

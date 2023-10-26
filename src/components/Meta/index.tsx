@@ -1,6 +1,12 @@
 import Head from "next/head";
 import base64url from "base64url";
-import { SITE_TITLE, DOMAIN, OG_IMAGE_LOGO, OG_IMAGE_BACKGROUND } from "../../../kuma.config";
+import {
+  SITE_TITLE,
+  DOMAIN,
+  OG_DESCRIPTION,
+  OG_IMAGE_LOGO,
+  OG_IMAGE_BACKGROUND,
+} from "../../../kuma.config";
 
 type Props = {
   title?: string;
@@ -12,7 +18,7 @@ type Props = {
 
 export default function Meta({
   title,
-  content = "Personal website of naary",
+  content = OG_DESCRIPTION,
   ogType = "website",
   ogImage,
   path,
