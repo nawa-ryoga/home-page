@@ -11,9 +11,9 @@ const generateRssFeed = async () => {
     feed_url: `https://${DOMAIN}/feed.xml`,
     language: "ja",
   });
-  
+
   const { contents } = await getBlogList();
-  
+
   contents?.forEach((post) => {
     if (!post.publishedAt) {
       return;
@@ -28,10 +28,9 @@ const generateRssFeed = async () => {
   });
 
   return feed;
-}
+};
 
 (async function () {
   const feed = await generateRssFeed();
-
   fs.writeFileSync("./public/feed.xml", feed.xml());
 })();
