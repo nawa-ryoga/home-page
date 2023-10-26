@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm run build:rss && next build",
+    "build:rss": "ts-node --project tsconfig.builder.json ./builder/rss.ts",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}' && next lint --fix"
