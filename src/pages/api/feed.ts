@@ -6,14 +6,13 @@ import { DOMAIN, SITE_TITLE, OG_DESCRIPTION } from "../../../kuma.config";
 export const runtime = "experimental-edge";
 
 const handler = async (_: NextApiRequest, res: NextApiResponse) => {
-    const feed = new RSS({
-      title: SITE_TITLE,
-      description: OG_DESCRIPTION,
-      site_url: `https://${DOMAIN}`,
-      feed_url: `https://${DOMAIN}/api/feed`,
-      language: "ja",
-    });
-
+  const feed = new RSS({
+    title: SITE_TITLE,
+    description: OG_DESCRIPTION,
+    site_url: `https://${DOMAIN}`,
+    feed_url: `https://${DOMAIN}/api/feed`,
+    language: "ja",
+  });
 
   const { contents } = await getBlogList();
 
@@ -30,7 +29,7 @@ const handler = async (_: NextApiRequest, res: NextApiResponse) => {
     });
   });
 
-  res.setHeader("Content-Type", "application/rss+xml");
+  res.setHeader("Content-Type", "application/rss+xml; charset=utf-8");
   res.write(feed.xml());
   res.end();
 };
