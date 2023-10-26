@@ -1,7 +1,7 @@
 import type { GetServerSidePropsContext } from "next";
 import { generateFeedXml } from "../../lib/feed";
 
-export const runtime = "experimental-edge";
+export const runtime = "edge";
 
 export const getServerSideProps = async ({ res }: GetServerSidePropsContext) => {
   const xml = await generateFeedXml();
