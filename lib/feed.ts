@@ -1,16 +1,13 @@
 import RSS from "rss";
 import { getBlogList } from "./client";
-import { DOMAIN as D, SITE_TITLE, OG_DESCRIPTION } from "../kuma.config";
+import { DOMAIN, SITE_TITLE, OG_DESCRIPTION } from "../kuma.config";
 
 export async function generateFeedXml() {
-  const DOMAIN = process.env.NODE_ENV === "production" ? D : "localhost";
-  const PROTOCOL = process.env.NODE_ENV === "production" ? "https" : "http";
-
   const feed = new RSS({
     title: SITE_TITLE,
     description: OG_DESCRIPTION,
-    site_url: `${PROTOCOL}://${DOMAIN}`,
-    feed_url: `${PROTOCOL}://${DOMAIN}/feed`,
+    site_url: `https://${DOMAIN}`,
+    feed_url: `https://${DOMAIN}/feed`,
     language: "ja",
   });
 
