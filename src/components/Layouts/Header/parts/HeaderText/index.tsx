@@ -11,7 +11,7 @@ export default function HeaderText({ content }: Props) {
       letterSpacing={"0.08rem"}
       fontWeight={"700"}
       textAlign={"center"}
-      color={"colors.font.default"}
+      color={"colors.font.darken.1"}
     >
       {content}
     </Text>
