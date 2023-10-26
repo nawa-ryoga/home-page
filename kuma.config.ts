@@ -80,7 +80,7 @@ export const themeConfig = {
 export const USER_RSS_FEEDS = [
   "https://zenn.dev/nawa/feed",
   "https://note.com/naary/rss",
-  // "https://naary.me/feed",
+  "https://naary.me/feed.xml",
 ] as const;
 
 type UserTheme = typeof theme;
