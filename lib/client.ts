@@ -5,6 +5,8 @@ import type {
   MicroCMSDate,
   MicroCMSContentId,
 } from "microcms-js-sdk";
+import { config } from "dotenv";
+config();
 
 if (!process.env.API_SERVICE_DOMAIN) {
   throw new Error("microCMSのサービスドメインが設定されていません。");
