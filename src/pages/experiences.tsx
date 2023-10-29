@@ -27,40 +27,6 @@ export const getStaticProps: GetStaticProps<{
     } else {
       yearsObj[year][month].push(feed);
     }
-
-    // 各年に9月と8月を追加し、値は10月のものと同じものを使用
-    ["9", "8"].forEach((m) => {
-      if (!yearsObj[year][m]) {
-        yearsObj[year][m] = [...yearsObj[year][month]];
-      }
-    });
-
-    // 2022年のキーを追加し、2023年のRSSフィードを格納
-    if (year === "2023" && !yearsObj["2022"]) {
-      yearsObj["2022"] = { [month]: [feed] };
-      // 各年に9月と8月を追加し、値は10月のものと同じものを使用
-      ["9", "8"].forEach((m) => {
-        if (!yearsObj["2022"][m]) {
-          yearsObj["2022"][m] = [...yearsObj["2022"][month]];
-        }
-      });
-    } else if (year === "2023" && !yearsObj["2022"][month]) {
-      yearsObj["2022"][month] = [feed];
-      // 各年に9月と8月を追加し、値は10月のものと同じものを使用
-      ["9", "8"].forEach((m) => {
-        if (!yearsObj["2022"][m]) {
-          yearsObj["2022"][m] = [...yearsObj["2022"][month]];
-        }
-      });
-    } else if (year === "2023") {
-      yearsObj["2022"][month].push(feed);
-      // 各年に9月と8月を追加し、値は10月のものと同じものを使用
-      ["9", "8"].forEach((m) => {
-        if (!yearsObj["2022"][m]) {
-          yearsObj["2022"][m] = [...yearsObj["2022"][month]];
-        }
-      });
-    }
   });
 
   // キー（年）を降順にソート、内部も月の降順にソート
