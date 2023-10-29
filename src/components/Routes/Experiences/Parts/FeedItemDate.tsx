@@ -15,8 +15,7 @@ export default function FeedItemDate({ children, href }: Props) {
       width={"100%"}
       alignItems={"center"}
       justifyContent={"center"}
-      paddingBottom={"40px"}
-      paddingX={"40px"}
+      paddingBottom={["16px","40px"]}
       color={"colors.font.darken.2"}
     >
       {children}

@@ -48,7 +48,7 @@ export default function Header({ isTopPage, title }: Props) {
         <Text
           as={"h1"}
           fontWeight={"700"}
-          fontSize={["58px", "96px"]}
+          fontSize={["42px", "96px"]}
           lineHeight={["48px", "52px"]}
           zIndex={"999"}
         >

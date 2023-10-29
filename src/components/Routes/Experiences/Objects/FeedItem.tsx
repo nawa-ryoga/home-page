@@ -5,6 +5,7 @@ import FeedItemDate from "../Parts/FeedItemDate";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import theme from "../../../../../kuma.config";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -54,8 +55,8 @@ export default function FeedItem({ feedLink, feedTitle, feedDate }: Props) {
         <Text
           as={"h3"}
           margin={0}
-          fontSize={"fontSizes.md"}
-          paddingX={"60px"}
+          fontSize={[theme.fontSizes["fontSizes.sm"], theme.fontSizes["fontSizes.md"]]}
+          paddingX={["12px", "60px"]}
         >
           {feedTitle}
         </Text>
@@ -63,8 +64,8 @@ export default function FeedItem({ feedLink, feedTitle, feedDate }: Props) {
 
       <FeedItemDate href={feedLink}>
         <Text
-          fontSize={"fontSizes.sm"}
-          paddingX={"60px"}
+          fontSize={[theme.fontSizes["fontSizes.xs"], theme.fontSizes["fontSizes.sm"]]}
+          paddingX={["12px", "60px"]}
           margin={0}
         >
           {publishedDate(feedDate)}
