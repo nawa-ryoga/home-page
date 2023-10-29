@@ -1,4 +1,5 @@
-import { Flex, Image, Link } from "@kuma-ui/core";
+import { Flex, Image } from "@kuma-ui/core";
+import ExternalLink from "@/components/Commons/ExternalLink";
 
 type Props = {
   social: {
@@ -19,18 +20,14 @@ export default function ThirdLineItem({ social }: Props) {
       alignItems={"center"}
       justifyContent={"center"}
     >
-      <Link
-        href={social.link}
-        target="_blank"
-        rel="noopener nofollow noreferrer"
-      >
+      <ExternalLink href={social.link}>
         <Image
           src={social.icon}
           width={[size.small, size.large]}
           height={[size.small, size.large]}
           alt={social.target}
         />
-      </Link>
+      </ExternalLink>
     </Flex>
   );
 }
