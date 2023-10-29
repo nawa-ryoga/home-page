@@ -39,7 +39,7 @@ export default function YearHeader({ children }: Props) {
           </Text>
         </Flex>
         <Box
-          width={24}
+          width={96}
           height={"100%"}
           borderBottom={`1px solid ${theme.colors["colors.font.darken.2"]}`}
         ></Box>

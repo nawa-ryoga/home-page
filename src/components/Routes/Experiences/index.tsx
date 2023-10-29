@@ -41,6 +41,7 @@ export default function Page({ experiencesPerYears }: Props) {
                               <FeedItem
                                 feedLink={feed.link}
                                 feedTitle={feed.title}
+                                feedDate={feed.isoDate}
                               />
                             </FeedItemContainer>
                           ))}

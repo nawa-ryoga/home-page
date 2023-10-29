@@ -11,6 +11,8 @@ export default function ExternalLink({ children, href }: Props) {
       href={href}
       target="_blank"
       rel="noopener nofollow noreferrer"
+      color={"colors.font.darken.1"}
+      _visited={{ color: "colors.font.darken.2" }}
     >
       {children}
     </Link>
