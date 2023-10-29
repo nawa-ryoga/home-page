@@ -5,6 +5,8 @@ import Main from "@/components/Layouts/Main";
 import Header from "@/components/Layouts/Header";
 import FeedItem from "@/components/Routes/Experiences/Objects/FieedItem";
 import theme from "../../kuma.config";
+import Container from "@/components/Routes/Experiences/Parts/Container";
+import NonStyleList from "@/components/Commons/NoStyleList";
 
 type ExperiencePerMonth = { [key: string]: typeof rss };
 type ExperiencePerYears = Array<{ [key: string]: ExperiencePerMonth }>;
@@ -54,12 +56,7 @@ export default function Experiences({ experiencesPerYears }: Props) {
       />
 
       <Main>
-        <Box
-          paddingTop={"120px"}
-          as={"ul"}
-          listStyleType={"none"}
-          paddingLeft={0}
-        >
+        <Container>
           {experiencesPerYears.map((experiences, index) => (
             <Box
               key={index}
@@ -118,11 +115,7 @@ export default function Experiences({ experiencesPerYears }: Props) {
                       gridColumn={`span 4 / auto`}
                       gap={"62px"}
                     >
-                      <Box
-                        as={"ul"}
-                        listStyleType={"none"}
-                        paddingLeft={0}
-                      >
+                      <NonStyleList>
                         {Object.keys(experiences[year]).map((month) => (
                           <Box
                             as={"li"}
@@ -161,34 +154,32 @@ export default function Experiences({ experiencesPerYears }: Props) {
                                 left={18}
                               ></Box>
                             </Flex>
-                            <VStack
-                              as={"ul"}
-                              listStyleType={"none"}
-                              gap={"24px"}
-                              paddingX={"18px"}
-                            >
-                              {experiences[year][month].map((feed) => (
-                                <Box
-                                  as={"li"}
-                                  key={feed.link}
-                                >
-                                  <FeedItem
-                                    feedLink={feed.link}
-                                    feedTitle={feed.title}
-                                  />
-                                </Box>
-                              ))}
+                            <VStack paddingX={"18px"}>
+                              <NonStyleList>
+                                {experiences[year][month].map((feed) => (
+                                  <Box
+                                    as={"li"}
+                                    key={feed.link}
+                                    marginBottom={"24px"}
+                                  >
+                                    <FeedItem
+                                      feedLink={feed.link}
+                                      feedTitle={feed.title}
+                                    />
+                                  </Box>
+                                ))}
+                              </NonStyleList>
                             </VStack>
                           </Box>
                         ))}
-                      </Box>
+                      </NonStyleList>
                     </VStack>
                   </Box>
                 </Box>
               ))}
             </Box>
           ))}
-        </Box>
+        </Container>
       </Main>
     </>
   );
