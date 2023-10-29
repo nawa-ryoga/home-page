@@ -1,7 +1,7 @@
 import type { ExperiencePerYears } from "@/pages/experiences";
 import Main from "@/components/Layouts/Main";
 import Header from "@/components/Layouts/Header";
-import FeedItem from "./Objects/FieedItem";
+import FeedItem from "./Objects/FeedItem";
 import Container from "./Parts/Container";
 import YearContainer from "./Parts/YearContainer";
 import YearHeader from "./Parts/YearHeader";
