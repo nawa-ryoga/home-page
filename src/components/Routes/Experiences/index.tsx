@@ -1,4 +1,5 @@
 import type { ExperiencePerYears } from "@/pages/experiences";
+import Meta from "@/components/Meta";
 import Main from "@/components/Layouts/Main";
 import Header from "@/components/Layouts/Header";
 import FeedItem from "./Objects/FeedItem";
@@ -19,6 +20,12 @@ type Props = {
 export default function Page({ experiencesPerYears }: Props) {
   return (
     <>
+      <Meta
+        title={"Experiences"}
+        content={"naary's timeline"}
+        path={"experiences"}
+      />
+
       <Header
         title="Experiences"
         isTopPage={false}
