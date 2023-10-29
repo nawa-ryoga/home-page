@@ -1,6 +1,6 @@
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import rss from "../../.contents/rss.json";
-import { Box, Grid, HStack, VStack, Flex, Text } from "@kuma-ui/core";
+import { Box, HStack, VStack, Flex, Text } from "@kuma-ui/core";
 import Main from "@/components/Layouts/Main";
 import Header from "@/components/Layouts/Header";
 import FeedItem from "@/components/Routes/Experiences/Objects/FieedItem";
@@ -201,10 +201,12 @@ export default function Experiences({ experiencesPerYears }: Props) {
                               gap={"24px"}
                               paddingX={"18px"}
                             >
-                              {experiences[year][month].map((feed, index) => (
-                                <Box as={"li"}>
+                              {experiences[year][month].map((feed) => (
+                                <Box
+                                  as={"li"}
+                                  key={feed.link}
+                                >
                                   <FeedItem
-                                    key={index}
                                     feedLink={feed.link}
                                     feedTitle={feed.title}
                                   />
