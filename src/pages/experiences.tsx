@@ -1,8 +1,10 @@
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import rss from "../../.contents/rss.json";
-import { Box, Grid, Text } from "@kuma-ui/core";
+import { Box, Grid, HStack, VStack, Flex, Text } from "@kuma-ui/core";
 import Main from "@/components/Layouts/Main";
 import Header from "@/components/Layouts/Header";
+import FeedItem from "@/components/Routes/Experiences/Objects/FieedItem";
+import theme from "../../kuma.config";
 
 type ExperiencePerMonth = { [key: string]: typeof rss };
 type ExperiencePerYears = Array<{ [key: string]: ExperiencePerMonth }>;
@@ -86,60 +88,139 @@ export default function Experiences({ experiencesPerYears }: Props) {
       />
 
       <Main>
-        {experiencesPerYears.map((experiences, index) => (
-          <Box key={index}>
-            {Object.keys(experiences).map((year) => (
-              <div key={year}>
-                <Grid
-                  gridTemplateColumns={"repeat(5, 1fr)"}
-                  gridTemplateRows="repeat(1fr)"
-                  gap={16}
-                  marginX={"auto"}
-                  width={["100%", "524px", "768px"]}
-                  height={"auto"}
+        <Box
+          paddingTop={"120px"}
+          as={"ul"}
+          listStyleType={"none"}
+          paddingLeft={0}
+        >
+          {experiencesPerYears.map((experiences, index) => (
+            <Box
+              key={index}
+              as={"li"}
+            >
+              {Object.keys(experiences).map((year) => (
+                <Box
+                  key={year}
+                  marginBottom={["4rem", "8rem"]}
                 >
                   <Box
-                    as={"aside"}
-                    gridColumn={`span 1 / auto`}
+                    marginX={"auto"}
+                    width={["100%", "680px"]}
+                    height={"auto"}
                   >
-                    <Text
-                      as={"h2"}
-                      margin={0}
-                      fontWeight={700}
+                    <Box
+                      as={"aside"}
+                      position={"relative"}
                     >
-                      {year}
-                    </Text>
-                  </Box>
-                  <Box
-                    as={"section"}
-                    gridColumn={`span 4 / auto`}
-                  >
-                    {Object.keys(experiences[year]).map((month) => (
-                      <Box key={month}>
-                        <Text
-                          as={"h3"}
-                          margin={0}
+                      <HStack
+                        alignItems={"flex-end"}
+                        justifyContent={"flex-start"}
+                      >
+                        <Box
+                          width={48}
+                          height={"100%"}
+                          borderBottom={`1px solid ${theme.colors["colors.font.darken.2"]}`}
+                        ></Box>
+                        <Flex
+                          as={"span"}
+                          justifyContent={"center"}
+                          paddingX={"8px"}
                         >
-                          {month}
-                        </Text>
-                        {experiences[year][month].map((feed, index) => (
-                          <Box key={index}>
-                            <Text
-                              as={"h3"}
-                              margin={0}
+                          <Text
+                            as={"h2"}
+                            margin={0}
+                            color={"colors.font.darken.1"}
+                            fontSize={"fontSizes.2xl"}
+                            fontWeight={700}
+                            letterSpacing={"0.3rem"}
+                            marginRight={"-0.4rem"}
+                            marginBottom={"-0.5rem"}
+                          >
+                            {year}
+                          </Text>
+                        </Flex>
+                        <Box
+                          width={24}
+                          height={"100%"}
+                          borderBottom={`1px solid ${theme.colors["colors.font.darken.2"]}`}
+                        ></Box>
+                      </HStack>
+                    </Box>
+                    <VStack
+                      as={"section"}
+                      gridColumn={`span 4 / auto`}
+                      gap={"62px"}
+                    >
+                      <Box
+                        as={"ul"}
+                        listStyleType={"none"}
+                        paddingLeft={0}
+                      >
+                        {Object.keys(experiences[year]).map((month) => (
+                          <Box
+                            as={"li"}
+                            key={month}
+                            paddingX={"24px"}
+                          >
+                            <Flex
+                              position={"relative"}
+                              paddingTop={"40px"}
+                              marginLeft={"-0.7rem"}
                             >
-                              {feed.title}
-                            </Text>
+                              <Flex
+                                as={"span"}
+                                justifyContent={"center"}
+                                alignItems={"center"}
+                                aspectRatio={"1 / 1"}
+                                width={"35px"}
+                              >
+                                <Text
+                                  as={"h3"}
+                                  margin={0}
+                                  fontSize={"fontSizes.xl"}
+                                >
+                                  {month}
+                                </Text>
+                              </Flex>
+                              <Box
+                                as="hr"
+                                width={"28px"}
+                                height={"1px"}
+                                color={"colors.font.darken.1"}
+                                backgroundColor={"colors.font.darken.1"}
+                                transform={"rotate(135deg)"}
+                                position={"absolute"}
+                                top={70}
+                                left={18}
+                              ></Box>
+                            </Flex>
+                            <VStack
+                              as={"ul"}
+                              listStyleType={"none"}
+                              gap={"24px"}
+                              paddingX={"18px"}
+                            >
+                              {experiences[year][month].map((feed, index) => (
+                                <Box as={"li"}>
+                                  <FeedItem
+                                    key={index}
+                                    feedLink={feed.link}
+                                    feedTitle={feed.title}
+                                  />
+                                </Box>
+                              ))}
+                            </VStack>
                           </Box>
                         ))}
                       </Box>
-                    ))}
+                    </VStack>
                   </Box>
-                </Grid>
-              </div>
-            ))}
-          </Box>
-        ))}
+                </Box>
+              ))}
+            </Box>
+          ))}
+        </Box>
       </Main>
     </>
   );
