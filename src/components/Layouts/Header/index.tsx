@@ -3,11 +3,11 @@ import Link from "next/link";
 import HeaderText from "./parts/HeaderText";
 
 type Props = {
-  isTopPage: boolean;
+  isTopPage?: boolean;
   title: string;
 };
 
-export default function Header({ isTopPage, title }: Props) {
+export default function Header({ isTopPage = false, title }: Props) {
   return (
     <>
       <Flex
