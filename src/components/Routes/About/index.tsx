@@ -95,7 +95,7 @@ export default function Page({ about }: Props) {
               <Box key={c.title}>
                 <Text
                   as={"h3"}
-                  marginTop={"3.2rem"}
+                  marginTop={"4.8rem"}
                   marginBottom={"1.5rem"}
                   textAlign={"center"}
                 >
