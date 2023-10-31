@@ -14,3 +14,7 @@ globalStyle("html, body", {
 globalStyle("a", {
   textDecoration: "none",
 });
+
+globalStyle("h2, h3, p", {
+  margin: 0,
+});

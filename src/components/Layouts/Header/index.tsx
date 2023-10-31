@@ -16,6 +16,7 @@ export default function Header({ isTopPage = false, title }: Props) {
         overflow={"visible"}
         justifyContent={"center"}
         alignItems={"flex-end"}
+        paddingBottom={"1.2rem"}
       >
         <Flex
           maxWidth={"1200px"}
@@ -27,7 +28,7 @@ export default function Header({ isTopPage = false, title }: Props) {
         >
           {isTopPage && (
             <HeaderText
-              content={"Amateur writer, software engineer, and Japanese company employee"}
+              content={"Web writer, amateur software engineer, and Japanese company employee"}
             />
           )}
           {!isTopPage && (
