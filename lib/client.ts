@@ -5,8 +5,15 @@ import type {
   MicroCMSDate,
   MicroCMSContentId,
 } from "microcms-js-sdk";
+
 import { config } from "dotenv";
-config();
+
+/**
+ * ビルド中は参照できないので dotenv を使う
+ */
+if (!process.env.API_SERVICE_DOMAIN && !process.env.API_KEY) {
+  config();
+}
 
 if (!process.env.API_SERVICE_DOMAIN) {
   throw new Error("microCMSのサービスドメインが設定されていません。");
@@ -40,4 +47,32 @@ export const getBlogList = async (queries?: MicroCMSQueries) => {
     });
 
   return listData;
+};
+
+export type AboutContent = {
+  title: string;
+  images?: MicroCMSImage[];
+  content?: string;
+};
+
+export type About = {
+  name: string;
+  icon: MicroCMSImage;
+  summery: string;
+  birth_year?: number;
+  birth_month?: number;
+  birth_date?: number;
+  contents: AboutContent[];
+} & MicroCMSDate;
+
+export const getAboutContent = async () => {
+  const about = await client
+    .get<About>({
+      endpoint: "profile",
+    })
+    .catch(() => {
+      throw new Error("データが取得できませんでした。");
+    });
+
+  return about;
 };
