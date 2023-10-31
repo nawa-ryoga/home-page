@@ -26,10 +26,7 @@ export default function Page({ experiencesPerYears }: Props) {
         path={"experiences"}
       />
 
-      <Header
-        title="Experiences"
-        isTopPage={false}
-      />
+      <Header title="Experiences" />
 
       <Main>
         <Container>

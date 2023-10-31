@@ -3,11 +3,11 @@ import Link from "next/link";
 import HeaderText from "./parts/HeaderText";
 
 type Props = {
-  isTopPage: boolean;
+  isTopPage?: boolean;
   title: string;
 };
 
-export default function Header({ isTopPage, title }: Props) {
+export default function Header({ isTopPage = false, title }: Props) {
   return (
     <>
       <Flex
@@ -16,6 +16,7 @@ export default function Header({ isTopPage, title }: Props) {
         overflow={"visible"}
         justifyContent={"center"}
         alignItems={"flex-end"}
+        paddingBottom={"1.2rem"}
       >
         <Flex
           maxWidth={"1200px"}
@@ -27,7 +28,7 @@ export default function Header({ isTopPage, title }: Props) {
         >
           {isTopPage && (
             <HeaderText
-              content={"Amateur writer, software engineer, and Japanese company employee"}
+              content={"Web writer, amateur software engineer, and Japanese company employee"}
             />
           )}
           {!isTopPage && (
