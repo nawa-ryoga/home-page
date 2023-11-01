@@ -39,7 +39,6 @@ function age(birth_year: number) {
 }
 
 export default function Page({ about }: Props) {
-  console.log(about.contents);
   return (
     <>
       <Meta
@@ -110,6 +109,7 @@ export default function Page({ about }: Props) {
                   >
                     {c.images.map((i, index) => (
                       <Image
+                        alt={""}
                         key={i.url}
                         display={[index === 3 ? "none" : "inline", "inline"]}
                         aspectRatio={"1"}

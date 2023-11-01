@@ -1,8 +1,8 @@
 build:
 	pnpx @cloudflare/next-on-pages@1
 
-data:
-	pnpm run build
+json:
+	pnpm run build:json
 
 up:
 	pnpm run dev

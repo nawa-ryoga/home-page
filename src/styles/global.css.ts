@@ -13,6 +13,7 @@ globalStyle("html, body", {
 
 globalStyle("a", {
   textDecoration: "none",
+  color: "white",
 });
 
 globalStyle("h2, h3, p", {
