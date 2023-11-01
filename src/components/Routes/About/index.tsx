@@ -50,7 +50,6 @@ export default function Page({ about }: Props) {
       <Header title="About" />
 
       <Main>
-        {/* 戻り値に生年月日の情報があったら、何年何月何日生まれの今年何歳、という表記を出す */}
         <VStack
           width={"100%"}
           height={"auto"}
@@ -76,6 +75,7 @@ export default function Page({ about }: Props) {
             {about.name}
           </Text>
 
+          {/* 戻り値に生年月日の情報があったら、何年何月何日生まれの今年何歳、という表記を出す */}
           {about.birth_year && (
             <Text
               textAlign={"center"}
