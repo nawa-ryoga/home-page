@@ -1,15 +1,7 @@
 import fs from "fs-extra";
 import type { About } from "../lib/client";
 import { getAboutContent } from "../lib/client";
-import DOMPurify from "dompurify";
-import { JSDOM } from "jsdom";
-
-export const domPurify = () => {
-  const window = new JSDOM("").window;
-  const purify = DOMPurify(window);
-
-  return purify;
-};
+import { domPurify } from "../lib/dom-purify";
 
 (async function () {
   const about = await getAboutContent();
