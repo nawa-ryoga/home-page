@@ -8,22 +8,44 @@ globalStyle("a", {
 
 globalStyle("p", {
   color: theme.colors["colors.font.darken.1"],
-  marginBottom: "2.5rem",
   textAlign: "justify",
+  marginBottom: "2.5rem",
   lineHeight: "1.7rem",
+  fontSize: theme.fontSizes["fontSizes.sm"],
+  "@media": {
+    "(min-width: 576px)": {
+      fontSize: theme.fontSizes["fontSizes.base"],
+      marginBottom: "3rem",
+      lineHeight: "1.7rem",
+    },
+  },
 });
 
 globalStyle("h2", {
-  fontSize: theme.fontSizes["fontSizes.2xl"],
-  marginBottom: "1.5rem",
-  marginTop: "4rem",
+  fontSize: theme.fontSizes["fontSizes.xl"],
+  marginBottom: "1rem",
+  marginTop: "3.5rem",
+  "@media": {
+    "(min-width: 576px)": {
+      fontSize: theme.fontSizes["fontSizes.2xl"],
+      marginBottom: "1.5rem",
+      marginTop: "4rem",
+    },
+  },
 });
 
 globalStyle("h3", {
-  fontSize: theme.fontSizes["fontSizes.xl"],
   color: theme.colors["colors.font.darken.1"],
-  marginBottom: "1.5rem",
-  marginTop: "2.5rem",
+  fontSize: theme.fontSizes["fontSizes.lg"],
+  marginBottom: "0.8rem",
+  marginTop: "2rem",
+  "@media": {
+    "(min-width: 576px)": {
+      fontSize: theme.fontSizes["fontSizes.xl"],
+      marginBottom: "1.5rem",
+      marginTop: "2.5rem",
+    },
+  },
 });
 
 globalStyle("ul, ol", {
