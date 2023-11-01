@@ -8,6 +8,7 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import theme from "../../../../kuma.config";
 import "./styles.css";
+import { sectionStyle } from "./styles.css";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -113,12 +114,7 @@ export default function Page({ blog }: Props) {
 
           <Box
             as={"section"}
-            paddingTop={["60px", "110px"]}
-            maxWidth={"600px"}
-            marginX={"auto"}
-            letterSpacing={"0.03em"}
-            lineHeight={"190%"}
-            borderTop={"1px solid"}
+            className={sectionStyle}
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
         </Box>

@@ -1,12 +1,21 @@
-import { globalStyle } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import theme from "../../../../kuma.config";
 
-globalStyle("a", {
+export const sectionStyle = style({
+  paddingTop: "60px",
+  maxWidth: "600px",
+  margin: "0 auto",
+  letterSpacing: "0.03em",
+  lineHeight: "190%",
+  borderTop: "1px solid",
+});
+
+globalStyle(`${sectionStyle} > a`, {
   textDecoration: "underline",
   color: theme.colors["colors.font.darken.2"],
 });
 
-globalStyle("p", {
+globalStyle(`${sectionStyle} > p`, {
   color: theme.colors["colors.font.darken.1"],
   textAlign: "justify",
   marginBottom: "2.5rem",
@@ -21,7 +30,7 @@ globalStyle("p", {
   },
 });
 
-globalStyle("h2", {
+globalStyle(`${sectionStyle} > h2`, {
   fontSize: theme.fontSizes["fontSizes.xl"],
   marginBottom: "1rem",
   marginTop: "3.5rem",
@@ -34,7 +43,7 @@ globalStyle("h2", {
   },
 });
 
-globalStyle("h3", {
+globalStyle(`${sectionStyle} > h3`, {
   color: theme.colors["colors.font.darken.1"],
   fontSize: theme.fontSizes["fontSizes.lg"],
   marginBottom: "0.8rem",
@@ -48,7 +57,7 @@ globalStyle("h3", {
   },
 });
 
-globalStyle("ul, ol", {
+globalStyle(`${sectionStyle} > ul, ol`, {
   marginTop: "1.5rem",
   listStylePosition: "outside",
   listStyleType: "decimal",
@@ -63,36 +72,36 @@ globalStyle("ul, ol, section > :last-child", {
   marginBottom: "0",
 });
 
-globalStyle("li", {
+globalStyle(`${sectionStyle} li`, {
   marginLeft: "1rem",
   marginRight: "1rem",
   wordBreak: "break-all",
 });
 
-globalStyle("hr", {
+globalStyle(`${sectionStyle} > hr`, {
   marginTop: "4rem",
   marginBottom: "4rem",
   borderStyle: "none",
   borderTop: `solid 1px ${theme.colors["colors.font.darken.2"]}`,
 });
 
-globalStyle(".iframely-embed", {
+globalStyle(`${sectionStyle} > .iframely-embed`, {
   marginBottom: "2rem",
 });
 
-globalStyle("figure", {
+globalStyle(`${sectionStyle} > figure`, {
   marginRight: 0,
   marginLeft: 0,
   marginBottom: "2rem",
 });
 
-globalStyle("img", {
+globalStyle(`${sectionStyle} img`, {
   maxWidth: "100%",
   height: "auto",
   borderRadius: "4px",
 });
 
-globalStyle("figcaption", {
+globalStyle(`${sectionStyle} figcaption`, {
   fontSize: theme.fontSizes["fontSizes.xs"],
   color: theme.colors["colors.font.darken.2"],
   textAlign: "center",
