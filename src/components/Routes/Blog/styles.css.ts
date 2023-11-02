@@ -73,9 +73,16 @@ globalStyle("ul, ol, section > :last-child", {
 });
 
 globalStyle(`${sectionStyle} li`, {
+  color: theme.colors["colors.font.darken.1"],
   marginLeft: "1rem",
   marginRight: "1rem",
   wordBreak: "break-all",
+  fontSize: theme.fontSizes["fontSizes.sm"],
+  "@media": {
+    "(min-width: 576px)": {
+      fontSize: theme.fontSizes["fontSizes.base"],
+    },
+  },
 });
 
 globalStyle(`${sectionStyle} > hr`, {

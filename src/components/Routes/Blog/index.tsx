@@ -124,9 +124,13 @@ export default function Page({ blog }: Props) {
 
           <Box
             as={"section"}
-            className={sectionStyle}
-            dangerouslySetInnerHTML={{ __html: blog.content }}
-          />
+            paddingX={[16, 0]}
+          >
+            <Box
+              className={sectionStyle}
+              dangerouslySetInnerHTML={{ __html: blog.content }}
+            />
+          </Box>
         </Box>
       </Main>
     </>
