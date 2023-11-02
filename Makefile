@@ -6,3 +6,9 @@ json:
 
 up:
 	pnpm run dev
+
+lint:
+	pnpm run lint
+
+format:
+	pnpm run format
