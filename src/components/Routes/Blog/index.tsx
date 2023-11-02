@@ -81,6 +81,16 @@ export default function Page({ blog }: Props) {
                   {blog.title}
                 </Text>
 
+                <Text
+                  fontSize={"fontSizes.sm"}
+                  color={"colors.font.darken.2"}
+                  textAlign={"right"}
+                  letterSpacing={"0.05rem"}
+                  marginBottom={["18px", "30px"]}
+                >
+                  {blog.summary}
+                </Text>
+
                 {blog.publishedAt && (
                   <VStack
                     justifyContent={"center"}
