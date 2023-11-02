@@ -2,18 +2,11 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import type { Blog } from "../../../lib/client";
 import Page from "@/components/Routes/Blog";
 import blogs from "../../../.contents/blogs.json";
-import { optimizeImage } from "../../../utils/optimizedImage";
+import { parseContent } from "../../../utils/parseContent";
 
 export const runtime = "experimental-edge";
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
-
-function parseContent(blog: Blog): Blog {
-  return {
-    ...blog,
-    content: optimizeImage(blog.content),
-  };
-}
 
 async function getDraftBlog(blogId: string, draftKey: string) {
   if (!process.env.API_KEY) {
@@ -28,7 +21,7 @@ async function getDraftBlog(blogId: string, draftKey: string) {
     },
   ).then((res) => res.json());
 
-  return parseContent(blog);
+  return blog;
 }
 
 export const getServerSideProps: GetServerSideProps<{ blog: Blog }> = async ({
@@ -58,9 +51,14 @@ export const getServerSideProps: GetServerSideProps<{ blog: Blog }> = async ({
     return { notFound: true };
   }
 
+  const b = {
+    ...blog,
+    content: parseContent(blog.content),
+  };
+
   return {
     props: {
-      blog,
+      blog: b,
     },
   };
 };

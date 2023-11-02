@@ -26,6 +26,7 @@ function publishedYear(publishedAt: string) {
 }
 
 export default function Page({ blog }: Props) {
+  
   return (
     <>
       <Meta
