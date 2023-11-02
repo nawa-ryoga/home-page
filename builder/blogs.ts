@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 import { getBlogList } from "../lib/client";
 import { domPurify } from "../lib/dom-purify";
-const cheerio = require("cheerio");
+import { optimizeImage } from "../utils/optimizedImage";
 
 (async function () {
   const { contents } = await getBlogList({ draftKey: undefined });
@@ -15,12 +15,9 @@ const cheerio = require("cheerio");
       ADD_TAGS: ["script"],
     });
 
-    const $ = cheerio.load(content);
-    $("img").attr("loading", "lazy");
-
     return {
       ...blog,
-      content: $.html(),
+      content: optimizeImage(content),
     };
   });
 
