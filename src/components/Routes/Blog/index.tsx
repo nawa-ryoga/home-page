@@ -27,171 +27,171 @@ function publishedYear(publishedAt: string) {
   return dayjs.utc(publishedAt).tz("Asia/Tokyo").format("YYYY");
 }
 
-export default function Page({ blog }: Props) {
-  function transform(node: DomElement, index: number) {
-    if (node.type === "tag") {
-      if (node.name === "div" && node.attribs && node.attribs["class"].includes("iframely-embed")) {
-        return (
-          <a
-            key={index}
-            href="https://naary.me"
-          >
-            {"https://naary.me"}
-          </a>
-        );
-      }
-    }
-    if (node.name === "p" && node.children) {
+function transform(node: DomElement, index: number) {
+  if (node.type === "tag") {
+    if (node.name === "div" && node.attribs && node.attribs["class"].includes("iframely-embed")) {
       return (
-        <Text
+        <a
           key={index}
-          as={node.name}
-          color={"colors.font.darken.1"}
-          textAlign={"justify"}
-          lineHeight={"1.7rem"}
-          marginBottom={["2.5rem", "3rem"]}
-          fontSize={[theme.fontSizes["fontSizes.sm"], theme.fontSizes["fontSizes.base"]]}
+          href="https://naary.me"
         >
-          {node.children.map((child, i) => {
-            if (child.name === "a" && child.children && child.attribs) {
-              return (
-                <Link
-                  key={i}
-                  href={child.attribs["href"]}
-                  target="_blank"
-                  rel="noopener nofollow noreferrer"
-                  color={"colors.font.darken.2"}
-                  textDecoration={"underline"}
-                >
-                  {child.children.map((child, i) => convertNodeToElement(child, i, transform))}
-                </Link>
-              );
-            } else {
-              return convertNodeToElement(child, i, transform);
-            }
-          })}
-        </Text>
-      );
-    }
-    if (node.name === "h2" && node.children) {
-      return (
-        <Text
-          key={index}
-          as={node.name}
-          marginBottom={["1.5rem", "3.5rem"]}
-          fontSize={[theme.fontSizes["fontSizes.xl"], theme.fontSizes["fontSizes.2xl"]]}
-        >
-          {node.children.map((child, i) => convertNodeToElement(child, i, transform))}
-        </Text>
-      );
-    }
-    if (node.name === "h3" && node.children) {
-      return (
-        <Text
-          key={index}
-          as={node.name}
-          color={"colors.font.darken.1"}
-          marginBottom={["0.8rem", "1.5rem"]}
-          marginTop={["2rem", "2.5rem"]}
-          fontSize={[theme.fontSizes["fontSizes.lg"], theme.fontSizes["fontSizes.xl"]]}
-        >
-          {node.children.map((child, i) => convertNodeToElement(child, i, transform))}
-        </Text>
-      );
-    }
-    if ((node.name === "ul" || node.name === "ol") && node.children) {
-      return (
-        <Box
-          key={index}
-          as={node.name}
-          color={"colors.font.darken.1"}
-          marginBottom={["0.8rem", "1.5rem"]}
-          marginTop={"1.5rem"}
-          _first-child={{
-            marginY: 0,
-          }}
-          listStylePosition={"outside"}
-          listStyleType={"decimal"}
-        >
-          {node.children.map((child, i) => {
-            if (child.name === "li" && child.children) {
-              return (
-                <Text
-                  key={i}
-                  as={child.name}
-                  color={"colors.font.darken.1"}
-                  marginX={"0.8rem"}
-                  wordBreak={"break-all"}
-                  fontSize={[theme.fontSizes["fontSizes.sm"], theme.fontSizes["fontSizes.base"]]}
-                >
-                  {child.children.map((child, i) => convertNodeToElement(child, i, transform))}
-                </Text>
-              );
-            } else {
-              return convertNodeToElement(child, i, transform);
-            }
-          })}
-        </Box>
-      );
-    }
-    if (node.name === "hr") {
-      return (
-        <Box
-          key={index}
-          as={node.name}
-          marginTop={"4rem"}
-          marginBottom={"4rem"}
-          borderStyle={"none"}
-          borderTop={`solid 1px ${theme.colors["colors.font.darken.2"]}`}
-        />
-      );
-    }
-    if (node.name === "figure" && node.children) {
-      return (
-        <Box
-          key={index}
-          as={"figure"}
-          marginX={0}
-          marginBottom={"2rem"}
-        >
-          {node.children.map((child, i) => {
-            if (child.name === "img" && child.attribs) {
-              const src = child.attribs["src"];
-              return (
-                <img
-                  key={i}
-                  src={src}
-                  srcSet={`${src}?w=320 320w, ${src}?w=670 670w`}
-                  alt={child.attribs["alt"]}
-                  loading={"lazy"}
-                  width={child.attribs["width"]}
-                  height={child.attribs["height"]}
-                />
-              );
-            } else {
-              return convertNodeToElement(child, i, transform);
-            }
-          })}
-        </Box>
-      );
-    }
-    if (node.name === "figcaption" && node.children) {
-      return (
-        <Text
-          key={index}
-          as={"figcaption"}
-          fontSize={"fontSizes.xs"}
-          color={"colors.font.darken.2"}
-          textAlign={"center"}
-          maxWidth={"580px"}
-          paddingY={"8px"}
-        >
-          {convertNodeToElement(node, index, transform)}
-        </Text>
+          {"https://naary.me"}
+        </a>
       );
     }
   }
+  if (node.name === "p" && node.children) {
+    return (
+      <Text
+        key={index}
+        as={node.name}
+        color={"colors.font.darken.1"}
+        textAlign={"justify"}
+        lineHeight={"1.7rem"}
+        marginBottom={["2.5rem", "3rem"]}
+        fontSize={[theme.fontSizes["fontSizes.sm"], theme.fontSizes["fontSizes.base"]]}
+      >
+        {node.children.map((child, i) => {
+          if (child.name === "a" && child.children && child.attribs) {
+            return (
+              <Link
+                key={i}
+                href={child.attribs["href"]}
+                target="_blank"
+                rel="noopener nofollow noreferrer"
+                color={"colors.font.darken.2"}
+                textDecoration={"underline"}
+              >
+                {child.children.map((child, i) => convertNodeToElement(child, i, transform))}
+              </Link>
+            );
+          } else {
+            return convertNodeToElement(child, i, transform);
+          }
+        })}
+      </Text>
+    );
+  }
+  if (node.name === "h2" && node.children) {
+    return (
+      <Text
+        key={index}
+        as={node.name}
+        marginBottom={["1.5rem", "3.5rem"]}
+        fontSize={[theme.fontSizes["fontSizes.xl"], theme.fontSizes["fontSizes.2xl"]]}
+      >
+        {node.children.map((child, i) => convertNodeToElement(child, i, transform))}
+      </Text>
+    );
+  }
+  if (node.name === "h3" && node.children) {
+    return (
+      <Text
+        key={index}
+        as={node.name}
+        color={"colors.font.darken.1"}
+        marginBottom={["0.8rem", "1.5rem"]}
+        marginTop={["2rem", "2.5rem"]}
+        fontSize={[theme.fontSizes["fontSizes.lg"], theme.fontSizes["fontSizes.xl"]]}
+      >
+        {node.children.map((child, i) => convertNodeToElement(child, i, transform))}
+      </Text>
+    );
+  }
+  if ((node.name === "ul" || node.name === "ol") && node.children) {
+    return (
+      <Box
+        key={index}
+        as={node.name}
+        color={"colors.font.darken.1"}
+        marginBottom={["0.8rem", "1.5rem"]}
+        marginTop={"1.5rem"}
+        _first-child={{
+          marginY: 0,
+        }}
+        listStylePosition={"outside"}
+        listStyleType={"decimal"}
+      >
+        {node.children.map((child, i) => {
+          if (child.name === "li" && child.children) {
+            return (
+              <Text
+                key={i}
+                as={child.name}
+                color={"colors.font.darken.1"}
+                marginX={"0.8rem"}
+                wordBreak={"break-all"}
+                fontSize={[theme.fontSizes["fontSizes.sm"], theme.fontSizes["fontSizes.base"]]}
+              >
+                {child.children.map((child, i) => convertNodeToElement(child, i, transform))}
+              </Text>
+            );
+          } else {
+            return convertNodeToElement(child, i, transform);
+          }
+        })}
+      </Box>
+    );
+  }
+  if (node.name === "hr") {
+    return (
+      <Box
+        key={index}
+        as={node.name}
+        marginTop={"4rem"}
+        marginBottom={"4rem"}
+        borderStyle={"none"}
+        borderTop={`solid 1px ${theme.colors["colors.font.darken.2"]}`}
+      />
+    );
+  }
+  if (node.name === "figure" && node.children) {
+    return (
+      <Box
+        key={index}
+        as={"figure"}
+        marginX={0}
+        marginBottom={"2rem"}
+      >
+        {node.children.map((child, i) => {
+          if (child.name === "img" && child.attribs) {
+            const src = child.attribs["src"];
+            return (
+              <img
+                key={i}
+                src={src}
+                srcSet={`${src}?w=320 320w, ${src}?w=670 670w`}
+                alt={child.attribs["alt"]}
+                loading={"lazy"}
+                width={child.attribs["width"]}
+                height={child.attribs["height"]}
+              />
+            );
+          } else {
+            return convertNodeToElement(child, i, transform);
+          }
+        })}
+      </Box>
+    );
+  }
+  if (node.name === "figcaption" && node.children) {
+    return (
+      <Text
+        key={index}
+        as={"figcaption"}
+        fontSize={"fontSizes.xs"}
+        color={"colors.font.darken.2"}
+        textAlign={"center"}
+        maxWidth={"580px"}
+        paddingY={"8px"}
+      >
+        {convertNodeToElement(node, index, transform)}
+      </Text>
+    );
+  }
+}
 
+export default function Page({ blog }: Props) {
   return (
     <>
       <Meta
