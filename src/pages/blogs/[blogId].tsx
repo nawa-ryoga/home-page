@@ -2,7 +2,6 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import type { Blog } from "../../../lib/client";
 import Page from "@/components/Routes/Blog";
 import blogs from "../../../.contents/blogs.json";
-import { parseContent } from "../../../utils/parseContent";
 
 export const runtime = "experimental-edge";
 
@@ -51,14 +50,9 @@ export const getServerSideProps: GetServerSideProps<{ blog: Blog }> = async ({
     return { notFound: true };
   }
 
-  const b = {
-    ...blog,
-    content: parseContent(blog.content),
-  };
-
   return {
     props: {
-      blog: b,
+      blog,
     },
   };
 };
