@@ -1,7 +1,6 @@
 import fs from "fs-extra";
 import { getBlogList } from "../lib/client";
 import { domPurify } from "../lib/dom-purify";
-import { parseContent } from "../utils/parseContent";
 
 (async function () {
   const { contents } = await getBlogList({ draftKey: undefined });
@@ -15,7 +14,7 @@ import { parseContent } from "../utils/parseContent";
 
     return {
       ...blog,
-      content: parseContent(content),
+      content,
     };
   });
 
