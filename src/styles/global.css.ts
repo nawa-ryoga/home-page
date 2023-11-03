@@ -16,6 +16,6 @@ globalStyle("a", {
   color: "white",
 });
 
-globalStyle("h2, h3, p", {
+globalStyle("h2, h3, p, figure", {
   margin: 0,
 });

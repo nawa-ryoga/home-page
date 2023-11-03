@@ -7,7 +7,27 @@ export const runtime = "experimental-edge";
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-export const getServerSideProps: GetServerSideProps<{ blog: Blog }> = async ({ params, res }) => {
+async function getDraftBlog(blogId: string, draftKey: string) {
+  if (!process.env.API_KEY) {
+    throw new Error("APIキーが見つかりません。");
+  }
+  const blog: Blog = await fetch(
+    `https://${process.env.API_SERVICE_DOMAIN}.microcms.io/api/v1/blogs/${blogId}?draftKey=${draftKey}`,
+    {
+      headers: {
+        "X-MICROCMS-API-KEY": process.env.API_KEY,
+      },
+    },
+  ).then((res) => res.json());
+
+  return blog;
+}
+
+export const getServerSideProps: GetServerSideProps<{ blog: Blog }> = async ({
+  params,
+  res,
+  query,
+}) => {
   /**
    * キャッシュされてから60秒間はキャッシュを返す
    * 60秒経過後にバックグラウンドでキャッシュを更新する（更新中も古いキャッシュを返す）
@@ -16,12 +36,15 @@ export const getServerSideProps: GetServerSideProps<{ blog: Blog }> = async ({ p
   res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=86400");
 
   const blogId = params?.blogId;
+  const draftKey = query.draftKey;
 
   if (!blogId) {
     throw new Error("ブログIDが入力されていません。");
   }
 
-  const blog = blogs.find((b) => b.id === blogId);
+  const blog: Blog | undefined = draftKey
+    ? await getDraftBlog(String(blogId), String(draftKey))
+    : blogs.find((b) => b.id === blogId);
 
   if (!blog) {
     return { notFound: true };

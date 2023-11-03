@@ -2,13 +2,17 @@ import Meta from "@/components/Meta";
 import Header from "@/components/Layouts/Header";
 import Main from "@/components/Layouts/Main";
 import type { Blog } from "../../../../lib/client";
-import { Text, Image, VStack, Flex, Box } from "@kuma-ui/core";
+import { Text, Link, Image, VStack, Flex, Box } from "@kuma-ui/core";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import theme from "../../../../kuma.config";
+import ReactHtmlParser, { convertNodeToElement } from "react-html-parser";
+import type { DomElement } from "htmlparser2";
 import "./styles.css";
 import { sectionStyle } from "./styles.css";
+import Paragraph from "./Parts/Paragraph";
+import LinkCard from "./Parts/LinkCard";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -23,6 +27,164 @@ function publishedDate(publishedAt: string) {
 
 function publishedYear(publishedAt: string) {
   return dayjs.utc(publishedAt).tz("Asia/Tokyo").format("YYYY");
+}
+
+function transform(node: DomElement, index: number) {
+  if (node.type === "tag") {
+    if (node.name === "div" && node.attribs && node.attribs["class"].includes("iframely-embed")) {
+      const href = node.children?.[0]?.children?.[0]?.attribs?.["href"];
+      if (href) {
+        return (
+          <LinkCard
+            key={index}
+            href={href}
+          />
+        );
+      }
+    }
+    if (node.name === "p" && node.children) {
+      return (
+        <Paragraph key={index}>
+          {node.children.map((child, i) => {
+            if (child.name === "a" && child.children && child.attribs) {
+              return (
+                <Link
+                  key={i}
+                  href={child.attribs["href"]}
+                  target="_blank"
+                  rel="noopener nofollow noreferrer"
+                  color={"colors.font.darken.2"}
+                  textDecoration={"underline"}
+                >
+                  {child.children.map((child, i) => convertNodeToElement(child, i, transform))}
+                </Link>
+              );
+            } else {
+              return convertNodeToElement(child, i, transform);
+            }
+          })}
+        </Paragraph>
+      );
+    }
+    if (node.name === "h2" && node.children) {
+      return (
+        <Text
+          key={index}
+          as={node.name}
+          marginBottom={["1.5rem", "3.5rem"]}
+          fontSize={[theme.fontSizes["fontSizes.xl"], theme.fontSizes["fontSizes.2xl"]]}
+        >
+          {node.children.map((child, i) => convertNodeToElement(child, i, transform))}
+        </Text>
+      );
+    }
+    if (node.name === "h3" && node.children) {
+      return (
+        <Text
+          key={index}
+          as={node.name}
+          color={"colors.font.darken.1"}
+          marginBottom={["0.8rem", "1.5rem"]}
+          marginTop={["2rem", "2.5rem"]}
+          fontSize={[theme.fontSizes["fontSizes.lg"], theme.fontSizes["fontSizes.xl"]]}
+        >
+          {node.children.map((child, i) => convertNodeToElement(child, i, transform))}
+        </Text>
+      );
+    }
+    if ((node.name === "ul" || node.name === "ol") && node.children) {
+      return (
+        <Box
+          key={index}
+          as={node.name}
+          color={"colors.font.darken.1"}
+          marginBottom={["0.8rem", "1.5rem"]}
+          marginTop={"1.5rem"}
+          _first-child={{
+            marginY: 0,
+          }}
+          listStylePosition={"outside"}
+          listStyleType={"decimal"}
+        >
+          {node.children.map((child, i) => {
+            if (child.name === "li" && child.children) {
+              return (
+                <Text
+                  key={i}
+                  as={child.name}
+                  color={"colors.font.darken.1"}
+                  marginX={"0.8rem"}
+                  wordBreak={"break-all"}
+                  fontSize={[theme.fontSizes["fontSizes.sm"], theme.fontSizes["fontSizes.base"]]}
+                >
+                  {child.children.map((child, i) => convertNodeToElement(child, i, transform))}
+                </Text>
+              );
+            } else {
+              return convertNodeToElement(child, i, transform);
+            }
+          })}
+        </Box>
+      );
+    }
+    if (node.name === "hr") {
+      return (
+        <Box
+          key={index}
+          as={node.name}
+          marginTop={"4rem"}
+          marginBottom={"4rem"}
+          borderStyle={"none"}
+          borderTop={`solid 1px ${theme.colors["colors.font.darken.2"]}`}
+        />
+      );
+    }
+    if (node.name === "figure" && node.children) {
+      return (
+        <Box
+          key={index}
+          as={"figure"}
+          marginX={0}
+          marginBottom={"2rem"}
+        >
+          {node.children.map((child, i) => {
+            if (child.name === "img" && child.attribs) {
+              const src = child.attribs["src"];
+              return (
+                <Box
+                  as={"img"}
+                  key={i}
+                  src={src}
+                  srcSet={`${src}?w=320 320w, ${src}?w=670 670w`}
+                  alt={child.attribs["alt"]}
+                  loading={"lazy"}
+                  width={child.attribs["width"]}
+                  height={child.attribs["height"]}
+                />
+              );
+            } else {
+              return convertNodeToElement(child, i, transform);
+            }
+          })}
+        </Box>
+      );
+    }
+    if (node.name === "figcaption" && node.children) {
+      return (
+        <Text
+          key={index}
+          as={"figcaption"}
+          fontSize={"fontSizes.xs"}
+          color={"colors.font.darken.2"}
+          textAlign={"center"}
+          maxWidth={"580px"}
+          paddingY={"8px"}
+        >
+          {convertNodeToElement(node, index, transform)}
+        </Text>
+      );
+    }
+  }
 }
 
 export default function Page({ blog }: Props) {
@@ -81,6 +243,16 @@ export default function Page({ blog }: Props) {
                   {blog.title}
                 </Text>
 
+                <Text
+                  fontSize={"fontSizes.sm"}
+                  color={"colors.font.darken.2"}
+                  textAlign={"right"}
+                  letterSpacing={"0.05rem"}
+                  marginBottom={["18px", "30px"]}
+                >
+                  {blog.summary}
+                </Text>
+
                 {blog.publishedAt && (
                   <VStack
                     justifyContent={"center"}
@@ -115,8 +287,10 @@ export default function Page({ blog }: Props) {
           <Box
             as={"section"}
             className={sectionStyle}
-            dangerouslySetInnerHTML={{ __html: blog.content }}
-          />
+            paddingX={[8, 0]}
+          >
+            {ReactHtmlParser(blog.content, { decodeEntities: false, transform })}
+          </Box>
         </Box>
       </Main>
     </>
