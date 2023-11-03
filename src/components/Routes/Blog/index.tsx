@@ -151,7 +151,8 @@ function transform(node: DomElement, index: number) {
             if (child.name === "img" && child.attribs) {
               const src = child.attribs["src"];
               return (
-                <img
+                <Box
+                  as={"img"}
                   key={i}
                   src={src}
                   srcSet={`${src}?w=320 320w, ${src}?w=670 670w`}
@@ -286,7 +287,7 @@ export default function Page({ blog }: Props) {
           <Box
             as={"section"}
             className={sectionStyle}
-            paddingX={[16, 0]}
+            paddingX={[8, 0]}
           >
             {ReactHtmlParser(blog.content, { decodeEntities: false, transform })}
           </Box>
