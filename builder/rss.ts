@@ -42,7 +42,7 @@ const getRssTimeline = async () => {
   const feedUrls = USER_RSS_FEEDS;
   const feeds = await Promise.all(feedUrls.map((url) => fetchFeedItems(url)));
 
-  let items: FeedItem[] = [];
+  const items: FeedItem[] = [];
 
   for (const feedItems of feeds) {
     if (feedItems) {
