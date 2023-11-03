@@ -12,7 +12,7 @@ import type { DomElement } from "htmlparser2";
 import "./styles.css";
 import { sectionStyle } from "./styles.css";
 import Paragraph from "./Parts/Paragraph";
-import LinkCard from "./Parts/linkCard";
+import LinkCard from "./Parts/LinkCard";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
