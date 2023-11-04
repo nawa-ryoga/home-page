@@ -7,11 +7,7 @@ type Props = {
 export default function YearContainer({ children }: Props) {
   return (
     <Box marginBottom={["4rem", "8rem"]}>
-      <Box
-        height={"auto"}
-      >
-        {children}
-      </Box>
+      <Box height={"auto"}>{children}</Box>
     </Box>
   );
 }
