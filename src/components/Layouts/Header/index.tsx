@@ -1,6 +1,8 @@
 import { Flex, Text } from "@kuma-ui/core";
 import Link from "next/link";
 import HeaderText from "./parts/HeaderText";
+import { HEADER_HEIGHT, HEADER_TITLE_HEIGHT } from "../../../../kuma.config";
+import { defaultInnerLinkStyle } from "@/styles/global.css";
 
 type Props = {
   isTopPage?: boolean;
@@ -12,7 +14,7 @@ export default function Header({ isTopPage = false, title }: Props) {
     <>
       <Flex
         as={"header"}
-        height={"84px"}
+        height={HEADER_HEIGHT}
         overflow={"visible"}
         justifyContent={"center"}
         alignItems={"flex-end"}
@@ -32,7 +34,10 @@ export default function Header({ isTopPage = false, title }: Props) {
             />
           )}
           {!isTopPage && (
-            <Link href="/">
+            <Link
+              className={defaultInnerLinkStyle}
+              href="/"
+            >
               <HeaderText content={"NAARY.ME /"} />
             </Link>
           )}
@@ -40,7 +45,7 @@ export default function Header({ isTopPage = false, title }: Props) {
       </Flex>
 
       <Flex
-        height={["58px", "96px"]}
+        height={[HEADER_TITLE_HEIGHT.BASE, HEADER_TITLE_HEIGHT.MD]}
         justifyContent={"center"}
         alignItems={"center"}
         letterSpacing={"0.05rem"}

@@ -10,6 +10,9 @@ export const OG_IMAGE_BACKGROUND =
 
 export const DEFAULT_BACKGROUND_COLOR = "#232136" as const;
 
+export const HEADER_HEIGHT = 84;
+export const HEADER_TITLE_HEIGHT = { BASE: 58, MD: 96 };
+
 export const theme = createTheme({
   colors: {
     background: {
