@@ -104,7 +104,7 @@ function transform(node: DomElement, index: number) {
                   style={{
                     maxWidth: "100%",
                     height: "auto",
-                    borderRadius: "4px"
+                    borderRadius: "4px",
                   }}
                 />
               );
