@@ -34,7 +34,6 @@ export default function Menu() {
             imageUrl={imageUrlList.experience}
           />
         </GridItem>
-
       </GridContainer>
       <IconGridContainer>
         {themeConfig.social.map((social) => (

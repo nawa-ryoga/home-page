@@ -8,7 +8,7 @@ type Props = {
 export default function Container({ children }: Props) {
   return (
     <NonStyleList>
-      <Box paddingTop={["60px","120px"]}>{children}</Box>
+      <Box paddingTop={["60px", "120px"]}>{children}</Box>
     </NonStyleList>
   );
 }

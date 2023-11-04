@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Box, Flex, Text } from "@kuma-ui/core";
 import ExternalLink from "@/components/Commons/ExternalLink";
-import theme from "../../../../../kuma.config";
+import theme from "../../../../../../../kuma.config";
 
 type Props = {
   href: string;

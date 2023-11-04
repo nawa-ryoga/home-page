@@ -1,5 +1,5 @@
 import { Text } from "@kuma-ui/core";
-import theme from "../../../../../kuma.config";
+import theme from "../../../../../../../kuma.config";
 
 type Props = {
   children: React.ReactNode;
