@@ -16,7 +16,7 @@ export default function FeedItemDate({ children, href }: Props) {
       alignItems={"center"}
       justifyContent={"center"}
       color={"colors.font.darken.2"}
-      paddingBottom={[6, 8]}
+      paddingBottom={[8, 12]}
     >
       {children}
     </Flex>
