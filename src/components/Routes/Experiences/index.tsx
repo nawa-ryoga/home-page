@@ -32,29 +32,30 @@ export default function Page({ experiencesPerYears }: Props) {
         <Container>
           {experiencesPerYears.map((experiences, index) => (
             <NonStyleListItem key={index}>
-              {Object.keys(experiences).map((year) => (
-                <YearContainer key={year}>
-                  <YearHeader>{year}</YearHeader>
-                  <SectionContainer>
-                    {Object.keys(experiences[year]).map((month) => (
-                      <MonthContainer key={month}>
-                        <MonthHeader>{month}</MonthHeader>
-                        <FeedListContainer>
-                          {experiences[year][month].map((feed) => (
-                            <FeedItemContainer key={feed.link}>
-                              <FeedItem
-                                feedLink={feed.link}
-                                feedTitle={feed.title}
-                                feedDate={feed.isoDate}
-                              />
-                            </FeedItemContainer>
-                          ))}
-                        </FeedListContainer>
-                      </MonthContainer>
-                    ))}
-                  </SectionContainer>
-                </YearContainer>
-              ))}
+              <YearContainer>
+                <YearHeader>{experiences.year}</YearHeader>
+                <SectionContainer>
+                  {experiences.months.map((items) => (
+                    <MonthContainer key={items.month}>
+                      <MonthHeader>{items.month}</MonthHeader>
+                      <FeedListContainer>
+                        {items.feeds.map(
+                          (feed) =>
+                            feed.isoDate && (
+                              <FeedItemContainer key={feed.link}>
+                                <FeedItem
+                                  feedLink={feed.link}
+                                  feedTitle={feed.title}
+                                  feedDate={feed.isoDate}
+                                />
+                              </FeedItemContainer>
+                            ),
+                        )}
+                      </FeedListContainer>
+                    </MonthContainer>
+                  ))}
+                </SectionContainer>
+              </YearContainer>
             </NonStyleListItem>
           ))}
         </Container>
