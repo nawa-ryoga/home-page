@@ -1,5 +1,6 @@
 import Meta from "@/components/Meta";
 import Header from "@/components/Layouts/Header";
+import Footer from "@/components/Layouts/Footer";
 import Main from "@/components/Layouts/Main";
 import type { Blog } from "../../../../lib/client";
 import BlogHeader from "./Objects/Header";
@@ -25,6 +26,8 @@ export default function Page({ blog }: Props) {
           <BlogSection {...blog} />
         </article>
       </Main>
+
+      <Footer />
     </>
   );
 }

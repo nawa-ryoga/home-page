@@ -1,5 +1,6 @@
 import Meta from "@/components/Meta";
 import Header from "@/components/Layouts/Header";
+import Footer from "@/components/Layouts/Footer";
 import Main from "@/components/Layouts/Main";
 import type { About } from "../../../../lib/client";
 import { VStack, Image, Text, Box, Grid } from "@kuma-ui/core";
@@ -129,6 +130,8 @@ export default function Page({ about }: Props) {
           </Box>
         </VStack>
       </Main>
+
+      <Footer />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import Meta from "@/components/Meta";
 import Header from "@/components/Layouts/Header";
+import Footer from "@/components/Layouts/Footer";
 import Main from "@/components/Layouts/Main";
 import { SITE_TITLE } from "../../../../kuma.config";
 import Paragraph from "./Parts/Paragpraph";
@@ -51,6 +52,8 @@ export default function Page() {
           </Box>
         </Box>
       </Main>
+
+      <Footer />
     </>
   );
 }
