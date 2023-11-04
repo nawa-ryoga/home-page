@@ -19,7 +19,7 @@ export default function FeedItemTitle({ children, href }: Props) {
       color={"colors.font.darken.1"}
       _visited={{ color: "colors.font.darken.2" }}
       wordBreak={"break-all"}
-      paddingBottom={[4, 18]}
+      paddingBottom={[4, 8]}
     >
       {children}
     </Flex>

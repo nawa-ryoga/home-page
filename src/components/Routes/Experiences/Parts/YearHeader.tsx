@@ -1,5 +1,4 @@
-import { Box, HStack, Flex, Text } from "@kuma-ui/core";
-import theme from "../../../../../kuma.config";
+import { Box, Flex, Text } from "@kuma-ui/core";
 
 type Props = {
   children: React.ReactNode;
@@ -8,42 +7,32 @@ type Props = {
 export default function YearHeader({ children }: Props) {
   return (
     <Box
-      as={"aside"}
-      position={"relative"}
+      as={"header"}
+      width={"100%"}
+      backdropFilter={"blur(16px)"}
+      position={"sticky"}
+      top={0}
+      zIndex={9999}
     >
-      <HStack
-        alignItems={"flex-end"}
-        justifyContent={"flex-start"}
+      <Flex
+        as={"span"}
+        height={"120px"}
+        justifyContent={"center"}
+        alignItems={"center"}
       >
-        <Box
-          width={48}
-          height={"100%"}
-          borderBottom={`1px solid ${theme.colors["colors.font.darken.2"]}`}
-        ></Box>
-        <Flex
-          as={"span"}
-          justifyContent={"center"}
-          paddingX={"8px"}
+        <Text
+          as={"h2"}
+          margin={0}
+          color={"colors.font.darken.1"}
+          fontSize={"fontSizes.4xl"}
+          fontWeight={"bold"}
+          lineHeight={1}
+          letterSpacing={"0rem"}
+          marginRight={"-0.4rem"}
         >
-          <Text
-            as={"h2"}
-            margin={0}
-            color={"colors.font.darken.1"}
-            fontSize={"fontSizes.2xl"}
-            fontWeight={700}
-            letterSpacing={"0.3rem"}
-            marginRight={"-0.4rem"}
-            marginBottom={"-0.5rem"}
-          >
-            {children}
-          </Text>
-        </Flex>
-        <Box
-          width={96}
-          height={"100%"}
-          borderBottom={`1px solid ${theme.colors["colors.font.darken.2"]}`}
-        ></Box>
-      </HStack>
+          {children}
+        </Text>
+      </Flex>
     </Box>
   );
 }

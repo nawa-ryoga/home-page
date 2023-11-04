@@ -1,4 +1,4 @@
-import { Text, VStack, Image } from "@kuma-ui/core";
+import { Text, Image } from "@kuma-ui/core";
 import FeedItemIcon from "../Parts/FeedItemIcon";
 import FeedItemTitle from "../Parts/FeedItemTitle";
 import FeedItemDate from "../Parts/FeedItemDate";
@@ -36,18 +36,13 @@ function publishedDate(feedDate: string) {
 
 export default function FeedItem({ feedLink, feedTitle, feedDate }: Props) {
   return (
-    <VStack
-      backgroundColor={"colors.background.darken.1"}
-      borderRadius={14}
-      alignItems={"center"}
-      justifyContent={"center"}
-    >
+    <>
       <FeedItemIcon href={feedLink}>
         <Image
           src={switchIconImage(feedLink)}
           alt=""
-          width={60}
-          height={60}
+          width={[48, 60]}
+          height={[48, 60]}
         />
       </FeedItemIcon>
 
@@ -55,7 +50,7 @@ export default function FeedItem({ feedLink, feedTitle, feedDate }: Props) {
         <Text
           as={"h3"}
           margin={0}
-          fontSize={[theme.fontSizes["fontSizes.sm"], theme.fontSizes["fontSizes.md"]]}
+          fontSize={[theme.fontSizes["fontSizes.xs"], theme.fontSizes["fontSizes.sm"]]}
           paddingX={["12px", "60px"]}
         >
           {feedTitle}
@@ -64,13 +59,13 @@ export default function FeedItem({ feedLink, feedTitle, feedDate }: Props) {
 
       <FeedItemDate href={feedLink}>
         <Text
-          fontSize={[theme.fontSizes["fontSizes.xs"], theme.fontSizes["fontSizes.sm"]]}
+          fontSize={["0.6rem", theme.fontSizes["fontSizes.xs"]]}
           paddingX={["12px", "60px"]}
           margin={0}
         >
           {publishedDate(feedDate)}
         </Text>
       </FeedItemDate>
-    </VStack>
+    </>
   );
 }

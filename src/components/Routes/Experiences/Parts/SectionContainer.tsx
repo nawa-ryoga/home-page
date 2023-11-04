@@ -11,6 +11,9 @@ export default function SectionContainer({ children }: Props) {
       as={"section"}
       gridColumn={`span 4 / auto`}
       gap={"62px"}
+      maxWidth={["348px","580px"]}
+      width={"100%"}
+      marginX={"auto"}
     >
       <NonStyleList>{children}</NonStyleList>
     </VStack>

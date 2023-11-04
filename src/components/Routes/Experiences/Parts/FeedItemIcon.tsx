@@ -16,8 +16,8 @@ export default function FeedItemIcon({ children, href }: Props) {
       height={"100%"}
       alignItems={"center"}
       justifyContent={"center"}
-      paddingTop={["16px", "40px"]}
-      paddingBottom={[10, 24]}
+      paddingTop={[8, 12]}
+      paddingBottom={[4, 8]}
     >
       {children}
     </Flex>

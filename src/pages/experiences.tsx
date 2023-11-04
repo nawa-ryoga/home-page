@@ -1,38 +1,70 @@
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import type { FeedItem } from "../../builder/rss";
 import rss from "../../.contents/rss.json";
 import Page from "@/components/Routes/Experiences";
 
-type ExperiencePerMonth = { [key: string]: typeof rss };
-export type ExperiencePerYears = Array<{ [key: string]: ExperiencePerMonth }>;
+export type ExperiencePerMonths = {
+  month: number;
+  feeds: FeedItem[];
+};
+
+export type ExperiencePerYears = {
+  year: number;
+  months: ExperiencePerMonths[];
+}[];
+
+function sortFeeds(feedItems: FeedItem[]): ExperiencePerYears {
+  const sortedFeedItemsByDate = [...feedItems].sort(
+    (a, b) => b.dateMiliSeconds - a.dateMiliSeconds,
+  );
+
+  const feedMap: Map<number, Map<number, FeedItem[]>> = new Map();
+  sortedFeedItemsByDate.forEach((item) => {
+    const date = new Date(item.dateMiliSeconds);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    if (!feedMap.has(year)) {
+      feedMap.set(year, new Map());
+    }
+    const yearMap = feedMap.get(year);
+
+    if (!yearMap) {
+      return;
+    }
+
+    if (!yearMap.has(month)) {
+      yearMap.set(month, []);
+    }
+
+    const feedsPerMonth = yearMap.get(month);
+    if (feedsPerMonth) {
+      feedsPerMonth.push(item);
+    }
+  });
+
+  const feedListPerYear: ExperiencePerYears = Array.from(feedMap.entries()).map(
+    ([year, yearMap]) => {
+      const feedList: ExperiencePerMonths[] = Array.from(yearMap.entries()).map(
+        ([month, feeds]) => ({
+          month,
+          feeds,
+        }),
+      );
+      feedList.sort((a, b) => b.month - a.month);
+      return { year, months: feedList };
+    },
+  );
+
+  feedListPerYear.sort((a, b) => b.year - a.year);
+
+  return feedListPerYear;
+}
 
 export const getStaticProps: GetStaticProps<{
   experiencesPerYears: ExperiencePerYears;
 }> = async () => {
-  const yearsObj: { [key: string]: ExperiencePerMonth } = {};
-
-  // { "2023": 2023年のRSSフィード } のような形にする
-  rss.forEach((feed) => {
-    const date = new Date(feed.isoDate);
-    const year = date.getFullYear().toString();
-    const month = (date.getMonth() + 1).toString();
-
-    if (!yearsObj[year]) {
-      yearsObj[year] = { [month]: [feed] };
-    } else if (!yearsObj[year][month]) {
-      yearsObj[year][month] = [feed];
-    } else {
-      yearsObj[year][month].push(feed);
-    }
-  });
-
-  // キー（年）を降順にソート、内部も月の降順にソート
-  const sortedYears = Object.keys(yearsObj).sort((a, b) => Number(b) - Number(a));
-  const experiencesPerYears: ExperiencePerYears = sortedYears.map((key) => {
-    const sortedMonths = Object.keys(yearsObj[key]).sort((a, b) => Number(b) - Number(a));
-    return {
-      [key]: sortedMonths.reduce((acc, k) => ({ ...acc, [k]: yearsObj[key][k] }), {}),
-    };
-  });
+  const feedItems: FeedItem[] = rss;
+  const experiencesPerYears = sortFeeds(feedItems);
 
   return {
     props: { experiencesPerYears },

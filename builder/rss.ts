@@ -4,7 +4,7 @@ import { USER_RSS_FEEDS } from "../kuma.config";
 
 const parser = new Parser();
 
-type FeedItem = {
+export type FeedItem = {
   title: string;
   link: string;
   contentSnippet?: string;
