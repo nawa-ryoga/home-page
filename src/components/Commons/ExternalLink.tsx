@@ -13,6 +13,7 @@ export default function ExternalLink(props: Props) {
       target="_blank"
       rel="noopener nofollow noreferrer"
       _visited={{ color: "colors.font.darken.2" }}
+      textDecoration={"none"}
       {...props}
     />
   );

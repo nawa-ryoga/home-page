@@ -1,5 +1,6 @@
 import Meta from "@/components/Meta";
 import Header from "@/components/Layouts/Header";
+import Footer from "@/components/Layouts/Footer";
 import Main from "@/components/Layouts/Main";
 import Link from "next/link";
 import type { Blog } from "../../../../lib/client";
@@ -8,6 +9,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import theme from "../../../../kuma.config";
+import { defaultInnerLinkStyle } from "@/styles/global.css";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -55,7 +57,10 @@ export default function Page({ blogs }: Props) {
                 justifyContent={"center"}
                 alignItems={"center"}
               >
-                <Link href={`/blogs/${blog.id}`}>
+                <Link
+                  className={defaultInnerLinkStyle}
+                  href={`/blogs/${blog.id}`}
+                >
                   <Image
                     src={`${blog.eyecatch.url}`}
                     srcSet={`${blog.eyecatch.url}?w=180 180w, ${blog.eyecatch.url}?w=240 240w`}
@@ -72,7 +77,10 @@ export default function Page({ blogs }: Props) {
                 marginTop={["-42px", "-78px"]}
                 paddingX={["16px", 0]}
               >
-                <Link href={`/blogs/${blog.id}`}>
+                <Link
+                  className={defaultInnerLinkStyle}
+                  href={`/blogs/${blog.id}`}
+                >
                   <Text
                     as={"h2"}
                     fontSize={[theme.fontSizes["fontSizes.md"], theme.fontSizes["fontSizes.xl"]]}
@@ -116,6 +124,8 @@ export default function Page({ blogs }: Props) {
           ))}
         </VStack>
       </Main>
+
+      <Footer />
     </>
   );
 }
