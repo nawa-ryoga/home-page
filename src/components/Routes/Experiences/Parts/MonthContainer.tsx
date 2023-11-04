@@ -8,7 +8,7 @@ export default function MonthContainer({ children }: Props) {
   return (
     <Box
       as={"li"}
-      paddingX={[0, "48px"]}
+      paddingX={[8]}
     >
       {children}
     </Box>

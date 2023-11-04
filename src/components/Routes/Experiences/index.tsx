@@ -1,6 +1,5 @@
 import type { ExperiencePerYears } from "@/pages/experiences";
 import Meta from "@/components/Meta";
-import Main from "@/components/Layouts/Main";
 import Header from "@/components/Layouts/Header";
 import FeedItem from "./Objects/FeedItem";
 import Container from "./Parts/Container";
@@ -27,8 +26,7 @@ export default function Page({ experiencesPerYears }: Props) {
       />
 
       <Header title="Experiences" />
-
-      <Main>
+      <main>
         <Container>
           {experiencesPerYears.map((experiences, index) => (
             <NonStyleListItem key={index}>
@@ -59,7 +57,7 @@ export default function Page({ experiencesPerYears }: Props) {
             </NonStyleListItem>
           ))}
         </Container>
-      </Main>
+      </main>
     </>
   );
 }

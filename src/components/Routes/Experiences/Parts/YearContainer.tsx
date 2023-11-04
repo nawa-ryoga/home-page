@@ -8,8 +8,6 @@ export default function YearContainer({ children }: Props) {
   return (
     <Box marginBottom={["4rem", "8rem"]}>
       <Box
-        marginX={"auto"}
-        width={["100%", "680px"]}
         height={"auto"}
       >
         {children}
