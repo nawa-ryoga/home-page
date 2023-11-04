@@ -7,7 +7,7 @@ type Props = {
 
 export default function FeedListContainer({ children }: Props) {
   return (
-    <VStack paddingX={"18px"}>
+    <VStack paddingX={[8, 16]}>
       <NonStyleList>{children}</NonStyleList>
     </VStack>
   );

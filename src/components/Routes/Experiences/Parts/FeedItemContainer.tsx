@@ -1,4 +1,4 @@
-import { Box } from "@kuma-ui/core";
+import { Box, VStack } from "@kuma-ui/core";
 
 type Props = {
   children: React.ReactNode;
@@ -8,9 +8,16 @@ export default function FeedItemContainer({ children }: Props) {
   return (
     <Box
       as={"li"}
-      marginBottom={"24px"}
+      marginBottom={["12px", "24px"]}
     >
-      {children}
+      <VStack
+        backgroundColor={"colors.background.darken.1"}
+        borderRadius={14}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        {children}
+      </VStack>
     </Box>
   );
 }
