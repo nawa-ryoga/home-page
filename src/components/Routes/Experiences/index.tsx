@@ -12,6 +12,7 @@ import FeedListContainer from "./Parts/FeedListContainer";
 import FeedItemContainer from "./Parts/FeedItemContainer";
 import NonStyleListItem from "@/components/Commons/NoStyleListItem";
 import type { ExperiencePerYears } from "@/pages/experiences";
+import { secondIn } from "@/styles/animation.css";
 
 type Props = {
   experiencesPerYears: ExperiencePerYears;
@@ -28,7 +29,7 @@ export default function Page({ experiencesPerYears }: Props) {
 
       <Header title="Experiences" />
 
-      <main>
+      <main className={secondIn}>
         <Container>
           {experiencesPerYears.map((experiences, index) => (
             <NonStyleListItem key={index}>

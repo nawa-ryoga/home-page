@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Box } from "@kuma-ui/core";
 import { HEADER_HEIGHT, HEADER_TITLE_HEIGHT } from "../../../kuma.config";
+import { secondIn } from "@/styles/animation.css";
 
 type Props = { children: ReactNode };
 
@@ -8,6 +9,7 @@ export default function Main({ children }: Props) {
   return (
     <Box
       as={"main"}
+      className={secondIn}
       paddingX={16}
       paddingTop={[24, 40]}
       paddingBottom={40}
