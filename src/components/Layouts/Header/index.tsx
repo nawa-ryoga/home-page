@@ -3,6 +3,7 @@ import Link from "next/link";
 import HeaderText from "./parts/HeaderText";
 import { HEADER_HEIGHT, HEADER_TITLE_HEIGHT } from "../../../../kuma.config";
 import { defaultInnerLinkStyle } from "@/styles/global.css";
+import { firstIn } from "@/styles/animation.css";
 
 type Props = {
   isTopPage?: boolean;
@@ -14,6 +15,7 @@ export default function Header({ isTopPage = false, title }: Props) {
     <>
       <Flex
         as={"header"}
+        className={firstIn}
         height={HEADER_HEIGHT}
         overflow={"visible"}
         justifyContent={"center"}
@@ -45,6 +47,7 @@ export default function Header({ isTopPage = false, title }: Props) {
       </Flex>
 
       <Flex
+        className={firstIn}
         height={[HEADER_TITLE_HEIGHT.BASE, HEADER_TITLE_HEIGHT.MD]}
         justifyContent={"center"}
         alignItems={"center"}

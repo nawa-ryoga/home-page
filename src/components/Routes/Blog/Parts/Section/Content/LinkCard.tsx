@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Box, Flex, Text } from "@kuma-ui/core";
 import ExternalLink from "@/components/Commons/ExternalLink";
 import theme from "../../../../../../../kuma.config";
+import { linkCardFadeIn } from "@/styles/animation.css";
 
 type Props = {
   href: string;
@@ -44,6 +45,7 @@ export default function LinkCard({ href }: Props) {
       {data && (
         <>
           <Box
+            className={linkCardFadeIn}
             textAlign={"center"}
             paddingX={[8, 16]}
           >
@@ -75,6 +77,7 @@ export default function LinkCard({ href }: Props) {
           {data.image && (
             <Flex
               as={"a"}
+              className={linkCardFadeIn}
               flex={1}
               href={href}
               target="_blank"
