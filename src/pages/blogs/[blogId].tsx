@@ -42,9 +42,21 @@ export const getServerSideProps: GetServerSideProps<{ blog: Blog }> = async ({
     throw new Error("ブログIDが入力されていません。");
   }
 
-  const blog: Blog | undefined = draftKey
+  const blog: Blog | undefined = blogs.length
+    ? blogs.find((b: Blog) => b.id === blogId)
+    : undefined;
+
+  const draftBlog: Blog | undefined = draftKey
     ? await getDraftBlog(String(blogId), String(draftKey))
-    : blogs.find((b) => b.id === blogId);
+    : undefined;
+
+  if (!blog && draftBlog) {
+    return {
+      props: {
+        blog: draftBlog,
+      },
+    };
+  }
 
   if (!blog) {
     return { notFound: true };
