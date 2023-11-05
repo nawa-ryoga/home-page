@@ -64,9 +64,71 @@ export const getStaticProps: GetStaticProps<{
   experiencesPerYears: ExperiencePerYears;
 }> = async () => {
   const feedItems: FeedItem[] = rss;
-  const experiencesPerYears = sortFeeds(feedItems);
+  // const experiencesPerYears = sortFeeds(feedItems);
+
+  const item = feedItems[0]
+
+  const experiencesPerYears: ExperiencePerYears = [
+    {
+      year: 2023,
+      months: [
+        {
+          month: 12,
+          feeds: [item, item, item, item, item],
+        },
+        {
+          month: 11,
+          feeds: [item, item, item, item, item],
+        },
+        {
+          month: 10,
+          feeds: [item, item, item, item, item],
+        },
+      ],
+    },
+    {
+      year: 2022,
+      months: [
+        {
+          month: 12,
+          feeds: [item, item, item, item, item],
+        },
+        {
+          month: 11,
+          feeds: [item, item, item, item, item],
+        },
+      ],
+    },
+    {
+      year: 2021,
+      months: [
+        {
+          month: 12,
+          feeds: [item, item, item, item, item],
+        },
+        {
+          month: 11,
+          feeds: [item, item, item, item, item],
+        },
+      ],
+    },
+    {
+      year: 2020,
+      months: [
+        {
+          month: 12,
+          feeds: [item, item, item, item, item],
+        },
+        {
+          month: 11,
+          feeds: [item, item, item, item, item],
+        },
+      ],
+    },
+  ];
 
   return {
+    // props: { experiencesPerYears },
     props: { experiencesPerYears },
   };
 };
