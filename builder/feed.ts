@@ -7,9 +7,9 @@ const generateRssFeed = async () => {
   const feed = new RSS({
     title: SITE_TITLE,
     description: OG_DESCRIPTION,
+    generator: `https://${DOMAIN}`,
     site_url: `https://${DOMAIN}`,
     feed_url: `https://${DOMAIN}/feed.xml`,
-    image_url: "/icon-192.png",
     language: "ja",
   });
 
