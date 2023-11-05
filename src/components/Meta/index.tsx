@@ -31,13 +31,6 @@ export default function Meta({
       {title && <title key="title">{`${title} | ${SITE_TITLE}`}</title>}
       <link
         rel="icon"
-        href="/icon.svg"
-        sizes="any"
-        type="image/svg+xml"
-        key="icon"
-      />
-      <link
-        rel="icon"
         href="/favicon.ico"
         sizes="any"
       >
