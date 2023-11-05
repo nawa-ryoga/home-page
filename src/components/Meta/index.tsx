@@ -30,7 +30,7 @@ export default function Meta({
       <title key="title">{SITE_TITLE}</title>
       {title && <title key="title">{`${title} | ${SITE_TITLE}`}</title>}
       <link
-        rel="icon"
+        rel="shortcut icon"
         href="/favicon.ico"
         sizes="any"
       >
