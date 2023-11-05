@@ -10,7 +10,6 @@ const generateRssFeed = async () => {
     generator: `https://${DOMAIN}`,
     site_url: `https://${DOMAIN}`,
     feed_url: `https://${DOMAIN}/feed.xml`,
-    image_url: `https://${DOMAIN}/icon-192.png`,
     language: "ja",
   });
 
