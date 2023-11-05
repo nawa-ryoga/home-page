@@ -1,4 +1,5 @@
 import Header from "@/components/Layouts/Header";
+import Footer from "@/components/Layouts/Footer";
 import Menu from "./Layouts/Menu";
 import { SITE_TITLE } from "../../../../kuma.config";
 import Meta from "@/components/Meta";
@@ -17,6 +18,8 @@ export default function Top() {
       <main className={secondIn}>
         <Menu />
       </main>
+
+      <Footer />
     </>
   );
 }
