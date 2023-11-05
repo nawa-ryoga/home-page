@@ -1,4 +1,5 @@
 import { Box, Text } from "@kuma-ui/core";
+import { defaultInnerLinkStyle } from "@/styles/global.css";
 
 type Props = {
   link: string;
@@ -15,6 +16,7 @@ export default function FirstLineItem({ link, text, imageUrl, imageSize }: Props
     <Box
       as={"a"}
       href={`/${link}`}
+      className={defaultInnerLinkStyle}
       height={["86px", "128px"]}
       borderRadius={10}
       paddingX={16}

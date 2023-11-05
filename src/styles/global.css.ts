@@ -1,4 +1,4 @@
-import { globalStyle } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import { DEFAULT_BACKGROUND_COLOR } from "../../kuma.config";
 
 /**
@@ -11,11 +11,11 @@ globalStyle("html, body", {
   margin: 0,
 });
 
-globalStyle("a", {
-  textDecoration: "none",
-  color: "white",
-});
-
 globalStyle("h2, h3, p, figure", {
   margin: 0,
+});
+
+export const defaultInnerLinkStyle = style({
+  textDecoration: "none",
+  color: "white",
 });

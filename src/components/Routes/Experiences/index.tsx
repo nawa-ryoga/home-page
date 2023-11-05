@@ -1,6 +1,6 @@
-import type { ExperiencePerYears } from "@/pages/experiences";
 import Meta from "@/components/Meta";
 import Header from "@/components/Layouts/Header";
+import Footer from "@/components/Layouts/Footer";
 import FeedItem from "./Objects/FeedItem";
 import Container from "./Parts/Container";
 import YearContainer from "./Parts/YearContainer";
@@ -11,6 +11,7 @@ import MonthHeader from "./Parts/MonthHeader";
 import FeedListContainer from "./Parts/FeedListContainer";
 import FeedItemContainer from "./Parts/FeedItemContainer";
 import NonStyleListItem from "@/components/Commons/NoStyleListItem";
+import type { ExperiencePerYears } from "@/pages/experiences";
 
 type Props = {
   experiencesPerYears: ExperiencePerYears;
@@ -26,6 +27,7 @@ export default function Page({ experiencesPerYears }: Props) {
       />
 
       <Header title="Experiences" />
+
       <main>
         <Container>
           {experiencesPerYears.map((experiences, index) => (
@@ -58,6 +60,8 @@ export default function Page({ experiencesPerYears }: Props) {
           ))}
         </Container>
       </main>
+
+      <Footer />
     </>
   );
 }
