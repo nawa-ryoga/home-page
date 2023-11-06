@@ -17,6 +17,7 @@ export default function Page({ blog }: Props) {
         title={blog.title}
         path={`blogs/${blog.id}`}
         content={blog.summary}
+        ogImage={blog.eyecatch.url}
       />
       <Header title="Blog" />
 

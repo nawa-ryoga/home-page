@@ -23,7 +23,7 @@ export default function Meta({
   ogImage,
   path,
 }: Props) {
-  const base64imageSrc = base64url(ogImage ? ogImage : OG_IMAGE_LOGO);
+  const base64imageSrc = base64url(ogImage ? `${ogImage}?w=400&h=400` : OG_IMAGE_LOGO);
 
   return (
     <Head>
