@@ -1,7 +1,7 @@
 import RSS from "rss";
 import fs from "fs-extra";
-import { getBlogList } from "../lib/client";
 import { DOMAIN, SITE_TITLE, OG_DESCRIPTION } from "../kuma.config";
+import blogs from "../.contents/blogs.json";
 
 const generateRssFeed = async () => {
   const feed = new RSS({
@@ -14,9 +14,7 @@ const generateRssFeed = async () => {
     language: "ja",
   });
 
-  const { contents } = await getBlogList();
-
-  contents?.forEach((post) => {
+  blogs?.forEach((post) => {
     if (!post.publishedAt) {
       return;
     }

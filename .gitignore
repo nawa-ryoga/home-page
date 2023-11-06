@@ -38,3 +38,4 @@ next-env.d.ts
 /.contents
 
 /public/feed.xml
+/public/sitemap.xml

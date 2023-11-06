@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "pnpm run build:json && next build",
-    "build:json": "pnpm run build:rss && pnpm run build:about && pnpm run build:feed && pnpm run build:blogs",
+    "build:json": "pnpm run build:blogs && pnpm run build:rss && pnpm run build:about && pnpm run build:feed && pnpm run build:sitemap",
     "build:rss": "ts-node --project tsconfig.builder.json ./builder/rss.ts",
     "build:feed": "ts-node --project tsconfig.builder.json ./builder/feed.ts",
     "build:about": "ts-node --project tsconfig.builder.json ./builder/about.ts",
     "build:blogs": "ts-node --project tsconfig.builder.json ./builder/blogs.ts",
+    "build:sitemap": "ts-node --project tsconfig.builder.json ./builder/sitemap.ts",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}' && next lint --fix"
