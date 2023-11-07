@@ -3,18 +3,6 @@ import he from "he";
 
 export const runtime = "experimental-edge";
 
-export type MetaData = {
-  url: string;
-  description: string;
-  title: string;
-  image: string;
-};
-
-export type OgResponse = {
-  timestamp: string;
-  data: MetaData;
-};
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (!req.url) {
     return res.status(400).json({ error: "Invalid url" });

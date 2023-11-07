@@ -4,22 +4,27 @@ import ExternalLink from "@/components/Commons/ExternalLink";
 import theme from "../../../../../../../kuma.config";
 import { linkCardFadeIn } from "@/styles/animation.css";
 
-import type { MetaData, OgResponse } from "@/pages/api/og";
-
 type Props = {
   href: string;
+};
+
+export type MetaData = {
+  url: string;
+  description: string;
+  title: string;
+  image: string;
 };
 
 export default function LinkCard({ href }: Props) {
   const [data, setData] = useState<MetaData>();
 
   useEffect(() => {
-    async function fetchData(): Promise<OgResponse> {
+    async function fetchData(): Promise<MetaData> {
       const data = await fetch(`${window.location.origin}/api/og?url=${href}`);
       return data.json();
     }
     fetchData().then((ogData) => {
-      setData(ogData.data);
+      setData(ogData);
     });
   }, [href]);
 
