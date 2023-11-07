@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { KVNamespace } from "@cloudflare/workers-types";
 import he from "he";
+import dayjs from "dayjs";
+import type { OgResponse } from "@/components/Routes/Blog/Parts/Section/Content/LinkCard";
 
 export const runtime = "experimental-edge";
 
@@ -22,16 +24,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    const hitData = await NAARY_ME_KV.get(href);
+    if (hitData) {
+      const hd = JSON.parse(hitData) as OgResponse;
+      const savedAt = dayjs(hd.timestamp);
+
+      if (dayjs().diff(savedAt, "hour") < 24) {
+        return new Response(JSON.stringify(hd, null, 2), {
+          status: 200,
+          headers: { "content-type": "application/json;charset=UTF-8" },
+        });
+      }
+    }
+
     const response = await fetch(href as string);
     const html = await response.text();
     const metaData = getMetaData(html);
 
-    await NAARY_ME_KV.put(href, JSON.stringify(metaData));
+    const value = {
+      timestamp: dayjs().toString,
+      data: metaData,
+    };
 
-    return new Response(JSON.stringify(metaData, null, 2), {
+    await NAARY_ME_KV.put(href, JSON.stringify(value));
+
+    return new Response(JSON.stringify(value, null, 2), {
       status: 200,
       headers: { "content-type": "application/json;charset=UTF-8" },
     });
+  
   } catch (error) {
     return new Response(
       JSON.stringify({ error: "An error occurred while fetching the URL." }, null, 2),

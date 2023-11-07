@@ -8,23 +8,28 @@ type Props = {
   href: string;
 };
 
-type Og = {
+type MetaData = {
   url: string;
   description: string;
   title: string;
   image: string;
 };
 
+export type OgResponse = {
+  timestamp: string;
+  data: MetaData;
+};
+
 export default function LinkCard({ href }: Props) {
-  const [data, setData] = useState<Og>();
+  const [data, setData] = useState<MetaData>();
 
   useEffect(() => {
-    async function fetchData(): Promise<Og> {
+    async function fetchData(): Promise<OgResponse> {
       const data = await fetch(`${window.location.origin}/api/og?url=${href}`);
       return data.json();
     }
     fetchData().then((ogData) => {
-      setData(ogData);
+      setData(ogData.data);
     });
   }, [href]);
 
