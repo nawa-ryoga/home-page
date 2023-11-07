@@ -1,11 +1,21 @@
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { VStack, HStack, Text } from "@kuma-ui/core";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 import { linkStyle } from "./style.css";
 
-const today = dayjs();
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export default function Footer() {
+  const [year, setYear] = useState<number>();
+  useEffect(() => {
+    const year = dayjs().tz("Asia/Tokyo").year();
+    setYear(year);
+  }, []);
+
   return (
     <VStack
       as={"footer"}
@@ -16,7 +26,7 @@ export default function Footer() {
       fontWeight={"700"}
       paddingY={[40, 80]}
     >
-      <Text>© {today.year()} naary</Text>
+      {year && <Text>© {year} naary</Text>}
       <HStack
         justifyContent={"center"}
         gap={4}

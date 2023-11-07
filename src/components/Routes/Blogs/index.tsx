@@ -5,26 +5,13 @@ import Main from "@/components/Layouts/Main";
 import Link from "next/link";
 import type { Blog } from "../../../../lib/client";
 import { Text, Image, VStack, Flex, Box } from "@kuma-ui/core";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
 import theme from "../../../../kuma.config";
 import { defaultInnerLinkStyle } from "@/styles/global.css";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import Date from "./Parts/Date";
 
 type Props = {
   blogs: Blog[];
 };
-
-function publishedDate(publishedAt: string) {
-  return dayjs.utc(publishedAt).tz("Asia/Tokyo").format("MMM D");
-}
-
-function publishedYear(publishedAt: string) {
-  return dayjs.utc(publishedAt).tz("Asia/Tokyo").format("YYYY");
-}
 
 export default function Page({ blogs }: Props) {
   return (
@@ -109,34 +96,7 @@ export default function Page({ blogs }: Props) {
                   </Link>
 
                   {blog.publishedAt && (
-                    <VStack
-                      justifyContent={"center"}
-                      alignItems={"center"}
-                      gap={[4, 8]}
-                    >
-                      <Box
-                        as={"span"}
-                        fontSize={[
-                          theme.fontSizes["fontSizes.sm"],
-                          theme.fontSizes["fontSizes.base"],
-                        ]}
-                        color={"colors.font.darken.1"}
-                        letterSpacing={"0.1rem"}
-                      >
-                        {publishedDate(blog.publishedAt)}
-                      </Box>
-                      <Box
-                        as={"span"}
-                        fontSize={[
-                          theme.fontSizes["fontSizes.xs"],
-                          theme.fontSizes["fontSizes.sm"],
-                        ]}
-                        color={"colors.font.darken.1"}
-                        letterSpacing={"0.05rem"}
-                      >
-                        {publishedYear(blog.publishedAt)}
-                      </Box>
-                    </VStack>
+                    <Date publishedAt={blog.publishedAt} />
                   )}
                 </Box>
               </VStack>

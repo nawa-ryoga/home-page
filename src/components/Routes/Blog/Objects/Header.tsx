@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import type { Blog } from "../../../../../lib/client";
 import { Image } from "@kuma-ui/core";
 import dayjs from "dayjs";
@@ -18,15 +19,16 @@ type Props = Pick<Blog, "title" | "summary" | "eyecatch" | "publishedAt">;
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-function publishedDate(publishedAt: string) {
-  return dayjs.utc(publishedAt).tz("Asia/Tokyo").format("MMM D");
-}
-
-function publishedYear(publishedAt: string) {
-  return dayjs.utc(publishedAt).tz("Asia/Tokyo").format("YYYY");
-}
-
 export default function BlogHeader({ title, summary, eyecatch, publishedAt }: Props) {
+  const [publishedDate, setPublishedDate] = useState("");
+  const [publishedYear, setPublishedYear] = useState("");
+
+  useEffect(() => {
+    if (publishedAt) {
+      setPublishedDate(dayjs.utc(publishedAt).tz("Asia/Tokyo").format("MMM D"));
+      setPublishedYear(dayjs.utc(publishedAt).tz("Asia/Tokyo").format("YYYY"));
+    }
+  }, [publishedAt]);
   return (
     <HeaderContainer>
       <HeaderContent>
@@ -45,8 +47,8 @@ export default function BlogHeader({ title, summary, eyecatch, publishedAt }: Pr
           <Summary>{summary}</Summary>
           {publishedAt && (
             <PublishedAtContainer>
-              <PublishedDate>{publishedDate(publishedAt)}</PublishedDate>
-              <PublishedYear>{publishedYear(publishedAt)}</PublishedYear>
+              <PublishedDate>{publishedDate}</PublishedDate>
+              <PublishedYear>{publishedYear}</PublishedYear>
             </PublishedAtContainer>
           )}
         </MetaContainer>
