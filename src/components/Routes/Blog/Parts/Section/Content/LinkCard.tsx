@@ -15,21 +15,16 @@ type Og = {
   image: string;
 };
 
-type OgResponse = {
-  timestamp: string;
-  data: Og;
-};
-
 export default function LinkCard({ href }: Props) {
   const [data, setData] = useState<Og>();
 
   useEffect(() => {
-    async function fetchData(): Promise<OgResponse> {
+    async function fetchData(): Promise<Og> {
       const data = await fetch(`${window.location.origin}/api/og?url=${href}`);
       return data.json();
     }
     fetchData().then((ogData) => {
-      setData(ogData.data);
+      setData(ogData);
     });
   }, [href]);
 

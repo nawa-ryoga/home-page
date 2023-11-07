@@ -37,7 +37,6 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.7.2",
-    "@cloudflare/workers-types": "^4.20231025.0",
     "@kuma-ui/next-plugin": "^1.1.12",
     "@types/dompurify": "^3.0.4",
     "@types/dotenv": "^8.2.0",
