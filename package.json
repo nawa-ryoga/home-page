@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public --kv NAARY_ME_KV",
     "build": "pnpm run build:json && next build",
     "build:json": "pnpm run build:blogs && pnpm run build:rss && pnpm run build:about && pnpm run build:feed && pnpm run build:sitemap",
     "build:rss": "ts-node --project tsconfig.builder.json ./builder/rss.ts",

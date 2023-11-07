@@ -26,6 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     NAARY_ME_KV: KVNamespace;
   };
 
+
   const url = new URL(req.url);
   const params = url.searchParams;
   const href = params.get("url");
@@ -36,6 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const hitData = await NAARY_ME_KV.get(href);
+
     if (hitData) {
       const hd = JSON.parse(hitData) as OgResponse;
       const savedAt = dayjs(hd.timestamp);
@@ -57,13 +59,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data: metaData,
     };
 
-    await NAARY_ME_KV.put(href, JSON.stringify(value));
+    NAARY_ME_KV.put(href, JSON.stringify(value, null, 2));
 
     return new Response(JSON.stringify(value, null, 2), {
       status: 200,
       headers: { "content-type": "application/json;charset=UTF-8" },
     });
-  
   } catch (error) {
     return new Response(
       JSON.stringify({ error: "An error occurred while fetching the URL." }, null, 2),
