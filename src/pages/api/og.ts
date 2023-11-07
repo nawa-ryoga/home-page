@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const metaData = getMetaData(html);
 
     const value = {
-      timestamp: dayjs().toString,
+      timestamp: dayjs().toString(),
       data: metaData,
     };
 
