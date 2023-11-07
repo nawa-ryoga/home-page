@@ -3,13 +3,8 @@ import { Text, Image } from "@kuma-ui/core";
 import FeedItemIcon from "../Parts/FeedItemIcon";
 import FeedItemTitle from "../Parts/FeedItemTitle";
 import FeedItemDate from "../Parts/FeedItemDate";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
 import theme from "../../../../../kuma.config";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { formatDate } from "../../../../../lib/dayjs";
 
 type Props = {
   feedLink: string;
@@ -35,7 +30,7 @@ export default function FeedItem({ feedLink, feedTitle, feedDate }: Props) {
   const [publishedAt, setPublishedAt] = useState("");
 
   useEffect(() => {
-    setPublishedAt(dayjs.utc(feedDate).tz("Asia/Tokyo").format("MMM D, YYYY"));
+    setPublishedAt(formatDate(feedDate, "MMM D, YYYY"));
   }, [feedDate]);
 
   return (

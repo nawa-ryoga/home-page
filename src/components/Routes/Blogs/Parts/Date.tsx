@@ -1,26 +1,12 @@
-import { useState, useEffect } from "react";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
 import { VStack, Box } from "@kuma-ui/core";
 import theme from "../../../../../kuma.config";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import usePublishedDate from "@/hooks/usePublishedAt";
 
 type Props = {
   publishedAt: string
 }
 export default function Date({ publishedAt }: Props) {
-  const [publishedDate, setPublishedDate] = useState("");
-  const [publishedYear, setPublishedYear] = useState("");
-
-  useEffect(() => {
-    if (publishedAt) {
-      setPublishedDate(dayjs.utc(publishedAt).tz("Asia/Tokyo").format("MMM D"));
-      setPublishedYear(dayjs.utc(publishedAt).tz("Asia/Tokyo").format("YYYY"));
-    }
-  }, [publishedAt]);
+  const { publishedDate, publishedYear } = usePublishedDate(publishedAt);
 
   return (
     <VStack

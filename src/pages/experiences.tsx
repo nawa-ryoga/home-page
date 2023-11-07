@@ -2,12 +2,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import type { FeedItem } from "../../builder/rss";
 import rss from "../../.contents/rss.json";
 import Page from "@/components/Routes/Experiences";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { getDate } from "../../lib/dayjs";
 
 export type ExperiencePerMonths = {
   month: number;
@@ -26,7 +21,7 @@ function sortFeeds(feedItems: FeedItem[]): ExperiencePerYears {
 
   const feedMap: Map<number, Map<number, FeedItem[]>> = new Map();
   sortedFeedItemsByDate.forEach((item) => {
-    const date = dayjs(item.dateMiliSeconds).tz("Asia/Tokyo");
+    const date = getDate(item.dateMiliSeconds);
     const year = date.year();
     const month = date.month() + 1;
     if (!feedMap.has(year)) {

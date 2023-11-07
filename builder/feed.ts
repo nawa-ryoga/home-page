@@ -2,12 +2,7 @@ import RSS from "rss";
 import fs from "fs-extra";
 import { DOMAIN, SITE_TITLE, OG_DESCRIPTION } from "../kuma.config";
 import blogs from "../.contents/blogs.json";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { formatDate } from "../lib/dayjs";
 
 const generateRssFeed = async () => {
   const feed = new RSS({
@@ -29,7 +24,7 @@ const generateRssFeed = async () => {
       description: post.summary,
       url: `https://${DOMAIN}/blogs/${post.id}`,
       author: "naary",
-      date: dayjs.utc(post.publishedAt).tz("Asia/Tokyo").format("YYYY MM DD"),
+      date: formatDate(post.publishedAt, "YYYY MM DD"),
     });
   });
 

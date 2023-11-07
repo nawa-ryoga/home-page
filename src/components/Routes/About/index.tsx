@@ -8,12 +8,7 @@ import { VStack, Image, Text, Box, Grid } from "@kuma-ui/core";
 import parse, { Element, domToReact, attributesToProps } from "html-react-parser";
 import type { HTMLReactParserOptions, DOMNode } from "html-react-parser";
 import theme from "../../../../kuma.config";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { getDate } from "../../../../lib/dayjs";
 
 type Props = {
   about: About;
@@ -45,7 +40,7 @@ export default function Page({ about }: Props) {
   const [age, setAge] = useState<number>()
   useEffect(() => {
     if (about.birth_year) {
-      const year = dayjs().tz("Asia/Tokyo").year();
+      const year = getDate().year();
       setAge(year - about.birth_year);
     }
   }, [about.birth_year]);
