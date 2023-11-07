@@ -2,9 +2,20 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { KVNamespace } from "@cloudflare/workers-types";
 import he from "he";
 import dayjs from "dayjs";
-import type { OgResponse } from "@/components/Routes/Blog/Parts/Section/Content/LinkCard";
 
 export const runtime = "experimental-edge";
+
+export type MetaData = {
+  url: string;
+  description: string;
+  title: string;
+  image: string;
+};
+
+export type OgResponse = {
+  timestamp: string;
+  data: MetaData;
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (!req.url) {

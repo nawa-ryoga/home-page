@@ -4,20 +4,10 @@ import ExternalLink from "@/components/Commons/ExternalLink";
 import theme from "../../../../../../../kuma.config";
 import { linkCardFadeIn } from "@/styles/animation.css";
 
+import type { MetaData, OgResponse } from "@/pages/api/og";
+
 type Props = {
   href: string;
-};
-
-type MetaData = {
-  url: string;
-  description: string;
-  title: string;
-  image: string;
-};
-
-export type OgResponse = {
-  timestamp: string;
-  data: MetaData;
 };
 
 export default function LinkCard({ href }: Props) {
