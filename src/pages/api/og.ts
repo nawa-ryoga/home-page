@@ -23,7 +23,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     return new Response(JSON.stringify(metaData, null, 2), {
       status: 200,
-      headers: { "content-type": "application/json;charset=UTF-8" },
+      headers: {
+        "content-type": "application/json;charset=UTF-8",
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=86400",
+      },
     });
   } catch (error) {
     return new Response(
