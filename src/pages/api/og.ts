@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { KVNamespace } from "@cloudflare/workers-types";
 import he from "he";
 
 export const runtime = "experimental-edge";
@@ -7,6 +8,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!req.url) {
     return res.status(400).json({ error: "Invalid url" });
   }
+
+  const { NAARY_ME_KV } = process.env as unknown as {
+    NAARY_ME_KV: KVNamespace;
+  };
 
   const url = new URL(req.url);
   const params = url.searchParams;
@@ -20,6 +25,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const response = await fetch(href as string);
     const html = await response.text();
     const metaData = getMetaData(html);
+
+    await NAARY_ME_KV.put(href, JSON.stringify(metaData));
 
     return new Response(JSON.stringify(metaData, null, 2), {
       status: 200,
