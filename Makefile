@@ -7,6 +7,9 @@ json:
 up:
 	pnpm run dev
 
+kv:
+	pnpm run dev:wrangler
+
 lint:
 	pnpm run lint
 
