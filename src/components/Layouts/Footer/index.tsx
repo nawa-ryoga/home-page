@@ -1,18 +1,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { VStack, HStack, Text } from "@kuma-ui/core";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
 import { linkStyle } from "./style.css";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { getDate } from "../../../../lib/dayjs";
 
 export default function Footer() {
   const [year, setYear] = useState<number>();
   useEffect(() => {
-    const year = dayjs().tz("Asia/Tokyo").year();
+    const year = getDate().year();
     setYear(year);
   }, []);
 

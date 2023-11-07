@@ -1,12 +1,7 @@
 import Parser from "rss-parser";
 import fs from "fs-extra";
 import { USER_RSS_FEEDS } from "../kuma.config";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { getDate } from "../lib/dayjs";
 
 const parser = new Parser();
 
@@ -38,7 +33,7 @@ async function fetchFeedItems(url: string) {
         contentSnippet: contentSnippet?.replace(/\n/g, ""),
         link,
         isoDate,
-        dateMiliSeconds: isoDate ? dayjs(isoDate).tz("Asia/Tokyo").valueOf() : 0,
+        dateMiliSeconds: isoDate ? getDate(isoDate).valueOf() : 0,
       };
     })
     .filter(({ title, link }) => title && link && isValidUrl(link)) as FeedItem[];
