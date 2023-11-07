@@ -7,6 +7,12 @@ import { VStack, Image, Text, Box, Grid } from "@kuma-ui/core";
 import parse, { Element, domToReact, attributesToProps } from "html-react-parser";
 import type { HTMLReactParserOptions, DOMNode } from "html-react-parser";
 import theme from "../../../../kuma.config";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 type Props = {
   about: About;
@@ -35,7 +41,7 @@ const options: HTMLReactParserOptions = {
 };
 
 function age(birth_year: number) {
-  const year = new Date().getFullYear();
+  const year = dayjs().tz("Asia/Tokyo").year();
   return year - birth_year;
 }
 
