@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Meta from "@/components/Meta";
 import Header from "@/components/Layouts/Header";
 import Footer from "@/components/Layouts/Footer";
@@ -40,12 +41,15 @@ const options: HTMLReactParserOptions = {
   },
 };
 
-function age(birth_year: number) {
-  const year = dayjs().tz("Asia/Tokyo").year();
-  return year - birth_year;
-}
-
 export default function Page({ about }: Props) {
+  const [age, setAge] = useState<number>()
+  useEffect(() => {
+    if (about.birth_year) {
+      const year = dayjs().tz("Asia/Tokyo").year();
+      setAge(year - about.birth_year);
+    }
+  }, [about.birth_year]);
+
   return (
     <>
       <Meta
@@ -82,12 +86,12 @@ export default function Page({ about }: Props) {
           </Text>
 
           {/* 戻り値に生年月日の情報があったら、何年何月何日生まれの今年何歳、という表記を出す */}
-          {about.birth_year && (
+          {age && (
             <Text
               textAlign={"center"}
               marginBottom={"40px"}
             >
-              Web writer. <br /> {age(about.birth_year)} years old this year.
+              Web writer. <br /> {age} years old this year.
             </Text>
           )}
 

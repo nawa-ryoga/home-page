@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Text, Image } from "@kuma-ui/core";
 import FeedItemIcon from "../Parts/FeedItemIcon";
 import FeedItemTitle from "../Parts/FeedItemTitle";
@@ -30,11 +31,13 @@ function switchIconImage(feedLink: string) {
   }
 }
 
-function publishedDate(feedDate: string) {
-  return dayjs.utc(feedDate).tz("Asia/Tokyo").format("MMM D, YYYY");
-}
-
 export default function FeedItem({ feedLink, feedTitle, feedDate }: Props) {
+  const [publishedAt, setPublishedAt] = useState("");
+
+  useEffect(() => {
+    setPublishedAt(dayjs.utc(feedDate).tz("Asia/Tokyo").format("MMM D, YYYY"));
+  }, [feedDate]);
+
   return (
     <>
       <FeedItemIcon href={feedLink}>
@@ -63,7 +66,7 @@ export default function FeedItem({ feedLink, feedTitle, feedDate }: Props) {
           paddingX={["12px", "60px"]}
           margin={0}
         >
-          {publishedDate(feedDate)}
+          {publishedAt}
         </Text>
       </FeedItemDate>
     </>
