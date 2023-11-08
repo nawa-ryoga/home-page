@@ -3,6 +3,7 @@ import type { Blog } from "../../lib/client";
 import blogs from "../../.contents/blogs.json";
 import Page from "@/components/Routes/Blogs";
 import type { MicroCMSListResponse } from "microcms-js-sdk";
+import Error500 from "./500";
 
 export const runtime = "experimental-edge";
 
@@ -24,7 +25,10 @@ async function getDraftBlogs(draftKey: string) {
   return contents;
 }
 
-export const getServerSideProps: GetServerSideProps<{ blogs: Blog[] }> = async ({ res, query }) => {
+export const getServerSideProps: GetServerSideProps<{ blogs?: Blog[]; error?: 500 }> = async ({
+  res,
+  query,
+}) => {
   /**
    * キャッシュされてから60秒間はキャッシュを返す
    * 60秒経過後にバックグラウンドでキャッシュを更新する（更新中も古いキャッシュを返す）
@@ -34,15 +38,28 @@ export const getServerSideProps: GetServerSideProps<{ blogs: Blog[] }> = async (
 
   const draftKey = query.draftKey;
 
-  const b: Blog[] = draftKey ? await getDraftBlogs(String(draftKey)) : blogs;
+  try {
+    const b: Blog[] = draftKey ? await getDraftBlogs(String(draftKey)) : blogs;
 
-  return {
-    props: {
-      blogs: b,
-    },
-  };
+    return {
+      props: {
+        blogs: b,
+      },
+    };
+  } catch (e) {
+    return {
+      props: {
+        error: 500,
+      },
+    };
+  }
 };
 
-export default function Blogs({ blogs }: Props) {
-  return <Page blogs={blogs} />;
+export default function Blogs({ blogs, error }: Props) {
+  return (
+    <>
+      {blogs && <Page blogs={blogs} />}
+      {error === 500 && <Error500 />}
+    </>
+  );
 }

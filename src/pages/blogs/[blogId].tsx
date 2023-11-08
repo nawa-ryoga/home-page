@@ -2,6 +2,8 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import type { Blog } from "../../../lib/client";
 import Page from "@/components/Routes/Blog";
 import blogs from "../../../.contents/blogs.json";
+import Error404 from "../404";
+import Error500 from "../500";
 
 export const runtime = "experimental-edge";
 
@@ -23,7 +25,7 @@ async function getDraftBlog(blogId: string, draftKey: string) {
   return blog;
 }
 
-export const getServerSideProps: GetServerSideProps<{ blog: Blog }> = async ({
+export const getServerSideProps: GetServerSideProps<{ blog?: Blog; error?: 404 | 500 }> = async ({
   params,
   res,
   query,
@@ -42,33 +44,51 @@ export const getServerSideProps: GetServerSideProps<{ blog: Blog }> = async ({
     throw new Error("ブログIDが入力されていません。");
   }
 
-  const blog: Blog | undefined = blogs.length
-    ? blogs.find((b: Blog) => b.id === blogId)
-    : undefined;
+  try {
+    const blog: Blog | undefined = blogs.length
+      ? blogs.find((b: Blog) => b.id === blogId)
+      : undefined;
 
-  const draftBlog: Blog | undefined = draftKey
-    ? await getDraftBlog(String(blogId), String(draftKey))
-    : undefined;
+    const draftBlog: Blog | undefined = draftKey
+      ? await getDraftBlog(String(blogId), String(draftKey))
+      : undefined;
 
-  if (!blog && draftBlog) {
+    if (!blog && draftBlog) {
+      return {
+        props: {
+          blog: draftBlog,
+        },
+      };
+    }
+
+    if (!blog) {
+      return {
+        props: {
+          error: 404,
+        },
+      };
+    }
+
     return {
       props: {
-        blog: draftBlog,
+        blog,
+      },
+    };
+  } catch (e) {
+    return {
+      props: {
+        error: 500,
       },
     };
   }
-
-  if (!blog) {
-    return { notFound: true };
-  }
-
-  return {
-    props: {
-      blog,
-    },
-  };
 };
 
-export default function Blog({ blog }: Props) {
-  return <Page blog={blog} />;
+export default function Blog({ blog, error }: Props) {
+  return (
+    <>
+      {blog && <Page blog={blog} />}
+      {error === 404 && <Error404 />}
+      {error === 500 && <Error500 />}
+    </>
+  );
 }

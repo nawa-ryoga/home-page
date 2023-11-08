@@ -3,6 +3,7 @@ import type { FeedItem } from "../../builder/rss";
 import rss from "../../.contents/rss.json";
 import Page from "@/components/Routes/Experiences";
 import { getDate } from "../../lib/dayjs";
+import Error500 from "./500";
 
 export type ExperiencePerMonths = {
   month: number;
@@ -62,18 +63,32 @@ function sortFeeds(feedItems: FeedItem[]): ExperiencePerYears {
 }
 
 export const getStaticProps: GetStaticProps<{
-  experiencesPerYears: ExperiencePerYears;
+  experiencesPerYears?: ExperiencePerYears;
+  error?: 500;
 }> = async () => {
   const feedItems: FeedItem[] = rss;
-  const experiencesPerYears = sortFeeds(feedItems);
 
-  return {
-    props: { experiencesPerYears },
-  };
+  try {
+    const experiencesPerYears = sortFeeds(feedItems);
+    return {
+      props: { experiencesPerYears },
+    };
+  } catch (e) {
+    return {
+      props: {
+        error: 500,
+      },
+    };
+  }
 };
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Experiences({ experiencesPerYears }: Props) {
-  return <Page experiencesPerYears={experiencesPerYears} />;
+export default function Experiences({ experiencesPerYears, error }: Props) {
+  return (
+    <>
+      {experiencesPerYears && <Page experiencesPerYears={experiencesPerYears} />}
+      {error === 500 && <Error500 />}
+    </>
+  );
 }
