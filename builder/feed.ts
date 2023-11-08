@@ -1,5 +1,6 @@
 import RSS from "rss";
 import fs from "fs-extra";
+import type { Blog } from "../lib/client";
 import { DOMAIN, SITE_TITLE, OG_DESCRIPTION } from "../kuma.config";
 import blogs from "../.contents/blogs.json";
 import { formatDate } from "../lib/dayjs";
@@ -15,7 +16,7 @@ const generateRssFeed = async () => {
     language: "ja",
   });
 
-  blogs?.forEach((post) => {
+  blogs?.forEach((post: Blog) => {
     if (!post.publishedAt) {
       return;
     }
