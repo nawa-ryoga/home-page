@@ -86,6 +86,7 @@ export default function LinkCard({ href }: Props) {
           {data.image && (
             <Flex
               flex={1}
+              className={linkCardFadeIn}
               bgPosition={"center"}
               bgRepeat={"no-repeat"}
               bgSize={"cover"}
@@ -96,7 +97,6 @@ export default function LinkCard({ href }: Props) {
               <Flex
                 as={"a"}
                 flex={1}
-                className={linkCardFadeIn}
                 href={href}
                 target="_blank"
                 rel="noopener nofollow noreferrer"
