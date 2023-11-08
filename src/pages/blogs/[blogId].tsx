@@ -53,7 +53,7 @@ export const getServerSideProps: GetServerSideProps<{ blog?: Blog; error?: 404 |
       ? await getDraftBlog(String(blogId), String(draftKey))
       : undefined;
 
-    if (!blog && draftBlog) {
+    if (draftBlog) {
       return {
         props: {
           blog: draftBlog,

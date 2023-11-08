@@ -36,7 +36,7 @@ export const secondIn = style([
 export const linkCardFadeIn = style([
   fadeInUpAnimation,
   {
-    animationDelay: "2s",
+    animationDelay: "1s",
     animationDuration: "0.2s",
   },
 ]);
