@@ -34,11 +34,10 @@ export default function LinkCard({ href }: Props) {
       width={"100%"}
       flexDirection={"column"}
       minHeight={["180px", "250px"]}
-      borderRadius={"8px"}
+      borderRadius={"16px"}
       marginBottom={["2rem", "3rem"]}
       bg={"colors.background.darken.1"}
       letterSpacing={"0.05em"}
-      paddingTop={[8, 16]}
       wordBreak={"break-all"}
       textAlign={"justify"}
     >
@@ -49,25 +48,35 @@ export default function LinkCard({ href }: Props) {
             textAlign={"center"}
             paddingX={[8, 16]}
           >
-            <ExternalLink href={href}>
-              <Text fontSize={["0.5rem", theme.fontSizes["fontSizes.xs"]]}>
+            <ExternalLink
+              href={href}
+              color={theme.colors["colors.font.darken.1"]}
+            >
+              <Text
+                fontSize={["0.5rem", theme.fontSizes["fontSizes.xs"]]}
+                paddingTop={[8, 16]}
+              >
                 <em>{data.url}</em>
               </Text>
             </ExternalLink>
             <ExternalLink href={href}>
               <Text
                 color={"colors.font.darken.1"}
-                fontSize={[theme.fontSizes["fontSizes.md"], theme.fontSizes["fontSizes.xl"]]}
+                fontSize={[theme.fontSizes["fontSizes.lg"], theme.fontSizes["fontSizes.md"]]}
                 fontWeight={"bold"}
-                marginBottom={["0.6rem", "1rem"]}
+                paddingBottom={["0.3rem", "0.6rem"]}
               >
                 {data.title}
               </Text>
             </ExternalLink>
             <ExternalLink href={href}>
               <Text
-                fontSize={[theme.fontSizes["fontSizes.xs"], theme.fontSizes["fontSizes.sm"]]}
+                fontSize={["0.5rem", theme.fontSizes["fontSizes.xs"]]}
                 color={"colors.font.darken.2"}
+                paddingBottom={[8, 16]}
+                overflow={"hidden"}
+                textOverflow={"ellipsis"}
+                whiteSpace={"nowrap"}
               >
                 {data.description}
               </Text>
@@ -76,19 +85,29 @@ export default function LinkCard({ href }: Props) {
 
           {data.image && (
             <Flex
-              as={"a"}
-              className={linkCardFadeIn}
               flex={1}
-              href={href}
-              target="_blank"
-              rel="noopener nofollow noreferrer"
-              width={"100%"}
-              height={"100%"}
               bgPosition={"center"}
               bgRepeat={"no-repeat"}
-              bgSize={"contain"}
-              style={{ backgroundImage: `url(${data.image})` }}
-            />
+              bgSize={"cover"}
+              style={{
+                backgroundImage: `linear-gradient(rgba(3, 8, 28, 0.8), rgba(3, 8, 28, 0.8)), url(${data.image})`,
+              }}
+            >
+              <Flex
+                as={"a"}
+                flex={1}
+                className={linkCardFadeIn}
+                href={href}
+                target="_blank"
+                rel="noopener nofollow noreferrer"
+                width={"100%"}
+                height={"auto"}
+                bgPosition={"center"}
+                bgRepeat={"no-repeat"}
+                bgSize={"contain"}
+                style={{ backgroundImage: `url(${data.image})` }}
+              />
+            </Flex>
           )}
         </>
       )}
