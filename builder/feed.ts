@@ -11,7 +11,7 @@ const generateRssFeed = async () => {
     generator: `https://${DOMAIN}`,
     site_url: `https://${DOMAIN}`,
     feed_url: `https://${DOMAIN}/feed.xml`,
-    image_url: `https://${DOMAIN}/favicon.ico`,
+    image_url: `https://${DOMAIN}/favicon.png`,
     language: "ja",
   });
 

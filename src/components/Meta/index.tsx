@@ -31,11 +31,11 @@ export default function Meta({
       {title && <title key="title">{`${title} | ${SITE_TITLE}`}</title>}
       <link
         rel="shortcut icon"
-        href="/favicon.ico"
+        href="/logo.svg"
         sizes="any"
-      >
-        {/* 32×32 */}
-      </link>
+        type="image/svg+xml"
+        key="icon"
+      />
       <link
         rel="apple-touch-icon"
         href="/apple-touch-icon.png"
