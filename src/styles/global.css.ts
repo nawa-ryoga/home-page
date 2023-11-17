@@ -11,7 +11,7 @@ globalStyle("html, body", {
   margin: 0,
 });
 
-globalStyle("h2, h3, p, figure", {
+globalStyle("h2, h3, p, figure, blockquote", {
   margin: 0,
 });
 
