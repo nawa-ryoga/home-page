@@ -14,6 +14,8 @@ import ListItem from "../Parts/Section/Content/List/Item";
 import HorizontalRule from "../Parts/Section/Content/HorizontalRule";
 import Figure from "../Parts/Section/Content/Figure";
 import Figcaption from "../Parts/Section/Content/Figcaption";
+import Blockquote from "../Parts/Section/Content/Blockquote";
+import BlockquoteParagraph from "../Parts/Section/Content/BlockquoteParagraph";
 
 type Props = Pick<Blog, "content">;
 
@@ -31,8 +33,12 @@ function transform(node: DomElement, index: number) {
       }
     }
     if (node.name === "p" && node.children) {
+      const alignRight = node.attribs && node.attribs["style"] === "text-align: right";
       return (
-        <Paragraph key={index}>
+        <Paragraph
+          key={index}
+          alignRight={alignRight}
+        >
           {node.children.map((child, i) => {
             if (child.name === "a" && child.children && child.attribs) {
               return (
@@ -118,6 +124,45 @@ function transform(node: DomElement, index: number) {
     if (node.name === "figcaption" && node.children) {
       return <Figcaption key={index}>{convertNodeToElement(node, index, transform)}</Figcaption>;
     }
+  }
+  if (node.name === "blockquote" && node.children) {
+    return (
+      <Blockquote key={index}>
+        {node.children.map((child, i) => {
+          if (child.name === "p" && child.attribs && child.children) {
+            const alignRight = child.attribs && child.attribs["style"] === "text-align: right";
+
+            return (
+              <BlockquoteParagraph
+                key={i}
+                alignRight={alignRight}
+              >
+                {child.children.map((child, i) => {
+                  if (child.name === "a" && child.children && child.attribs) {
+                    return (
+                      <ExternalLink
+                        key={i}
+                        href={child.attribs["href"]}
+                        color={"colors.font.darken.2"}
+                        textDecoration={"underline"}
+                      >
+                        {child.children.map((child, i) =>
+                          convertNodeToElement(child, i, transform),
+                        )}
+                      </ExternalLink>
+                    );
+                  } else {
+                    return convertNodeToElement(child, i, transform);
+                  }
+                })}
+              </BlockquoteParagraph>
+            );
+          } else {
+            return convertNodeToElement(child, i, transform);
+          }
+        })}
+      </Blockquote>
+    );
   }
 }
 

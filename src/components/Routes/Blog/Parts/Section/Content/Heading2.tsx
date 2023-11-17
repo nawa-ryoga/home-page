@@ -9,7 +9,8 @@ export default function Heading2({ children }: Props) {
   return (
     <Text
       as={"h2"}
-      marginBottom={["1.5rem", "3.5rem"]}
+      marginBottom={["1.5rem", "2.8rem"]}
+      marginTop={["5rem", "6rem"]}
       fontSize={[theme.fontSizes["fontSizes.xl"], theme.fontSizes["fontSizes.2xl"]]}
     >
       {children}
