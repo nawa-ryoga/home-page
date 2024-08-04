@@ -4,6 +4,12 @@ import he from "he";
 export const runtime = "experimental-edge";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const alloeOrigin = process.env.CF_PAGES_URL ?? "*";
+
+  res.setHeader("Access-Control-Allow-Origin", alloeOrigin);
+  res.setHeader("Access-Control-Allow-Methods", "GET");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
   if (!req.url) {
     return res.status(400).json({ error: "Invalid url" });
   }
