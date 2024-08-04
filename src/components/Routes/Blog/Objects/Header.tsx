@@ -24,6 +24,7 @@ export default function BlogHeader({ title, summary, eyecatch, publishedAt }: Pr
             src={`${eyecatch.url}`}
             srcSet={`${eyecatch.url}?w=180 180w, ${eyecatch.url}?w=240 240w`}
             maxWidth={"100%"}
+            minHeight={["180px", "240px"]}
             height={"auto"}
             alt={""}
             aspectRatio={"1 / 1"}
