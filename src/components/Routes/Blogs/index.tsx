@@ -69,6 +69,7 @@ export default function Page({ blogs }: Props) {
                       srcSet={`${blog.eyecatch.url}?w=180 180w, ${blog.eyecatch.url}?w=240 240w`}
                       maxWidth={"100%"}
                       height={"auto"}
+                      minHeight={["180px", "240px"]}
                       alt={""}
                       aspectRatio={"1 / 1"}
                     />
