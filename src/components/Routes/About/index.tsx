@@ -116,10 +116,10 @@ export default function Page({ about }: Props) {
                     {c.images.map((i, index) => (
                       <Box
                         aspectRatio={"1"}
+                        key={i.url}
                       >
                         <Image
                           alt={""}
-                          key={i.url}
                           display={[index === 3 ? "none" : "inline", "inline"]}
                           gridColumn={"span 1 / auto"}
                           width={"100%"}
