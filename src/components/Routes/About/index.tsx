@@ -114,18 +114,21 @@ export default function Page({ about }: Props) {
                     marginBottom={"16px"}
                   >
                     {c.images.map((i, index) => (
-                      <Image
-                        alt={""}
-                        key={i.url}
-                        display={[index === 3 ? "none" : "inline", "inline"]}
+                      <Box
                         aspectRatio={"1"}
-                        gridColumn={"span 1 / auto"}
-                        maxWidth={"100%"}
-                        height={"auto"}
-                        src={`${i.url}?w=200`}
-                        objectFit={"cover"}
-                        borderRadius={"10px"}
-                      />
+                        key={i.url}
+                      >
+                        <Image
+                          alt={""}
+                          display={[index === 3 ? "none" : "inline", "inline"]}
+                          gridColumn={"span 1 / auto"}
+                          width={"100%"}
+                          height={"100%"}
+                          src={`${i.url}?w=200`}
+                          borderRadius={"10px"}
+                          objectFit={"cover"}
+                        />
+                      </Box>
                     ))}
                   </Grid>
                 )}
