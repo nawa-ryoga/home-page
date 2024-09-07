@@ -86,7 +86,7 @@ export default function Page({ about }: Props) {
               textAlign={"center"}
               marginBottom={"40px"}
             >
-              Web writer. <br /> {age} years old this year.
+              Japanese Software Engineer, and Designer. <br /> {age} years old this year.
             </Text>
           )}
 
