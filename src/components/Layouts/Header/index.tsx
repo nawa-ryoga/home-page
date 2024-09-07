@@ -32,7 +32,7 @@ export default function Header({ isTopPage = false, title }: Props) {
         >
           {isTopPage && (
             <HeaderText
-              content={"Web writer, amateur software engineer, and Japanese company employee"}
+              content={"Software engineer during reboot, and Japanese company employee"}
             />
           )}
           {!isTopPage && (
