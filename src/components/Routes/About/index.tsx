@@ -23,7 +23,7 @@ const options: HTMLReactParserOptions = {
         return (
           <Text
             as={"p"}
-            marginBottom={"1.5rem"}
+            marginBottom={"1rem"}
             color={"colors.font.darken.1"}
             fontSize={theme.fontSizes["fontSizes.sm"]}
             {...props}
@@ -68,7 +68,7 @@ export default function Page({ about }: Props) {
             width={128}
             height={128}
             borderRadius={"9999px"}
-            marginBottom={"16px"}
+            marginBottom={"1rem"}
           />
 
           <Text
@@ -111,6 +111,7 @@ export default function Page({ about }: Props) {
                     gridTemplateColumns={["repeat(3, 1fr)", "repeat(4, 1fr)"]}
                     gridTemplateRows="repeat(1fr)"
                     gap={"16px"}
+                    marginBottom={"16px"}
                   >
                     {c.images.map((i, index) => (
                       <Box
