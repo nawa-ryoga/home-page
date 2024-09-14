@@ -23,7 +23,7 @@ const options: HTMLReactParserOptions = {
         return (
           <Text
             as={"p"}
-            marginBottom={"1.5rem"}
+            marginBottom={"1rem"}
             color={"colors.font.darken.1"}
             fontSize={theme.fontSizes["fontSizes.sm"]}
             {...props}
@@ -68,7 +68,7 @@ export default function Page({ about }: Props) {
             width={128}
             height={128}
             borderRadius={"9999px"}
-            marginBottom={"16px"}
+            marginBottom={"1rem"}
           />
 
           <Text
@@ -117,6 +117,7 @@ export default function Page({ about }: Props) {
                       <Box
                         aspectRatio={"1"}
                         key={i.url}
+                        display={[index === 3 ? "none" : "block", "block"]}
                       >
                         <Image
                           alt={""}
