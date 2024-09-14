@@ -116,6 +116,7 @@ export default function Page({ about }: Props) {
                       <Box
                         aspectRatio={"1"}
                         key={i.url}
+                        display={[index === 3 ? "none" : "block", "block"]}
                       >
                         <Image
                           alt={""}
