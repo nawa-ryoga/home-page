@@ -111,7 +111,6 @@ export default function Page({ about }: Props) {
                     gridTemplateColumns={["repeat(3, 1fr)", "repeat(4, 1fr)"]}
                     gridTemplateRows="repeat(1fr)"
                     gap={"16px"}
-                    marginBottom={"16px"}
                   >
                     {c.images.map((i, index) => (
                       <Box
