@@ -46,8 +46,8 @@ importers:
         specifier: 1.9.4
         version: 1.9.4
       '@vanilla-extract/vite-plugin':
-        specifier: ^4.0.16
-        version: 4.0.16(@types/node@22.7.7)(vite@5.4.9(@types/node@22.7.7))
+        specifier: ^4.0.17
+        version: 4.0.17(@types/node@22.7.7)(vite@5.4.9(@types/node@22.7.7))
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -156,6 +156,10 @@ packages:
     resolution: {integrity: sha512-eaPZai0PiqCi09pPs3pAFfl/zYgGaE6IdXtYvmf0qlcDTd3WCtO7JWCcRd64e0EQrcYgiHibEZnOGsSY4QSgaw==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/helper-plugin-utils@7.25.9':
+    resolution: {integrity: sha512-kSMlyUVdWe25rEsRGviIgOWnoT/nfABVWlqt9N19/dIPWViAOW2s9wznP5tURbs/IDuNk4gPy3YdYRgH3uxhBw==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/helper-simple-access@7.25.7':
     resolution: {integrity: sha512-FPGAkJmyoChQeM+ruBGIDyrT2tKfZJO8NcxdC+CWNJi7N8/rZpSxK7yvBJ5O/nF1gfu5KzN7VKG3YVSLFfRSxQ==}
     engines: {node: '>=6.9.0'}
@@ -191,8 +195,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/plugin-syntax-typescript@7.25.7':
-    resolution: {integrity: sha512-rR+5FDjpCHqqZN2bzZm18bVYGaejGq5ZkpVCJLXor/+zlSrSoc4KWcHI0URVWjl/68Dyr1uwZUz/1njycEAv9g==}
+  '@babel/plugin-syntax-typescript@7.25.9':
+    resolution: {integrity: sha512-hjMgRy5hb8uJJjUcdWunWVcoi9bGpJp8p5Ol1229PoN6aytsLwNMgmdftO23wnCLMfVmTwZDWMPNq/D1SY60JQ==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -215,8 +219,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/runtime@7.25.7':
-    resolution: {integrity: sha512-FjoyLe754PMiYsFaN5C94ttGiOmBNYTf6pLr4xXHAT5uctHb092PBszndLDR5XA/jghQvn4n7JMHl7dmTgbm9w==}
+  '@babel/runtime@7.26.0':
+    resolution: {integrity: sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.25.7':
@@ -762,8 +766,8 @@ packages:
   '@vanilla-extract/private@1.0.6':
     resolution: {integrity: sha512-ytsG/JLweEjw7DBuZ/0JCN4WAQgM9erfSTdS1NQY778hFQSZ6cfCDEZZ0sgVm4k54uNz6ImKB33AYvSR//fjxw==}
 
-  '@vanilla-extract/vite-plugin@4.0.16':
-    resolution: {integrity: sha512-1yaIwn/2QXHvHfUeEcQ+OWVYvfYCfxIpWfY1y/dcGSMHu/fiFHbLgX75rX6SGnepsaYCTqsdtEiGWJhwxMHouw==}
+  '@vanilla-extract/vite-plugin@4.0.17':
+    resolution: {integrity: sha512-qyAEmBcwih7E3lMrcFZX1Ph81TQos1FFyxOu5JmNmu/F/g7HkcCXFV897pNKFmXgED/TzuyrFVcIRimg5pPc9A==}
     peerDependencies:
       vite: ^4.0.3 || ^5.0.0
 
@@ -801,6 +805,11 @@ packages:
 
   acorn@8.13.0:
     resolution: {integrity: sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.14.0:
+    resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -1600,8 +1609,8 @@ packages:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
 
-  mlly@1.7.2:
-    resolution: {integrity: sha512-tN3dvVHYVz4DhSXinXIk7u9syPYaJvio118uomkovAtWBT+RdbP6Lfh/5Lvo519YMmwBafwlh20IPTXIStscpA==}
+  mlly@1.7.3:
+    resolution: {integrity: sha512-xUsx5n/mN0uQf4V548PKQ+YShA4/IW0KI1dZhrNrPCLG+xizETbHTkOa1f8/xut9JRPp8kQuMnz0oqwkTiLo/A==}
 
   modern-ahocorasick@1.0.1:
     resolution: {integrity: sha512-yoe+JbhTClckZ67b2itRtistFKf8yPYelHLc7e5xAwtNAXxM6wJTUx2C7QeVSJFDzKT7bCIFyBVybPMKvmB9AA==}
@@ -2575,6 +2584,8 @@ snapshots:
 
   '@babel/helper-plugin-utils@7.25.7': {}
 
+  '@babel/helper-plugin-utils@7.25.9': {}
+
   '@babel/helper-simple-access@7.25.7':
     dependencies:
       '@babel/traverse': 7.25.7
@@ -2609,10 +2620,10 @@ snapshots:
       '@babel/core': 7.25.8
       '@babel/helper-plugin-utils': 7.25.7
 
-  '@babel/plugin-syntax-typescript@7.25.7(@babel/core@7.25.8)':
+  '@babel/plugin-syntax-typescript@7.25.9(@babel/core@7.25.8)':
     dependencies:
       '@babel/core': 7.25.8
-      '@babel/helper-plugin-utils': 7.25.7
+      '@babel/helper-plugin-utils': 7.25.9
 
   '@babel/plugin-transform-react-jsx-self@7.25.7(@babel/core@7.25.8)':
     dependencies:
@@ -2635,7 +2646,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/runtime@7.25.7':
+  '@babel/runtime@7.26.0':
     dependencies:
       regenerator-runtime: 0.14.1
 
@@ -3086,7 +3097,7 @@ snapshots:
   '@vanilla-extract/integration@7.1.10(@types/node@22.7.7)':
     dependencies:
       '@babel/core': 7.25.8
-      '@babel/plugin-syntax-typescript': 7.25.7(@babel/core@7.25.8)
+      '@babel/plugin-syntax-typescript': 7.25.9(@babel/core@7.25.8)
       '@vanilla-extract/babel-plugin-debug-ids': 1.1.0
       '@vanilla-extract/css': 1.16.0
       dedent: 1.5.3
@@ -3094,7 +3105,7 @@ snapshots:
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
-      mlly: 1.7.2
+      mlly: 1.7.3
       vite: 5.4.9(@types/node@22.7.7)
       vite-node: 1.6.0(@types/node@22.7.7)
     transitivePeerDependencies:
@@ -3111,7 +3122,7 @@ snapshots:
 
   '@vanilla-extract/private@1.0.6': {}
 
-  '@vanilla-extract/vite-plugin@4.0.16(@types/node@22.7.7)(vite@5.4.9(@types/node@22.7.7))':
+  '@vanilla-extract/vite-plugin@4.0.17(@types/node@22.7.7)(vite@5.4.9(@types/node@22.7.7))':
     dependencies:
       '@vanilla-extract/integration': 7.1.10(@types/node@22.7.7)
       vite: 5.4.9(@types/node@22.7.7)
@@ -3189,6 +3200,8 @@ snapshots:
   '@vscode/l10n@0.0.18': {}
 
   acorn@8.13.0: {}
+
+  acorn@8.14.0: {}
 
   ajv@8.17.1:
     dependencies:
@@ -4015,7 +4028,7 @@ snapshots:
 
   media-query-parser@2.0.2:
     dependencies:
-      '@babel/runtime': 7.25.7
+      '@babel/runtime': 7.26.0
 
   merge2@1.4.1: {}
 
@@ -4223,9 +4236,9 @@ snapshots:
 
   minipass@7.1.2: {}
 
-  mlly@1.7.2:
+  mlly@1.7.3:
     dependencies:
-      acorn: 8.13.0
+      acorn: 8.14.0
       pathe: 1.1.2
       pkg-types: 1.2.1
       ufo: 1.5.4
@@ -4358,7 +4371,7 @@ snapshots:
   pkg-types@1.2.1:
     dependencies:
       confbox: 0.1.8
-      mlly: 1.7.2
+      mlly: 1.7.3
       pathe: 1.1.2
 
   postcss-import@15.1.0(postcss@8.4.47):
