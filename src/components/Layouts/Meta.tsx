@@ -19,7 +19,7 @@ export default function Meta({ title, content, children }: Props) {
 				<meta name="description" content={content} />
 				<title>{title}</title>
 			</head>
-			<body className="bg-background-default m-0 text-text-default">
+			<body className="bg-background-default m-0 text-text-default font-sans">
 				{children}
 			</body>
 		</html>
