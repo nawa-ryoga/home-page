@@ -8,7 +8,7 @@ type Props = {
 
 export default function Meta({ title, content, children }: Props) {
 	return (
-		<html lang="ja">
+		<html lang="ja" className="m-0 text-text-default">
 			<head>
 				<meta charSet="utf-8" />
 				<link rel="icon" href="/favicon.ico" sizes="32x32" />
@@ -19,7 +19,9 @@ export default function Meta({ title, content, children }: Props) {
 				<meta name="description" content={content} />
 				<title>{title}</title>
 			</head>
-			<body>{children}</body>
+			<body className="bg-background-default m-0 text-text-default">
+				{children}
+			</body>
 		</html>
 	);
 }
