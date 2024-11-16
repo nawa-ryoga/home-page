@@ -1,12 +1,28 @@
 ---
 import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
+import GridContainer from "../components/Routes/Top/Menu/Container";
+import FirstLineContainer from "../components/Routes/Top/Menu/FirstLine/Container";
+import SecondLineContainer from "../components/Routes/Top/Menu/SecondLine/Container";
+import ThridLineContainer from "../components/Routes/Top/Menu/ThridLine/Container";
+import IconContainer from "../components/Routes/Top/Menu/ThridLine/Icon/Container";
 import { secondIn } from "../styles/animation.css";
 ---
 
 <Meta title={"NAARY.ME"} content={"Personal website of naary"}>
-	<Header isTopPage={true} title="NAARY.ME"></Header>
+	<Header isTopPage={true} title="NAARY.ME" />
 	<main class={secondIn}>
-		<h1 class="text-[50px]">Astroです</h1>
+		<GridContainer>
+			<FirstLineContainer>
+				<h1>これこれ</h1>
+				<h1>それそれ</h1>
+			</FirstLineContainer>
+			<SecondLineContainer> Experiences </SecondLineContainer>
+			<ThridLineContainer>
+				<IconContainer>あいこん</IconContainer>
+				<IconContainer>あいこん</IconContainer>
+				<IconContainer>あいこん</IconContainer>
+			</ThridLineContainer>
+		</GridContainer>
 	</main>
 </Meta>
