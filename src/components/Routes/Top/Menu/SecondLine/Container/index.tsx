@@ -7,7 +7,7 @@ type Props = {
 export default function SecondLineContainer({ children }: Props) {
 	return (
 		<li className="aspect-square w-full">
-			<div>{children}</div>
+			{children}
 		</li>
 	);
 }

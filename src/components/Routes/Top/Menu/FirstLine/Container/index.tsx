@@ -5,5 +5,5 @@ type Props = {
 };
 
 export default function FirstLineContainer({ children }: Props) {
-	return <li className="grid grid-cols-2">{children}</li>;
+	return <ul className="grid grid-cols-2 gap-6">{children}</ul>;
 }
