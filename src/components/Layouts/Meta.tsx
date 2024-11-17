@@ -1,4 +1,5 @@
 import type React from "react";
+import "@fontsource-variable/noto-sans-jp";
 
 type Props = {
 	title: string;
