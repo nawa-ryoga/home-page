@@ -3,10 +3,15 @@ import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
 import GridContainer from "../components/Routes/Top/Menu/Container";
 import FirstLineContainer from "../components/Routes/Top/Menu/FirstLine/Container";
+import FirstLineItem from "../components/Routes/Top/Menu/FirstLine/Item";
 import SecondLineContainer from "../components/Routes/Top/Menu/SecondLine/Container";
+import SecondLineItem from "../components/Routes/Top/Menu/SecondLine/Item";
 import ThridLineContainer from "../components/Routes/Top/Menu/ThridLine/Container";
 import IconContainer from "../components/Routes/Top/Menu/ThridLine/Icon/Container";
 import { secondIn } from "../styles/animation.css";
+
+import { getTopMenuImages } from "../../lib/cms-client";
+const { blog, about, experiences } = await getTopMenuImages();
 ---
 
 <Meta title={"NAARY.ME"} content={"Personal website of naary"}>
@@ -14,10 +19,12 @@ import { secondIn } from "../styles/animation.css";
 	<main class={secondIn}>
 		<GridContainer>
 			<FirstLineContainer>
-				<h1>これこれ</h1>
-				<h1>それそれ</h1>
+				<FirstLineItem image={blog} href={"blogs"} title={"Blog"} />
+				<FirstLineItem image={about} href={"about"} title={"About"} />
 			</FirstLineContainer>
-			<SecondLineContainer> Experiences </SecondLineContainer>
+			<SecondLineContainer>
+				<SecondLineItem image={experiences} title={"Experiences"} />
+			</SecondLineContainer>
 			<ThridLineContainer>
 				<IconContainer>あいこん</IconContainer>
 				<IconContainer>あいこん</IconContainer>
