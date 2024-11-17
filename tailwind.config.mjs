@@ -16,7 +16,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ["Noto Sans", ...defaultTheme.fontFamily.sans],
+				sans: ['"Noto Sans JP Variable"', ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},
