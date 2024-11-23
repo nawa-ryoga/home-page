@@ -1,6 +1,7 @@
 ---
 import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
+import Footer from "../components/Layouts/Footer";
 import GridContainer from "../components/Routes/Top/Menu/Container";
 import FirstLineContainer from "../components/Routes/Top/Menu/FirstLine/Container";
 import FirstLineItem from "../components/Routes/Top/Menu/FirstLine/Item";
@@ -11,7 +12,7 @@ import IconContainer from "../components/Routes/Top/Menu/ThridLine/Icon/Containe
 import { secondIn } from "../styles/animation.css";
 
 import { getTopMenuImages } from "../../lib/cms-client";
-const { blog, about, experiences } = await getTopMenuImages();
+const { blog, about, experiences, socials } = await getTopMenuImages();
 ---
 
 <Meta title={"NAARY.ME"} content={"Personal website of naary"}>
@@ -26,10 +27,13 @@ const { blog, about, experiences } = await getTopMenuImages();
 				<SecondLineItem image={experiences} title={"Experiences"} />
 			</SecondLineContainer>
 			<ThridLineContainer>
-				<IconContainer>あいこん</IconContainer>
-				<IconContainer>あいこん</IconContainer>
-				<IconContainer>あいこん</IconContainer>
+				{
+					socials.map((s) => (
+						<IconContainer href={s.url} imageUrl={s.logo.url} />
+					))
+				}
 			</ThridLineContainer>
 		</GridContainer>
 	</main>
+	<Footer />
 </Meta>
