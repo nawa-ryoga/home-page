@@ -72,6 +72,11 @@ export type TopMenuImages = {
 	blog: MicroCMSImage;
 	about: MicroCMSImage;
 	experiences: MicroCMSImage;
+	socials: {
+		url: string;
+		name: string;
+		logo: MicroCMSImage;
+	}[];
 } & MicroCMSDate;
 
 export const getTopMenuImages = async () => {
