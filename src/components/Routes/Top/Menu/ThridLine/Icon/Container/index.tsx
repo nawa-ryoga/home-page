@@ -1,13 +1,19 @@
-import type { ReactNode } from "react";
-
 type Props = {
-	children: ReactNode;
+	href: string;
+	imageUrl: string;
 };
 
-export default function IconContainer({ children }: Props) {
+export default function IconContainer({ imageUrl, href }: Props) {
 	return (
-		<li className="aspect-square">
-			<div>{children}</div>
+		<li className="aspect-square flex items-center justify-center rounded-xl">
+			<a
+				href={href}
+				target="_blank"
+				rel="noopener nofollow noreferrer"
+				className="w-[56px] sm:w-[84px] aspect-square"
+			>
+				<img className="w-full h-full invert" src={imageUrl} alt="" />
+			</a>
 		</li>
 	);
 }
