@@ -1,5 +1,5 @@
 import HeaderText from "./Text";
-import { defaultInnerLinkStyle } from "../../../styles/default.css";
+import HeaderTextContainer from "./Text/Container";
 import { firstIn } from "../../../styles/animation.css";
 
 type Props = {
@@ -13,15 +13,17 @@ export default function Header({ isTopPage = false, title }: Props) {
 			<header className={`${firstIn} flex flex-col justify-center`}>
 				<div className="max-w-[1200px]flex justify-center items-center">
 					{isTopPage ? (
-						<HeaderText
-							content={
-								"Software engineer during reboot, and Japanese company employee"
-							}
-						/>
+						<HeaderTextContainer>
+							<HeaderText>
+								Software engineer during reboot, and Japanese company employee
+							</HeaderText>
+						</HeaderTextContainer>
 					) : (
-						<a href="/" className={defaultInnerLinkStyle}>
-							<HeaderText content={"NAARY.ME /"} />
-						</a>
+						<HeaderTextContainer>
+							<a href="/">
+								<HeaderText>NAARY.ME /</HeaderText>
+							</a>
+						</HeaderTextContainer>
 					)}
 				</div>
 				<div className={`${firstIn} flex justify-center items-center`}>
