@@ -36,7 +36,7 @@ const blogs: BlogDataObject = {
 	contents: [],
 };
 
-export const getBlogList = async (queries?: MicroCMSQueries) => {
+export const setBlogList = async (queries?: MicroCMSQueries) => {
 	if (blogs.load) {
 		return blogs.contents;
 	}
@@ -51,6 +51,12 @@ export const getBlogList = async (queries?: MicroCMSQueries) => {
 
 	blogs.load = true;
 	blogs.contents = listData.contents;
+};
+export const getBlogList = async () => {
+	if (!blogs.load) {
+		await setBlogList();
+	}
+	return blogs.contents;
 };
 
 export type AboutContent = {
