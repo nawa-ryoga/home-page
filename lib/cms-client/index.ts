@@ -27,7 +27,19 @@ export type Blog = {
 } & MicroCMSContentId &
 	MicroCMSDate;
 
+type BlogDataObject = {
+	load: boolean;
+	contents: Blog[];
+};
+const blogs: BlogDataObject = {
+	load: false,
+	contents: [],
+};
+
 export const getBlogList = async (queries?: MicroCMSQueries) => {
+	if (blogs.load) {
+		return blogs.contents;
+	}
 	const listData = await client
 		.getList<Blog>({
 			endpoint: "blogs",
@@ -37,7 +49,8 @@ export const getBlogList = async (queries?: MicroCMSQueries) => {
 			throw new Error("データが取得できませんでした。");
 		});
 
-	return listData;
+	blogs.load = true;
+	blogs.contents = listData.contents;
 };
 
 export type AboutContent = {
