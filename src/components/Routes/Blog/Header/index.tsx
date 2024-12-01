@@ -25,7 +25,7 @@ export default function HeaderContainer({
 					/>
 				</span>
 				<span className="mx-[-16px] md:mx-[-32px] mt-[-42px] md:mt-[-78px] px-[16px] md:px-0">
-					<h1 className="text-2xl">{title}</h1>
+					<h1 className="text-2xl font-content font-bold">{title}</h1>
 					<span className="block text-sm text-right tracking-[0.05rem] mb-[18px] md:mb-[30px] text-text-darken-1">
 						{summery}
 					</span>
