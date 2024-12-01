@@ -25,6 +25,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['"Noto Sans JP Variable"', ...defaultTheme.fontFamily.sans],
+				content: ["IPAEX", ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},
