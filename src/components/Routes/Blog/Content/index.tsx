@@ -75,13 +75,16 @@ export default function BlogContent({ content, ogMap }: Props) {
 					);
 				}
 				if (domNode.name === "img") {
+					const width = props.width;
+					const halfWidth = Number(width) / 2;
+					const height = props.height;
+					const halfHeight = Number(height) / 2;
 					return (
 						<img
 							className="rounded max-w-full h-auto"
-							src={props.src as string}
+							src={`${props.src}?w=${halfWidth}`}
 							alt={props.alt ? (props.alt as string) : ""}
-							width={props.width as string}
-							height={props.height as string}
+							height={halfHeight}
 						/>
 					);
 				}
