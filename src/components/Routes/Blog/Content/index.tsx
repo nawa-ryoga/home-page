@@ -17,11 +17,21 @@ export default function BlogContent({ content, ogMap }: Props) {
 	const options: HTMLReactParserOptions = {
 		replace(domNode) {
 			if (domNode instanceof Element && domNode.attribs) {
+				const isBlockquote =
+					domNode.parentNode instanceof Element &&
+					domNode.parentNode.name === "blockquote";
 				const props = attributesToProps(domNode.attribs);
 				if (domNode.name === "h2") {
+					if (isBlockquote) {
+						return (
+							<h2 className="text-2xl font-bold mt-[2em] first:mt-0" {...props}>
+								{domToReact(domNode.children as DOMNode[], options)}
+							</h2>
+						);
+					}
 					return (
 						<h2
-							className="text-2xl font-bold text-text-default mt-[3em] first:mt-0"
+							className="text-2xl font-bold text-text-default text-center mt-[3em] first:mt-0"
 							{...props}
 						>
 							{domToReact(domNode.children as DOMNode[], options)}
@@ -30,32 +40,46 @@ export default function BlogContent({ content, ogMap }: Props) {
 				}
 				if (domNode.name === "h3") {
 					return (
-						<h3 className="text-xl font-bold mb-[.7rem] mt-2">
+						<h3 className="text-xl font-bold mb-[.7rem] mt-2 first:mt-0">
 							{domToReact(domNode.children as DOMNode[], options)}
 						</h3>
 					);
 				}
 				if (domNode.name === "p") {
 					return (
-						<p className="mt-4 leading-[1.7rem]">
+						<p className="mt-4 first:mt-0 leading-[1.7rem]">
 							{domToReact(domNode.children as DOMNode[], options)}
 						</p>
 					);
 				}
 				if (domNode.name === "ul") {
 					const isNested =
-						domNode.parent instanceof Element && domNode.parent.name === "li";
+						domNode.parentNode instanceof Element &&
+						domNode.parentNode.name === "li";
+					console.log(isNested);
 					return (
 						<ul
-							className={`${isNested ? "pl-10" : ""} ${isNested ? "" : "my-4"}`}
+							className={`${isNested ? "pl-8" : ""} ${isNested ? "" : "mt-4"} first:mt-0 list-disc`}
 						>
 							{domToReact(domNode.children as DOMNode[], options)}
 						</ul>
 					);
 				}
+				if (domNode.name === "ol") {
+					const isNested =
+						domNode.parentNode instanceof Element &&
+						domNode.parentNode.name === "li";
+					return (
+						<ol
+							className={`${isNested ? "pl-8" : ""} ${isNested ? "" : "mt-4"} first:mt-0 list-decimal`}
+						>
+							{domToReact(domNode.children as DOMNode[], options)}
+						</ol>
+					);
+				}
 				if (domNode.name === "li") {
 					return (
-						<li className="list-disc list-inside leading-6">
+						<li className="list-inside leading-6">
 							{domToReact(domNode.children as DOMNode[], options)}
 						</li>
 					);
@@ -81,7 +105,7 @@ export default function BlogContent({ content, ogMap }: Props) {
 					const halfHeight = Number(height) / 2;
 					return (
 						<img
-							className="rounded max-w-full h-auto"
+							className="rounded max-w-full h-auto mt-4 first:mt-0 "
 							src={`${props.src}?w=${halfWidth}`}
 							alt={props.alt ? (props.alt as string) : ""}
 							height={halfHeight}
@@ -101,20 +125,26 @@ export default function BlogContent({ content, ogMap }: Props) {
 					);
 				}
 				if (domNode.tagName === "div") {
-					if (domNode.attribs.class === "iframely-embed") {
-						const node = domNode.firstChild?.next;
-						if (node instanceof Element === false) {
-							return;
-						}
-						const a = node.children.find(
-							(c) => c.type === "tag" && c.name === "a",
-						) as Element;
-						const og = ogMap.get(a.attribs.href as string);
-						if (og === undefined) {
-							return <a href={a.attribs.href as string}>link</a>;
-						}
-						return <OgLink result={og} />;
+					if (domNode.attribs.class !== "iframely-responsive") {
+						return;
 					}
+
+					const a = domNode.children[1];
+					if (a instanceof Element === false) {
+						return;
+					}
+					const og = ogMap.get(a.attribs.href as string);
+					if (og === undefined) {
+						return <a href={a.attribs.href as string}>link</a>;
+					}
+					return <OgLink result={og} />;
+				}
+				if (domNode.tagName === "blockquote") {
+					return (
+						<blockquote className="font-[0.7em] text-text-darken-2 p-4 mt-8 border-l-background-lighten-2 border-l-4 bg-background-lighten-1 rounded-sm">
+							{domToReact(domNode.children as DOMNode[], options)}
+						</blockquote>
+					);
 				}
 			}
 		},
