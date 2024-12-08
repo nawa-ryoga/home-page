@@ -1,13 +1,14 @@
----
 import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import Empty from "../components/Routes/Blogs/Empty";
 import ListItem from "../components/Routes/Blogs/ListItem";
 import { secondIn } from "../styles/animation.css";
-
+import { purify, sanitize } from "../../lib/dom-purify";
 import { getBlogList } from "../../lib/cms-client";
-const blogs = await getBlogList();
+
+const contents = await getBlogList();
+const blogs = contents.map((c) => sanitize(c.content, sanitize));
 ---
 
 <Meta title={"blogs"} content={"NAARY.ME's blog entries"}>
