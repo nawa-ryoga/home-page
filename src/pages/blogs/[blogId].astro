@@ -25,56 +25,7 @@ if (blog === undefined || !blog) {
 	return Astro.redirect("/404");
 }
 
-// const ogMap = await createOgMap(blog.content);
-const sample = `
-<figure>
-			<img src=\"https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/8f32038064424fc5a2b932bdabcc09e1/IMG_3050.png\" alt=\"\" width=\"1600\" height=\"2000\">
-			<figcaption>この絵を描いたときはこんな感じでした。</figcaption>
-		</figure>
-		<figure>
-			<img src=\"https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/f6f04d97b600446f9001de7ed99b1ed2/IMG_1034.jpeg\" alt=\"\" width=\"3978\" height=\"2238\">
-		</figure>
-		<p>
-			<a href=\"https://omocoro.jp/kiji/487639/\">https://omocoro.jp/kiji/487639/</a>
-		</p>
-		<div class=\"iframely-embed\">
-			<div class=\"iframely-responsive\" style=\"padding-bottom: 52.5%; padding-top: 120px;\">
-				<a href=\"https://omocoro.jp/kiji/487639/\" data-iframely-url=\"//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fomocoro.jp%2Fkiji%2F487639%2F&key=c271a3ec77ff4aa44d5948170dd74161\">
-				</a>
-			</div>
-		</div>
-		<script async src=\"//cdn.iframe.ly/embed.js\" charset=\"utf-8\"></script>
-		<blockquote><p>このようにして引用しています</p></blockquote>`;
-// const ogMap = await createOgMap(sample);
-const ogMap = new Map();
-ogMap.set("https://omocoro.jp/kiji/487639/", {
-	success: true,
-	fbAppId: "1400115353603518",
-	twitterCard: "summary_large_image",
-	twitterSite: "@omocoro",
-	twitterCreator: "@omocoro",
-	ogType: "website",
-	ogLocale: "ja_JP",
-	ogUrl: "https://omocoro.jp/kiji/487639/",
-	ogTitle: "欲しいと思わせろ！『知らない家電プレゼン選手権』 | オモコロ",
-	ogDescription: "ニッチでマニアックな電化製品を持ち寄ってプレゼン大会！",
-	twitterUrl: "https://omocoro.jp/kiji/487639/",
-	twitterTitle: "欲しいと思わせろ！『知らない家電プレゼン選手権』 | オモコロ",
-	ogImage: [
-		{
-			url: "https://omocoro.jp/assets/uploads/2024/11/1732514920d2yqr.jpg",
-			type: "jpg",
-		},
-	],
-	twitterImage: [
-		{
-			url: "https://omocoro.jp/assets/uploads/2024/11/1732514920d2yqr.jpg",
-		},
-	],
-	favicon: "/assets/img/common/favicon.ico",
-	charset: "utf-8",
-	requestUrl: "https://omocoro.jp/kiji/487639/",
-});
+const ogMap = await createOgMap(blog.content);
 ---
 
 <Meta title={`${blog.title} | NAARY.ME`} content={blog.summary}>
@@ -92,8 +43,7 @@ ogMap.set("https://omocoro.jp/kiji/487639/", {
 					? formatDate(blog.publishedAt, "YYYY")
 					: "XXXX"}
 			/>
-			<!-- <BlogContent content={blog.content} ogMap={ogMap} /> -->
-			<BlogContent content={sample} ogMap={ogMap} />
+			<BlogContent content={blog.content} ogMap={ogMap} />
 		</article>
 	</main>
 	<Footer />
