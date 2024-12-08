@@ -102,13 +102,13 @@ export default function BlogContent({ content, ogMap }: Props) {
 					const width = props.width;
 					const halfWidth = Number(width) / 2;
 					const height = props.height;
-					const halfHeight = Number(height) / 2;
 					return (
 						<img
 							className="rounded max-w-full h-auto mt-4 first:mt-0 "
 							src={`${props.src}?w=${halfWidth}`}
 							alt={props.alt ? (props.alt as string) : ""}
-							height={halfHeight}
+							height={height as string}
+							width={width as string}
 						/>
 					);
 				}

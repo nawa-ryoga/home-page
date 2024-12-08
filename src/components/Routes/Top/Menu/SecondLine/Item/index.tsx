@@ -8,7 +8,7 @@ type Props = {
 export default function SecondLineItem({ image, title }: Props) {
 	return (
 		<div className="relative">
-			<a href="/experiences">
+			<a href="/experiences" className="w-full h-auto">
 				<img
 					className="w-full object-cover rounded-xl"
 					src={`${image.url}?w=480`}

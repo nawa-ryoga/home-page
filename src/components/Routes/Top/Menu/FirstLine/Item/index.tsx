@@ -10,7 +10,7 @@ export default function FirstLineItem({ image, href, title }: Props) {
 	return (
 		<li className="relative">
 			<img
-				className="object-cover max-h-[8rem] w-full rounded-xl z-10"
+				className="object-cover h-auto max-h-[8rem] w-full rounded-xl z-10"
 				src={`${image.url}?w=360`}
 				alt=""
 			/>

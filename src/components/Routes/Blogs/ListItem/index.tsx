@@ -13,7 +13,7 @@ export default function ListItem({ blog }: Props) {
 				<a href={`/blogs/${blog.id}`}>
 					<img
 						src={`${blog.eyecatch.url}`}
-						src-set={`${blog.eyecatch.url}?w=180 180w, ${blog.eyecatch.url}?w=240 240w`}
+						src-set={`${blog.eyecatch.url}?w=180 180w, ${blog.eyecatch.url}?w=280 280w`}
 						className="max-w-full h-auto min-h-[180px] md:min-h-[240px] aspect-square"
 						alt=""
 					/>
