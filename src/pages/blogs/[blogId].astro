@@ -6,8 +6,9 @@ import BlogContent from "../../components/Routes/Blog/Content";
 import Footer from "../../components/Layouts/Footer";
 import { secondIn } from "../../styles/animation.css";
 import { formatDate } from "../../../lib/day-js";
-
+import { createOgMap } from "../../../lib/og-scraper";
 import { getBlogList } from "../../../lib/cms-client";
+
 export async function getStaticPaths() {
 	const blogs = await getBlogList();
 	return blogs.map((blog) => ({
@@ -22,6 +23,9 @@ const blog = blogs.find((b) => b.id === blogId);
 if (blog === undefined || !blog) {
 	return Astro.redirect("/404");
 }
+
+const ogMap = await createOgMap(blog.content);
+
 ---
 
 <Meta title={`${blog.title} | NAARY.ME`} content={blog.summary}>
@@ -39,7 +43,7 @@ if (blog === undefined || !blog) {
 					? formatDate(blog.publishedAt, "YYYY")
 					: "XXXX"}
 			/>
-			<BlogContent content={blog.content} />
+			<BlogContent content={blog.content} ogMap={ogMap} />
 		</article>
 	</main>
 	<Footer />

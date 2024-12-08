@@ -4,12 +4,16 @@ import parse, {
 	attributesToProps,
 } from "html-react-parser";
 import type { HTMLReactParserOptions, DOMNode } from "html-react-parser";
+import type { OgObject } from "open-graph-scraper/types";
+
+import OgLink from "./OgLink";
 
 type Props = {
 	content: string;
+	ogMap: Map<string, OgObject>;
 };
 
-export default function BlogContent({ content }: Props) {
+export default function BlogContent({ content, ogMap }: Props) {
 	const options: HTMLReactParserOptions = {
 		replace(domNode) {
 			if (domNode instanceof Element && domNode.attribs) {
@@ -95,44 +99,28 @@ export default function BlogContent({ content }: Props) {
 				}
 				if (domNode.tagName === "div") {
 					if (domNode.attribs.class === "iframely-embed") {
-						const a = domNode.next?.next;
-						if (a instanceof Element === false) {
+						const node = domNode.firstChild?.next;
+						if (node instanceof Element === false) {
 							return;
 						}
-						// 👍
-						return <a href={a.attribs.href as string}>こちら</a>;
+						const a = node.children.find(
+							(c) => c.type === "tag" && c.name === "a",
+						) as Element;
+						const og = ogMap.get(a.attribs.href as string);
+						if (og === undefined) {
+							return <a href={a.attribs.href as string}>link</a>;
+						}
+						return <OgLink result={og} />;
 					}
 				}
 			}
 		},
 	};
 
-	const sample = `
-		<figure>
-			<img src=\"https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/8f32038064424fc5a2b932bdabcc09e1/IMG_3050.png\" alt=\"\" width=\"1600\" height=\"2000\">
-			<figcaption>この絵を描いたときはこんな感じでした。</figcaption>
-		</figure>
-		<figure>
-			<img src=\"https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/f6f04d97b600446f9001de7ed99b1ed2/IMG_1034.jpeg\" alt=\"\" width=\"3978\" height=\"2238\">
-		</figure>
-		<p>
-			<a href=\"https://omocoro.jp/kiji/487639/\">https://omocoro.jp/kiji/487639/</a>
-		</p>
-		<div class=\"iframely-embed\">
-			<div class=\"iframely-responsive\" style=\"padding-bottom: 52.5%; padding-top: 120px;\">
-				<a href=\"https://omocoro.jp/kiji/487639/\" data-iframely-url=\"//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fomocoro.jp%2Fkiji%2F487639%2F&amp;key=c271a3ec77ff4aa44d5948170dd74161\">
-				</a>
-			</div>
-		</div>
-		<script async src=\"//cdn.iframe.ly/embed.js\" charset=\"utf-8\"></script>
-		<blockquote><p>このようにして引用しています</p></blockquote>
-	`;
-
 	return (
 		<section className="font-content text-text-darken-1 pt-16 flex justify-center">
 			<div className="max-w-[750px] border-t border-text-darken-1 pt-12">
-				{/* {parse(content, options)} */}
-				{parse(sample, options)}
+				{parse(content, options)}
 			</div>
 		</section>
 	);
