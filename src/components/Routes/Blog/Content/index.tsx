@@ -24,14 +24,17 @@ export default function BlogContent({ content, ogMap }: Props) {
 				if (domNode.name === "h2") {
 					if (isBlockquote) {
 						return (
-							<h2 className="text-2xl font-bold mt-[2em] first:mt-0" {...props}>
+							<h2
+								className="text-2xl font-bold mt-[3em] first:mt-0 text-center"
+								{...props}
+							>
 								{domToReact(domNode.children as DOMNode[], options)}
 							</h2>
 						);
 					}
 					return (
 						<h2
-							className="text-2xl font-bold text-text-default text-center mt-[3em] first:mt-0"
+							className="text-2xl font-bold text-text-default text-center mt-[4em] first:mt-0"
 							{...props}
 						>
 							{domToReact(domNode.children as DOMNode[], options)}
@@ -39,8 +42,18 @@ export default function BlogContent({ content, ogMap }: Props) {
 					);
 				}
 				if (domNode.name === "h3") {
+					if (isBlockquote) {
+						return (
+							<h3
+								className="text-xl font-bold mt-[2em] first:mt-0 text-center"
+								{...props}
+							>
+								{domToReact(domNode.children as DOMNode[], options)}
+							</h3>
+						);
+					}
 					return (
-						<h3 className="text-xl font-bold mb-[.7rem] mt-2 first:mt-0">
+						<h3 className="text-xl font-bold mt-[3em] first:mt-0 text-center">
 							{domToReact(domNode.children as DOMNode[], options)}
 						</h3>
 					);
