@@ -45,7 +45,7 @@ export default function BlogContent({ content, ogMap }: Props) {
 					if (isBlockquote) {
 						return (
 							<h3
-								className="text-xl font-bold mt-[2em] first:mt-0 text-center"
+								className="text-xl font-bold mt-[1.7em] first:mt-0 text-center"
 								{...props}
 							>
 								{domToReact(domNode.children as DOMNode[], options)}
@@ -53,14 +53,14 @@ export default function BlogContent({ content, ogMap }: Props) {
 						);
 					}
 					return (
-						<h3 className="text-xl font-bold mt-[3em] first:mt-0 text-center">
+						<h3 className="text-xl font-bold mt-[2.4em] first:mt-0 text-center">
 							{domToReact(domNode.children as DOMNode[], options)}
 						</h3>
 					);
 				}
 				if (domNode.name === "p") {
 					return (
-						<p className="mt-4 first:mt-0 leading-[1.7rem]">
+						<p className="mt-[1em] first:mt-0 leading-[1.7rem]">
 							{domToReact(domNode.children as DOMNode[], options)}
 						</p>
 					);
