@@ -1,6 +1,6 @@
 import { parse } from "node-html-parser";
 import ogs from "open-graph-scraper";
-import type { OgObject, ErrorResult } from "open-graph-scraper/types";
+import type { OgObject } from "open-graph-scraper/types";
 
 export const createOgMap = async (htmlString: string): Promise<Map<string, OgObject>> => {
 	const root = parse(htmlString);
