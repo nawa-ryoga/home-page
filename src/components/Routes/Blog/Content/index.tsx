@@ -151,10 +151,10 @@ export default function BlogContent({ content, ogMap }: Props) {
 	};
 
 	return (
-		<section className="font-content text-text-darken-1 pt-16 flex justify-center">
+		<div className="font-content text-text-darken-1 pt-16 flex justify-center">
 			<div className="max-w-[750px] border-t border-text-darken-1 pt-12">
 				{parse(content, options)}
 			</div>
-		</section>
+		</div>
 	);
 }
