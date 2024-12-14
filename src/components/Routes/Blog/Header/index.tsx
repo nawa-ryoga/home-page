@@ -14,30 +14,30 @@ export default function HeaderContainer({
 	publishedAtDate,
 }: Props) {
 	return (
-		<header className="w-full max-w-[440px] py-12 pb-[40px] md:pb-12 mx-auto gap-12">
+		<header className="py-12 pb-[40px] md:pb-12 gap-12">
 			<div className="flex flex-col justify-center items-center relative">
-				<span className="max-w-[240px] md:max-w-[320px] flex justify-center items-center">
+				<div className="max-w-[320px] md:max-w-[480px] flex justify-center items-center">
 					<img
 						src={imageSrc}
-						srcSet={`${imageSrc}?w=180 180w, ${imageSrc}?w=240 240w`}
+						srcSet={`${imageSrc}?w=320 320w, ${imageSrc}?w=480 480w`}
 						alt=""
-						className="max-w-full min-h-[180px] sm:min-h-[240px] h-auto aspect-square"
+						className="max-w-full min-h-[320px] sm:min-h-[480px] h-auto aspect-square"
 					/>
-				</span>
-				<span className="mx-[-16px] md:mx-[-32px] mt-[-42px] md:mt-[-78px] px-[16px] md:px-0">
-					<h1 className="text-2xl font-content font-bold">{title}</h1>
-					<span className="block text-sm text-right tracking-[0.05rem] mb-[18px] md:mb-[30px] text-text-darken-1">
+				</div>
+				<div className="mx-[-16px] md:mx-[-32px] mt-[-42px] md:mt-[-78px] px-[16px] md:px-0">
+					<h1 className="text-4xl font-content font-bold text-center mb-2">{title}</h1>
+					<div className="text-xl font-content text-right tracking-[0.05rem] mb-[18px] md:mb-[30px] text-text-darken-1">
 						{summery}
-					</span>
-					<div className="flex flex-col justify-center items-center gap-[4px] md:gap-[8px]">
-						<span className="text-sm  text-text-darken-1 tracking-[0.1rem]">
-							{publishedAtYear}
-						</span>
-						<span className="text-sm  text-text-darken-1 tracking-[0.05rem]">
-							{publishedAtDate}
-						</span>
 					</div>
-				</span>
+					<div className="flex flex-col justify-center items-center gap-2 md:gap-[8px]">
+						<div className="text-sm  text-text-darken-1 tracking-[0.1rem]">
+							{publishedAtYear}
+						</div>
+						<div className="text-sm  text-text-darken-1 tracking-[0.05rem]">
+							{publishedAtDate}
+						</div>
+					</div>
+				</div>
 			</div>
 		</header>
 	);
