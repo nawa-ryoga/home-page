@@ -71,7 +71,7 @@ export default function BlogContent({ content, ogMap }: Props) {
 						domNode.parentNode.name === "li";
 					return (
 						<ol
-							className={`${isNested ? "pl-8" : ""} ${isNested ? "" : "mt-4"} first:mt-0 list-decimal`}
+							className={`pl-6 ${isNested ? "" : "mt-4"} first:mt-0 list-decimal marker:text-text-darken-2`}
 						>
 							{domToReact(domNode.children as DOMNode[], options)}
 						</ol>
@@ -79,8 +79,8 @@ export default function BlogContent({ content, ogMap }: Props) {
 				}
 				if (domNode.name === "li") {
 					return (
-						<li className="list-inside leading-6">
-							{domToReact(domNode.children as DOMNode[], options)}
+						<li className="list-outside pl-1 leading-6">
+							<p>{domToReact(domNode.children as DOMNode[], options)}</p>
 						</li>
 					);
 				}
@@ -152,7 +152,7 @@ export default function BlogContent({ content, ogMap }: Props) {
 
 	return (
 		<div className="font-content text-text-darken-1 pt-16 flex justify-center">
-			<div className="max-w-[750px] border-t border-text-darken-1 pt-12">
+			<div className="max-w-[680px] border-t border-text-darken-1 pt-12">
 				{parse(content, options)}
 			</div>
 		</div>
