@@ -1,6 +1,7 @@
 ---
 import Meta from "../../components/Layouts/Meta";
 import Header from "../../components/Layouts/Header";
+import ArticleContainer from "../../components/Routes/Blog/Article";
 import BlogHeader from "../../components/Routes/Blog/Header";
 import BlogContent from "../../components/Routes/Blog/Content";
 import Footer from "../../components/Layouts/Footer";
@@ -31,7 +32,7 @@ const ogMap = await createOgMap(blog.content);
 <Meta title={`${blog.title} | NAARY.ME`} content={blog.summary}>
 	<Header title={"Blog"} />
 	<main class={secondIn}>
-		<article>
+		<ArticleContainer>
 			<BlogHeader
 				imageSrc={blog.eyecatch.url}
 				title={blog.title}
@@ -44,7 +45,7 @@ const ogMap = await createOgMap(blog.content);
 					: "XXXX"}
 			/>
 			<BlogContent content={blog.content} ogMap={ogMap} />
-		</article>
+		</ArticleContainer>
 	</main>
 	<Footer />
 </Meta>
