@@ -1,6 +1,6 @@
 import HeaderText from "./Text";
 import HeaderTextContainer from "./Text/Container";
-import { firstIn } from "../../../styles/animation.css";
+import "../../../styles/animation.css";
 
 type Props = {
 	isTopPage?: boolean;
@@ -10,7 +10,7 @@ type Props = {
 export default function Header({ isTopPage = false, title }: Props) {
 	return (
 		<>
-			<header className={`${firstIn} flex flex-col justify-center`}>
+			<header className="firstIn flex flex-col justify-center">
 				<div className="max-w-[1200px]flex justify-center items-center">
 					{isTopPage ? (
 						<HeaderTextContainer>
@@ -26,7 +26,7 @@ export default function Header({ isTopPage = false, title }: Props) {
 						</HeaderTextContainer>
 					)}
 				</div>
-				<div className={`${firstIn} flex justify-center items-center`}>
+				<div className="firstIn flex justify-center items-center">
 					<h1 className="font-bold text-[42px] sm:text-[96px]">{title}</h1>
 				</div>
 			</header>

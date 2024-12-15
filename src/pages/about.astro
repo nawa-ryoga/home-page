@@ -4,7 +4,7 @@ import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import AboutContent from "../components/Routes/About/Content";
 
-import { secondIn } from "../styles/animation.css";
+import "../styles/animation.css";
 import { getAboutContent } from "../../lib/cms-client";
 import { getDate } from "../../lib/day-js";
 const about = await getAboutContent();
@@ -14,7 +14,7 @@ const age = about.birth_year ? getDate().year() - about.birth_year : null;
 
 <Meta title={"About"} content={"about NAARY.ME"}>
 	<Header title={"About"} />
-	<main class={secondIn}>
+	<main class={"secondIn"}>
 		<div class="flex flex-col justify-center items-center py-10 h-auto">
 			<img
 				alt=""
@@ -33,7 +33,7 @@ const age = about.birth_year ? getDate().year() - about.birth_year : null;
 				)
 			}
 			<section class="max-w-[580px] px-4">
-				<AboutContent content={about.summery} />
+				<!-- <AboutContent content={about.summery} /> -->
 
 				{
 					about.contents.map((c) => (
@@ -56,7 +56,7 @@ const age = about.birth_year ? getDate().year() - about.birth_year : null;
 							)}
 							{c.content && (
 								<div class="px-4 md:px-8">
-									<AboutContent content={c.content} />
+									{/* <AboutContent content={c.content} /> */}
 								</div>
 							)}
 						</div>

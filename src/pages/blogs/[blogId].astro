@@ -5,9 +5,9 @@ import ArticleContainer from "../../components/Routes/Blog/Article";
 import BlogHeader from "../../components/Routes/Blog/Header";
 import BlogContent from "../../components/Routes/Blog/Content";
 import Footer from "../../components/Layouts/Footer";
-import { secondIn } from "../../styles/animation.css";
+import "../../styles/animation.css";
 import { formatDate } from "../../../lib/day-js";
-import { createOgMap } from "../../../lib/og-scraper";
+// import { createOgMap } from "../../../lib/og-scraper";
 
 import { getBlogList } from "../../../lib/cms-client";
 
@@ -26,12 +26,12 @@ if (blog === undefined || !blog) {
 	return Astro.redirect("/404");
 }
 
-const ogMap = await createOgMap(blog.content);
+// const ogMap = await createOgMap(blog.content);
 ---
 
 <Meta title={`${blog.title} | NAARY.ME`} content={blog.summary}>
 	<Header title={"Blog"} />
-	<main class={secondIn}>
+	<main class={"secondIn"}>
 		<ArticleContainer>
 			<BlogHeader
 				imageSrc={blog.eyecatch.url}
@@ -44,7 +44,7 @@ const ogMap = await createOgMap(blog.content);
 					? formatDate(blog.publishedAt, "YYYY")
 					: "XXXX"}
 			/>
-			<BlogContent content={blog.content} ogMap={ogMap} />
+			<!-- <BlogContent content={blog.content} ogMap={ogMap} /> -->
 		</ArticleContainer>
 	</main>
 	<Footer />
