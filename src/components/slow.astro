@@ -1,0 +1,7 @@
+---
+const { headers } = Astro.request;
+const userAgent = headers.get("user-agent") || "unknown";
+await new Promise((resolve) => setTimeout(resolve, 3000));
+---
+
+<div>🐢 ({userAgent})</div>
