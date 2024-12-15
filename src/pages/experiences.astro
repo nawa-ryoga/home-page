@@ -1,15 +1,11 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import Slow from "../components/Slow/index.astro";
+
 export const prerender = false;
-import Meta from "../components/Layouts/Meta";
-import Header from "../components/Layouts/Header";
-import Footer from "../components/Layouts/Footer";
-import Slow from "../components/slow.astro";
 ---
 
-<Meta title={"experiences"} content={"NAARY.ME's timeline"}>
-	<Header title={"Experiences"} />
-	<main>
-		<Slow />
-	</main>
-	<Footer />
-</Meta>
+<Layout>
+	<h1>On Demand + Server Islands</h1>
+	<Slow server:defer />
+</Layout>
