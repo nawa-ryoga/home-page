@@ -10,7 +10,7 @@ import OgLink from "./OgLink";
 
 type Props = {
 	content: string;
-	ogMap?: Map<string, OgObject>;
+	ogMap: Map<string, OgObject>;
 };
 
 export default function BlogContent({ content, ogMap }: Props) {
