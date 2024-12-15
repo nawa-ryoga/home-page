@@ -8,18 +8,18 @@ type Props = {
 export default function SecondLineItem({ image, title }: Props) {
 	return (
 		<div className="relative">
-			<a href="/experiences" className="w-full h-auto">
+			<a href="/experiences" className="relative w-full h-auto">
 				<img
 					className="w-full object-cover rounded-xl"
 					src={`${image.url}?w=480`}
 					alt=""
 				/>
 			</a>
-			<div className="absolute z-20 flex justify-end items-end w-full h-full inset-0 rounded-xl">
-				<div className="pr-4 pb-20 font-bold text-3xl sm:text-4xl md:text-6xl">
+			<a href="/experiences" className="absolute z-20 flex justify-end items-end w-full h-full inset-0 rounded-xl">
+				<span className="pr-4 pb-20 font-bold text-3xl sm:text-4xl md:text-6xl">
 					{title}
-				</div>
-			</div>
+				</span>
+			</a>
 		</div>
 	);
 }
