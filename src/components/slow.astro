@@ -2,6 +2,10 @@
 const { headers } = Astro.request;
 const userAgent = headers.get("user-agent") || "unknown";
 await new Promise((resolve) => setTimeout(resolve, 10000));
+const number = Math.random();
 ---
 
-<div>🐢 ({userAgent})</div>
+<div>
+	🐢 ({userAgent})
+	<h3>{number}</h3>
+</div>
