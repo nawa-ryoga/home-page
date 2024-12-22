@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
@@ -15,8 +17,7 @@ import { getAboutContent } from "../../lib/cms-client";
 
 const { socials } = await getTopMenuImages();
 const about = await getAboutContent();
-
-const feedItemList = about && (await getRssTimeline(about.rss));
+const feedItemList = await getRssTimeline(about.rss);
 
 const groupItemsByYear = (items: Item[]) => {
 	return items.reduce<{ year: number; items: Item[] }[]>((acc, item) => {
@@ -47,6 +48,11 @@ const groupItemsByMonth = (items: Item[]) => {
 		return acc;
 	}, []);
 };
+
+Astro.response.headers.set(
+	"Cache-Control",
+	"public, s-maxage=86400, stale-while-revalidate=86400",
+);
 ---
 
 <Meta title={"NAARY.ME"} content={"Personal website of naary"}>
