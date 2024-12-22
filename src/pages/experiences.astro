@@ -9,25 +9,14 @@ import FeedMonth from "../components/Routes/Experiences/FeedMonth";
 
 import dayjs from "dayjs";
 import type { FeedItem as Item } from "../../lib/rss-reader";
-
 import { getTopMenuImages } from "../../lib/cms-client";
-const { socials } = await getTopMenuImages();
-
 import { getRssTimeline } from "../../lib/rss-reader";
-const feedItemList = await getRssTimeline([
-	{
-		fieldId: "my-rss",
-		url: "https://zenn.dev/nawa/feed",
-	},
-	{
-		fieldId: "my-rss",
-		url: "https://note.com/naary/rss",
-	},
-	{
-		fieldId: "my-rss",
-		url: "https://sizu.me/naary/rss",
-	},
-]);
+import { getAboutContent } from "../../lib/cms-client";
+
+const { socials } = await getTopMenuImages();
+const about = await getAboutContent();
+
+const feedItemList = about && (await getRssTimeline(about.rss));
 
 const groupItemsByYear = (items: Item[]) => {
 	return items.reduce<{ year: number; items: Item[] }[]>((acc, item) => {
@@ -64,19 +53,20 @@ const groupItemsByMonth = (items: Item[]) => {
 	<Header title="Experiences" />
 	<main>
 		{
-			groupItemsByYear(feedItemList).map((year) => (
-				<FeedYear year={year.year}>
-					{groupItemsByMonth(year.items).map((month) => (
-						<FeedMonth month={month.month}>
-							<FeedList>
-								{month.items.map((item) => (
-									<FeedItem feed={item} favicon={socials} />
-								))}
-							</FeedList>
-						</FeedMonth>
-					))}
-				</FeedYear>
-			))
+			feedItemList &&
+				groupItemsByYear(feedItemList).map((year) => (
+					<FeedYear year={year.year}>
+						{groupItemsByMonth(year.items).map((month) => (
+							<FeedMonth month={month.month}>
+								<FeedList>
+									{month.items.map((item) => (
+										<FeedItem feed={item} favicon={socials} />
+									))}
+								</FeedList>
+							</FeedMonth>
+						))}
+					</FeedYear>
+				))
 		}
 	</main>
 	<Footer />

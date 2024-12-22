@@ -81,8 +81,19 @@ export type About = {
 	rss: RssUrl[];
 } & MicroCMSDate;
 
-export const getAboutContent = async () => {
-	const about = await client
+type AboutDataObject = {
+	load: boolean;
+	content?: About;
+};
+const about: AboutDataObject = {
+	load: false,
+};
+
+export const setAboutContent = async () => {
+	if (about.load) {
+		return about.content;
+	}
+	const content = await client
 		.get<About>({
 			endpoint: "profile",
 		})
@@ -90,7 +101,15 @@ export const getAboutContent = async () => {
 			throw new Error("データが取得できませんでした。");
 		});
 
-	return about;
+	about.load = true;
+	about.content = content;
+};
+
+export const getAboutContent = async () => {
+	if (!about.load) {
+		await setAboutContent();
+	}
+	return about.content;
 };
 
 export type SocialIcon = {
