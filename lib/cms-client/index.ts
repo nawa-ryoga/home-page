@@ -65,6 +65,11 @@ export type AboutContent = {
 	content?: string;
 };
 
+export type RssUrl = {
+	fieldId: string;
+	url: string;
+};
+
 export type About = {
 	name: string;
 	icon: MicroCMSImage;
@@ -73,6 +78,7 @@ export type About = {
 	birth_month?: number;
 	birth_date?: number;
 	contents: AboutContent[];
+	rss: RssUrl[];
 } & MicroCMSDate;
 
 export const getAboutContent = async () => {
@@ -87,15 +93,16 @@ export const getAboutContent = async () => {
 	return about;
 };
 
+export type SocialIcon = {
+	url: string;
+	name: string;
+	logo: MicroCMSImage;
+};
 export type TopMenuImages = {
 	blog: MicroCMSImage;
 	about: MicroCMSImage;
 	experiences: MicroCMSImage;
-	socials: {
-		url: string;
-		name: string;
-		logo: MicroCMSImage;
-	}[];
+	socials: SocialIcon[];
 } & MicroCMSDate;
 
 export const getTopMenuImages = async () => {
