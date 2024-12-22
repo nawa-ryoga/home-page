@@ -4,11 +4,13 @@ import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
 	integrations: [tailwind(), react()],
-
 	vite: {
 		plugins: [vanillaExtractPlugin()],
 	},
+	adapter: cloudflare(),
 });
