@@ -4,16 +4,19 @@ import parse, {
 	attributesToProps,
 } from "html-react-parser";
 import type { HTMLReactParserOptions, DOMNode } from "html-react-parser";
-import type { OgObject } from "open-graph-scraper/types";
 
-import OgLink from "./OgLink";
+// import type { OgObject } from "open-graph-scraper/types";
+
+// import OgLink from "./OgLink";
 
 type Props = {
 	content: string;
-	ogMap: Map<string, OgObject>;
+	// ogMap?: Map<string, OgObject>;
 };
 
-export default function BlogContent({ content, ogMap }: Props) {
+
+
+export default function BlogContent({ content }: Props) {
 	const options: HTMLReactParserOptions = {
 		replace(domNode) {
 			if (domNode instanceof Element && domNode.attribs) {
@@ -137,21 +140,21 @@ export default function BlogContent({ content, ogMap }: Props) {
 						</a>
 					);
 				}
-				if (domNode.tagName === "div") {
-					if (domNode.attribs.class !== "iframely-responsive") {
-						return;
-					}
+				// if (domNode.tagName === "div") {
+				// 	if (domNode.attribs.class !== "iframely-responsive") {
+				// 		return;
+				// 	}
 
-					const a = domNode.children[1];
-					if (a instanceof Element === false) {
-						return;
-					}
-					const og = ogMap.get(a.attribs.href as string);
-					if (og === undefined) {
-						return <a href={a.attribs.href as string}>link</a>;
-					}
-					return <OgLink result={og} />;
-				}
+				// 	const a = domNode.children[1];
+				// 	if (a instanceof Element === false) {
+				// 		return;
+				// 	}
+				// 	const og = ogMap.get(a.attribs.href as string);
+				// 	if (og === undefined) {
+				// 		return <a href={a.attribs.href as string}>link</a>;
+				// 	}
+				// 	return <OgLink result={og} />;
+				// }
 				if (domNode.tagName === "blockquote") {
 					return (
 						<blockquote className="font-[0.7em] text-text-darken-2 p-4 mt-8 border-l-background-lighten-2 border-l-4 bg-background-lighten-1 rounded-sm">
