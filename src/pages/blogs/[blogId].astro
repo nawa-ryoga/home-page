@@ -13,6 +13,8 @@ import type { Blog } from "../../../lib/cms-client";
 
 import { getBlogList } from "../../../lib/cms-client";
 
+import { parseHtml } from "../../scripts/parse-html";
+
 export async function getStaticPaths() {
 	const blogs = await getBlogList();
 	return blogs.map((blog) => ({
@@ -44,13 +46,12 @@ const blog: Blog = {
 };
 
 // const ogMap = await createOgMap(blog.content);
-const content = cheerio.load(blog.content);
-console.log(content.html());
+const content = parseHtml(blog.content);
 ---
 
 <Meta title={`${blog.title} | NAARY.ME`} content={blog.summary}>
 	<Header title={"Blog"} />
-	<main class={"secondIn"}>
+	<main className="secondIn">
 		<ArticleContainer>
 			<BlogHeader
 				imageSrc={blog.eyecatch.url}
@@ -64,7 +65,7 @@ console.log(content.html());
 					: "XXXX"}
 			/>
 			<!-- <BlogContent content={blog.content} ogMap={ogMap} /> -->
-			<Fragment set:html={blog.content} />
+			<Fragment set:html={content} />
 		</ArticleContainer>
 		<Footer />
 	</main>

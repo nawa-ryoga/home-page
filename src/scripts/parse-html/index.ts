@@ -1,48 +1,32 @@
 import * as cheerio from "cheerio";
-import React from "react";
-import ReactDOMServer from "react-dom/server";
-import Element from "../../components/Routes/Blog/Content/Element";
 
-export const element = (html: string): string => {
+export const parseHtml = (html: string) => {
 	const $ = cheerio.load(html);
 
-	// Process non-special tags
-	for (const tagName of [
-		"p, h2, h3, ul, ol, li, figcaption, figure, blockquote",
-	]) {
-		$(tagName).each((_, elem) => {
-			const children = $(elem).html();
-			const renderedComponent = ReactDOMServer.renderToStaticMarkup(
-				React.createElement(Element, { tagName, children }),
-			);
-			$(elem).replaceWith(renderedComponent);
-		});
-	}
+	$("p").addClass("mt-[1em] first:mt-0 leading-[1.7rem]");
+	$("h2").addClass("text-2xl font-bold text-text-default text-center mt-[4em] first:mt-0");
+	$("h3").addClass("text-xl font-bold mt-[2.4em] first:mt-0 text-center");
+	$("ul").addClass("pl-8 mt-4 first:mt-0 list-disc marker:text-text-darken-2");
+	$("ol").addClass("pl-6 mt-4 first:mt-0 list-decimal marker:text-text-darken-2");
+	$("li").addClass("list-outside pl-1 leading-6");
+	$("figcaption").addClass("mt-1 text-center text-text-darken-2");
+	$("figure").addClass("mt-12 first:mt-0");
+	$("blockquote").addClass(
+		"font-[0.7em] text-text-darken-2 p-4 mt-8 border-l-background-lighten-2 border-l-4 bg-background-lighten-1 rounded-sm"
+	);
 
-	// Process <img> tags
+	// Add classes to <img> tags
 	$("img").each((_, elem) => {
-		const imgAttrs = {
-			src: $(elem).attr("src") || "",
-			alt: $(elem).attr("alt") || "",
-			width: Number($(elem).attr("width") || "0"),
-			height: Number($(elem).attr("height") || "0"),
-		};
-		const renderedComponent = ReactDOMServer.renderToStaticMarkup(
-			React.createElement(Element, { tagName: "img", img: imgAttrs }),
-		);
-		$(elem).replaceWith(renderedComponent);
+		$(elem).addClass("rounded max-w-full h-auto mt-4 first:mt-0");
 	});
 
-	// Process <a> tags
+	// Add classes to <a> tags
 	$("a").each((_, elem) => {
-		const href = $(elem).attr("href") || "";
-		const children = $(elem).html();
-		const renderedComponent = ReactDOMServer.renderToStaticMarkup(
-			React.createElement(Element, { tagName: "a", href }, children),
-		);
-		$(elem).replaceWith(renderedComponent);
+		$(elem)
+			.addClass("text-text-darken-2 underline")
+			.attr("target", "_blank")
+			.attr("rel", "noreferrer");
 	});
-
 	// Return the modified HTML
-	return $.html();
+	return $("body").html();
 };
