@@ -1,6 +1,6 @@
 ---
 // export const prerender = true;
-
+import Layout from "../layouts/Layout.astro";
 import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
@@ -17,7 +17,7 @@ import { getTopMenuImages } from "../../lib/cms-client";
 const { blog, about, experiences, socials } = await getTopMenuImages();
 ---
 
-<Meta title={"NAARY.ME"} content={"Personal website of naary"}>
+<Layout title={"NAARY.ME"} content={"Personal website of naary"}>
 	<Header isTopPage={true} title="NAARY.ME" />
 	<main class="secondIn">
 		<GridContainer>
@@ -38,4 +38,4 @@ const { blog, about, experiences, socials } = await getTopMenuImages();
 		</GridContainer>
 	</main>
 	<Footer />
-</Meta>
+</Layout>
