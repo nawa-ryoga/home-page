@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Paragraph styles */
+.paragraph {
+  @apply mt-[1em] first:mt-0 leading-[1.7rem];
+}
+
+/* H2 styles */
+.heading-2 {
+  @apply text-2xl font-bold text-text-default text-center mt-[4em] first:mt-0;
+}
+
+/* H3 styles */
+.heading-3 {
+  @apply text-xl font-bold mt-[2.4em] first:mt-0 text-center;
+}
+
+/* Unordered list styles */
+.unordered-list {
+  @apply pl-8 mt-4 first:mt-0 list-disc marker:text-text-darken-2;
+}
+
+/* Ordered list styles */
+.ordered-list {
+  @apply pl-6 mt-4 first:mt-0 list-decimal marker:text-text-darken-2;
+}
+
+/* List item styles */
+.list-item {
+  @apply list-outside pl-1 leading-6;
+}
+
+/* Figure caption styles */
+.figcaption {
+  @apply mt-1 text-center text-text-darken-2;
+}
+
+/* Figure styles */
+.figure {
+  @apply mt-12 first:mt-0;
+}
+
+/* Blockquote styles */
+.blockquote {
+  @apply text-[0.7em] text-text-darken-2 p-4 mt-8 border-l-background-lighten-2 border-l-4 bg-background-lighten-1 rounded-sm;
+}
+
+/* Image styles */
+.image {
+  @apply rounded max-w-full h-auto mt-4 first:mt-0;
+}
+
+/* Anchor styles */
+.anchor {
+  @apply text-text-darken-2 underline;
+}
