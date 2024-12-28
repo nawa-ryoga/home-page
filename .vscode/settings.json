@@ -6,5 +6,8 @@
 	"editor.formatOnPaste": true,
 	"editor.formatOnSave": true,
 	"editor.formatOnType": true,
-	"npm.packageManager": "pnpm"
+	"npm.packageManager": "pnpm",
+	"files.associations": {
+  		"*.css": "tailwindcss"
+	}
 }
