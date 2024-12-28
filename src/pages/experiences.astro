@@ -19,30 +19,20 @@ const { socials } = await getTopMenuImages();
 const about = await getAboutContent();
 const feedItemList = await getRssTimeline(about.rss);
 
-const groupItemsByYear = (items: Item[]) => {
-	return items.reduce<{ year: number; items: Item[] }[]>((acc, item) => {
-		const year = dayjs(item.isoDate).year();
+type GroupedItems = { year?: number; month?: number; items: Item[] };
 
-		const existingGroup = acc.find((group) => group.year === year);
+const groupItems = (items: Item[], groupBy: "year" | "month") => {
+	return items.reduce<GroupedItems[]>((acc, item) => {
+		const key =
+			groupBy === "year"
+				? dayjs(item.isoDate).year()
+				: dayjs(item.isoDate).month() + 1; // monthは0ベースなので1を加算
+
+		const existingGroup = acc.find((group) => group[groupBy] === key);
 		if (existingGroup) {
 			existingGroup.items.push(item);
 		} else {
-			acc.push({ year, items: [item] });
-		}
-
-		return acc;
-	}, []);
-};
-
-const groupItemsByMonth = (items: Item[]) => {
-	return items.reduce<{ month: number; items: Item[] }[]>((acc, item) => {
-		const month = dayjs(item.isoDate).month() + 1;
-
-		const existingGroup = acc.find((group) => group.month === month);
-		if (existingGroup) {
-			existingGroup.items.push(item);
-		} else {
-			acc.push({ month, items: [item] });
+			acc.push({ [groupBy]: key, items: [item] });
 		}
 
 		return acc;
@@ -60,19 +50,25 @@ Astro.response.headers.set(
 	<main>
 		{
 			feedItemList &&
-				groupItemsByYear(feedItemList).map((year) => (
-					<FeedYear year={year.year}>
-						{groupItemsByMonth(year.items).map((month) => (
-							<FeedMonth month={month.month}>
-								<FeedList>
-									{month.items.map((item) => (
-										<FeedItem feed={item} favicon={socials} />
-									))}
-								</FeedList>
-							</FeedMonth>
-						))}
-					</FeedYear>
-				))
+				groupItems(feedItemList, "year").map(
+					(GroupedByYear) =>
+						GroupedByYear.year && (
+							<FeedYear year={GroupedByYear.year}>
+								{groupItems(GroupedByYear.items, "month").map(
+									(GroupedByMonth) =>
+										GroupedByMonth.month && (
+											<FeedMonth month={GroupedByMonth.month}>
+												<FeedList>
+													{GroupedByMonth.items.map((item) => (
+														<FeedItem feed={item} favicon={socials} />
+													))}
+												</FeedList>
+											</FeedMonth>
+										),
+								)}
+							</FeedYear>
+						),
+				)
 		}
 	</main>
 	<Footer />
