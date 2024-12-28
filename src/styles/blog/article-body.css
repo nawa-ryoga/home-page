@@ -4,7 +4,7 @@
 
 /* Paragraph styles */
 .paragraph {
-  @apply mt-[1em] first:mt-0 leading-[1.7rem];
+  @apply text-text-darken-1 mt-[1em] first:mt-0 leading-[1.7rem];
 }
 
 /* H2 styles */
@@ -44,7 +44,7 @@
 
 /* Blockquote styles */
 .blockquote {
-  @apply text-[0.7em] text-text-darken-2 p-4 mt-8 border-l-background-lighten-2 border-l-4 bg-background-lighten-1 rounded-sm;
+  @apply text-[0.9em] text-text-darken-2 p-4 mt-8 border-l-background-lighten-2 border-l-4 bg-background-lighten-1 rounded-sm;
 }
 
 /* Image styles */
