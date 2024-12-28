@@ -2,15 +2,15 @@
 import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
-import ExperiencesContainer from "../components/Routes/Experiences/Experiences.astro";
+import Container from "../components/Routes/Experiences/Container.astro";
 ---
 
 <Meta title={"NAARY.ME"} content={"Personal website of naary"}>
 	<Header title="Experiences" />
 	<main>
-		<ExperiencesContainer server:defer>
+		<Container server:defer>
 			<div slot="fallback">Loading...</div>
-		</ExperiencesContainer>
+		</Container>
 	</main>
 	<Footer />
 </Meta>
