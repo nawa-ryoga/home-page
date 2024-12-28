@@ -1,0 +1,64 @@
+---
+import FeedList from "./FeedList";
+import FeedItem from "./FeedItem";
+import FeedYear from "./FeedYear";
+import FeedMonth from "./FeedMonth";
+
+import dayjs from "dayjs";
+import type { FeedItem as Item } from "../../../../lib/rss-reader";
+import { getRssTimeline } from "../../../../lib/rss-reader";
+import { getTopMenuImages } from "../../../../lib/cms-client";
+import { getAboutContent } from "../../../../lib/cms-client";
+
+const { socials } = await getTopMenuImages();
+const about = await getAboutContent();
+const feedItemList = await getRssTimeline(about.rss);
+
+type GroupedItems = { year?: number; month?: number; items: Item[] };
+
+const groupItems = (items: Item[], groupBy: "year" | "month") => {
+	return items.reduce<GroupedItems[]>((acc, item) => {
+		const key =
+			groupBy === "year"
+				? dayjs(item.isoDate).year()
+				: dayjs(item.isoDate).month() + 1; // monthは0ベースなので1を加算
+
+		const existingGroup = acc.find((group) => group[groupBy] === key);
+		if (existingGroup) {
+			existingGroup.items.push(item);
+		} else {
+			acc.push({ [groupBy]: key, items: [item] });
+		}
+
+		return acc;
+	}, []);
+};
+
+Astro.response.headers.set(
+	"Cache-Control",
+	"public, s-maxage=86400, stale-while-revalidate=86400",
+);
+---
+
+{
+	feedItemList &&
+		groupItems(feedItemList, "year").map(
+			(GroupedByYear) =>
+				GroupedByYear.year && (
+					<FeedYear year={GroupedByYear.year}>
+						{groupItems(GroupedByYear.items, "month").map(
+							(GroupedByMonth) =>
+								GroupedByMonth.month && (
+									<FeedMonth month={GroupedByMonth.month}>
+										<FeedList>
+											{GroupedByMonth.items.map((item) => (
+												<FeedItem feed={item} favicon={socials} />
+											))}
+										</FeedList>
+									</FeedMonth>
+								),
+						)}
+					</FeedYear>
+				),
+		)
+}

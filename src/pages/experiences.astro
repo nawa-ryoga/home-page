@@ -2,72 +2,13 @@
 import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
-import FeedList from "../components/Routes/Experiences/FeedList";
-import FeedItem from "../components/Routes/Experiences/FeedItem";
-import FeedYear from "../components/Routes/Experiences/FeedYear";
-import FeedMonth from "../components/Routes/Experiences/FeedMonth";
-
-import dayjs from "dayjs";
-import type { FeedItem as Item } from "../../lib/rss-reader";
-import { getTopMenuImages } from "../../lib/cms-client";
-import { getRssTimeline } from "../../lib/rss-reader";
-import { getAboutContent } from "../../lib/cms-client";
-
-const { socials } = await getTopMenuImages();
-const about = await getAboutContent();
-const feedItemList = await getRssTimeline(about.rss);
-
-type GroupedItems = { year?: number; month?: number; items: Item[] };
-
-const groupItems = (items: Item[], groupBy: "year" | "month") => {
-	return items.reduce<GroupedItems[]>((acc, item) => {
-		const key =
-			groupBy === "year"
-				? dayjs(item.isoDate).year()
-				: dayjs(item.isoDate).month() + 1; // monthは0ベースなので1を加算
-
-		const existingGroup = acc.find((group) => group[groupBy] === key);
-		if (existingGroup) {
-			existingGroup.items.push(item);
-		} else {
-			acc.push({ [groupBy]: key, items: [item] });
-		}
-
-		return acc;
-	}, []);
-};
-
-Astro.response.headers.set(
-	"Cache-Control",
-	"public, s-maxage=86400, stale-while-revalidate=86400",
-);
+import ExperiencesContainer from "../components/Routes/Experiences/Experiences.astro";
 ---
 
 <Meta title={"NAARY.ME"} content={"Personal website of naary"}>
 	<Header title="Experiences" />
 	<main>
-		{
-			feedItemList &&
-				groupItems(feedItemList, "year").map(
-					(GroupedByYear) =>
-						GroupedByYear.year && (
-							<FeedYear year={GroupedByYear.year}>
-								{groupItems(GroupedByYear.items, "month").map(
-									(GroupedByMonth) =>
-										GroupedByMonth.month && (
-											<FeedMonth month={GroupedByMonth.month}>
-												<FeedList>
-													{GroupedByMonth.items.map((item) => (
-														<FeedItem feed={item} favicon={socials} />
-													))}
-												</FeedList>
-											</FeedMonth>
-										),
-								)}
-							</FeedYear>
-						),
-				)
-		}
+		<ExperiencesContainer server:defer />
 	</main>
 	<Footer />
 </Meta>
