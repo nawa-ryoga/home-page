@@ -10,6 +10,8 @@ import { getRssTimeline } from "../../../../lib/rss-reader";
 import { getTopMenuImages } from "../../../../lib/cms-client";
 import { getAboutContent } from "../../../../lib/cms-client";
 
+console.log("よばれたよ！");
+
 const { socials } = await getTopMenuImages();
 const about = await getAboutContent();
 const feedItemList = await getRssTimeline(about.rss);
@@ -36,7 +38,7 @@ const groupItems = (items: Item[], groupBy: "year" | "month") => {
 ---
 
 <div>
-	{
+	<!-- {
 		feedItemList &&
 			groupItems(feedItemList, "year").map(
 				(GroupedByYear) =>
@@ -57,5 +59,6 @@ const groupItems = (items: Item[], groupBy: "year" | "month") => {
 						</FeedYear>
 					),
 			)
-	}
+	} -->
+			ロードしたぞ！
 </div>
