@@ -21,13 +21,7 @@
 		"astro": "^5.1.1",
 		"cheerio": "^1.0.0",
 		"dayjs": "^1.11.13",
-		"dompurify": "^3.2.2",
-		"he": "^1.2.0",
-		"html-react-parser": "^5.1.18",
-		"jsdom": "^25.0.1",
 		"microcms-js-sdk": "^3.1.2",
-		"node-html-parser": "^6.1.13",
-		"open-graph-scraper": "^6.8.3",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"rss-parser": "^3.13.0",
@@ -37,8 +31,6 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@types/cheerio": "^0.22.35",
-		"@types/he": "^1.2.3",
-		"@types/jsdom": "^21.1.7",
 		"@vanilla-extract/vite-plugin": "^4.0.17",
 		"prettier": "^3.3.3",
 		"prettier-plugin-astro": "^0.14.1"
