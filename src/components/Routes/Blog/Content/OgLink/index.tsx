@@ -1,4 +1,4 @@
-import type { OgObject } from "open-graph-scraper/types";
+import type { OgObject } from "../../../../../scripts/og-scraper";
 type Props = {
 	result: OgObject;
 };
@@ -17,12 +17,12 @@ export default function OgLink({ result }: Props) {
 	return (
 		<figure className="my-16 w-full flex flex-col rounded-2xl bg-background-darken-1 text-justify break-all">
 			<>
-				<figcaption className="px-8 md:px-16 py-4 flex flex-col items-center gap-2">
+				<figcaption className="px-8 md:px-16 py-4 flex flex-col text-center gap-2">
 					<a
 						href={result.ogUrl}
 						target="_blank"
 						rel="noopener nofollow noreferrer"
-						className="text-darken-2 text-[0.5rem] md:text-xs"
+						className="text-text-darken-2 text-[0.5rem] md:text-xs w-full"
 					>
 						<em>{result.ogUrl}</em>
 					</a>
@@ -30,7 +30,7 @@ export default function OgLink({ result }: Props) {
 						href={result.ogUrl}
 						target="_blank"
 						rel="noopener nofollow noreferrer"
-						className="text-darken-1 text-lg font-bold"
+						className="text-text-darken-1 text-lg font-bold no-underline w-full"
 					>
 						{result.ogTitle}
 					</a>
@@ -38,7 +38,7 @@ export default function OgLink({ result }: Props) {
 						href={result.ogUrl}
 						target="_blank"
 						rel="noopener nofollow noreferrer"
-						className="text-darken-2 overflow-hidden text-ellipsis whitespace-nowrap"
+						className="text-text-darken-2 overflow-hidden text-ellipsis whitespace-nowrap no-underline w-full"
 					>
 						{result.ogDescription}
 					</a>
