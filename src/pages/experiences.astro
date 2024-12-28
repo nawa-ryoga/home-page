@@ -4,50 +4,50 @@ export const prerender = false;
 import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
-// import FeedList from "../components/Routes/Experiences/FeedList";
-// import FeedItem from "../components/Routes/Experiences/FeedItem";
-// import FeedYear from "../components/Routes/Experiences/FeedYear";
-// import FeedMonth from "../components/Routes/Experiences/FeedMonth";
+import FeedList from "../components/Routes/Experiences/FeedList";
+import FeedItem from "../components/Routes/Experiences/FeedItem";
+import FeedYear from "../components/Routes/Experiences/FeedYear";
+import FeedMonth from "../components/Routes/Experiences/FeedMonth";
 
-// import dayjs from "dayjs";
-// import type { FeedItem as Item } from "../../lib/rss-reader";
-// import { getTopMenuImages } from "../../lib/cms-client";
-// import { getRssTimeline } from "../../lib/rss-reader";
-// import { getAboutContent } from "../../lib/cms-client";
+import dayjs from "dayjs";
+import type { FeedItem as Item } from "../../lib/rss-reader";
+import { getTopMenuImages } from "../../lib/cms-client";
+import { getRssTimeline } from "../../lib/rss-reader";
+import { getAboutContent } from "../../lib/cms-client";
 
-// const { socials } = await getTopMenuImages();
-// const about = await getAboutContent();
-// const feedItemList = await getRssTimeline(about.rss);
+const { socials } = await getTopMenuImages();
+const about = await getAboutContent();
+const feedItemList = await getRssTimeline(about.rss);
 
-// const groupItemsByYear = (items: Item[]) => {
-// 	return items.reduce<{ year: number; items: Item[] }[]>((acc, item) => {
-// 		const year = dayjs(item.isoDate).year();
+const groupItemsByYear = (items: Item[]) => {
+	return items.reduce<{ year: number; items: Item[] }[]>((acc, item) => {
+		const year = dayjs(item.isoDate).year();
 
-// 		const existingGroup = acc.find((group) => group.year === year);
-// 		if (existingGroup) {
-// 			existingGroup.items.push(item);
-// 		} else {
-// 			acc.push({ year, items: [item] });
-// 		}
+		const existingGroup = acc.find((group) => group.year === year);
+		if (existingGroup) {
+			existingGroup.items.push(item);
+		} else {
+			acc.push({ year, items: [item] });
+		}
 
-// 		return acc;
-// 	}, []);
-// };
+		return acc;
+	}, []);
+};
 
-// const groupItemsByMonth = (items: Item[]) => {
-// 	return items.reduce<{ month: number; items: Item[] }[]>((acc, item) => {
-// 		const month = dayjs(item.isoDate).month() + 1;
+const groupItemsByMonth = (items: Item[]) => {
+	return items.reduce<{ month: number; items: Item[] }[]>((acc, item) => {
+		const month = dayjs(item.isoDate).month() + 1;
 
-// 		const existingGroup = acc.find((group) => group.month === month);
-// 		if (existingGroup) {
-// 			existingGroup.items.push(item);
-// 		} else {
-// 			acc.push({ month, items: [item] });
-// 		}
+		const existingGroup = acc.find((group) => group.month === month);
+		if (existingGroup) {
+			existingGroup.items.push(item);
+		} else {
+			acc.push({ month, items: [item] });
+		}
 
-// 		return acc;
-// 	}, []);
-// };
+		return acc;
+	}, []);
+};
 
 Astro.response.headers.set(
 	"Cache-Control",
@@ -58,7 +58,7 @@ Astro.response.headers.set(
 <Meta title={"NAARY.ME"} content={"Personal website of naary"}>
 	<Header title="Experiences" />
 	<main>
-		<!-- {
+		{
 			feedItemList &&
 				groupItemsByYear(feedItemList).map((year) => (
 					<FeedYear year={year.year}>
@@ -73,7 +73,7 @@ Astro.response.headers.set(
 						))}
 					</FeedYear>
 				))
-		} -->
+		}
 	</main>
 	<Footer />
 </Meta>
