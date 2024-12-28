@@ -3,18 +3,13 @@ import Meta from "../../components/Layouts/Meta";
 import Header from "../../components/Layouts/Header";
 import ArticleContainer from "../../components/Routes/Blog/Article";
 import BlogHeader from "../../components/Routes/Blog/Header";
-// import BlogContent from "../../components/Routes/Blog/Content";
 import Footer from "../../components/Layouts/Footer";
 import "../../styles/animation.css";
 import "../../styles/blog/article-body.css";
 import { formatDate } from "../../../lib/day-js";
-// import { createOgMap } from "../../../lib/og-scraper";
-import * as cheerio from "cheerio";
-import type { Blog } from "../../../lib/cms-client";
-
+import { createOgMap } from "../../scripts/og-scraper";
 import { getBlogList } from "../../../lib/cms-client";
-
-import { parseHtml } from "../../scripts/parse-html";
+import { parseHtml } from "../../scripts/html-parser";
 
 export async function getStaticPaths() {
 	const blogs = await getBlogList();
@@ -23,31 +18,16 @@ export async function getStaticPaths() {
 	}));
 }
 
-// const blogs = await getBlogList();
-// const { blogId } = Astro.params;
-// const blog = blogs.find((b) => b.id === blogId);
+const blogs = await getBlogList();
+const { blogId } = Astro.params;
+const blog = blogs.find((b) => b.id === blogId);
 
-// if (blog === undefined || !blog) {
-// 	return Astro.redirect("/404");
-// }
+if (blog === undefined || !blog) {
+	return Astro.redirect("/404");
+}
 
-const blog: Blog = {
-	id: "usx_3i8gu1",
-	createdAt: "2023-11-18T06:35:30.137Z",
-	updatedAt: "2024-12-24T20:06:41.645Z",
-	title: "ブログ色の研究",
-	summary: "A Study in Blog Color",
-	content:
-		'<figure><img src="https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/8f32038064424fc5a2b932bdabcc09e1/IMG_3050.png" alt="" width="1600" height="2000"><figcaption>この絵を描いたときはこんな感じでした。</figcaption></figure><h2 id="h859faeb27f">見出し2です。これからもいい感じになって</h2><h3 id="hd794701ae9">見出し3です、これからも…</h3><p>普通のテキストです。</p><p>普通のテキストなんだけど<br>途中で改行するでございます</p><figure><img src="https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/f6f04d97b600446f9001de7ed99b1ed2/IMG_1034.jpeg" alt="" width="3978" height="2238"></figure><p><a href="https://omocoro.jp/kiji/487639/">https://omocoro.jp/kiji/487639/</a></p><div class="iframely-embed"><div class="iframely-responsive" style="padding-bottom: 52.5%; padding-top: 120px;"><a href="https://omocoro.jp/kiji/487639/" data-iframely-url="//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fomocoro.jp%2Fkiji%2F487639%2F&amp;key=c271a3ec77ff4aa44d5948170dd74161"></a></div></div><script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script><blockquote><p>このようにして引用しています</p><ul><li>これこれこれ</li><li>ぴーぽぴーぽ<ul><li>ぴぴぴ</li><li>ぺぺぺ<ul><li>ぽぽぽ</li></ul></li><li>ぺぺぺ</li></ul></li><li>ぽぽぽぽぽぽぽ</li></ul></blockquote>',
-	eyecatch: {
-		url: "https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/10d1ad86d0d34852b6a1fa2fa1459285/octopus.png",
-		height: 600,
-		width: 600,
-	},
-};
-
-// const ogMap = await createOgMap(blog.content);
-const content = parseHtml(blog.content);
+const ogMap = await createOgMap(blog.content);
+const content = parseHtml(blog.content, ogMap);
 ---
 
 <Meta title={`${blog.title} | NAARY.ME`} content={blog.summary}>
@@ -65,9 +45,8 @@ const content = parseHtml(blog.content);
 					? formatDate(blog.publishedAt, "YYYY")
 					: "XXXX"}
 			/>
-			<!-- <BlogContent content={blog.content} ogMap={ogMap} /> -->
 			<Fragment set:html={content} />
 		</ArticleContainer>
-		<Footer />
 	</main>
+	<Footer />
 </Meta>
