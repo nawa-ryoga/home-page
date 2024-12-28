@@ -13,6 +13,5 @@ export default defineConfig({
   	vite: {
       plugins: [vanillaExtractPlugin()],
 	},
-  	output: "server",
   	adapter: vercel(),
 });

@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import FeedList from "./FeedList";
 import FeedItem from "./FeedItem";
 import FeedYear from "./FeedYear";
@@ -40,25 +42,27 @@ Astro.response.headers.set(
 );
 ---
 
-{
-	feedItemList &&
-		groupItems(feedItemList, "year").map(
-			(GroupedByYear) =>
-				GroupedByYear.year && (
-					<FeedYear year={GroupedByYear.year}>
-						{groupItems(GroupedByYear.items, "month").map(
-							(GroupedByMonth) =>
-								GroupedByMonth.month && (
-									<FeedMonth month={GroupedByMonth.month}>
-										<FeedList>
-											{GroupedByMonth.items.map((item) => (
-												<FeedItem feed={item} favicon={socials} />
-											))}
-										</FeedList>
-									</FeedMonth>
-								),
-						)}
-					</FeedYear>
-				),
-		)
-}
+<div>
+	{
+		feedItemList &&
+			groupItems(feedItemList, "year").map(
+				(GroupedByYear) =>
+					GroupedByYear.year && (
+						<FeedYear year={GroupedByYear.year}>
+							{groupItems(GroupedByYear.items, "month").map(
+								(GroupedByMonth) =>
+									GroupedByMonth.month && (
+										<FeedMonth month={GroupedByMonth.month}>
+											<FeedList>
+												{GroupedByMonth.items.map((item) => (
+													<FeedItem feed={item} favicon={socials} />
+												))}
+											</FeedList>
+										</FeedMonth>
+									),
+							)}
+						</FeedYear>
+					),
+			)
+	}
+</div>
