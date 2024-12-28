@@ -15,25 +15,25 @@ const age = about.birth_year ? getDate().year() - about.birth_year : null;
 <Meta title={"About"} content={"about NAARY.ME"}>
 	<Header title={"About"} />
 	<main class={"secondIn"}>
-		<div class="flex flex-col justify-center items-center py-10 h-auto">
+		<article class="flex flex-col justify-center items-center py-10 h-auto">
 			<img
 				alt=""
 				src={`${about.icon.url}?w=150`}
 				class="w-32 h-32 rounded-full mb-4"
 			/>
-			<h2 class="text-center tracking-wide mb-5 font-bold">
-				{about.name}
-			</h2>
-			{
-				age && (
-					<p class="text-center mb-10">
-						Japanese Software Engineer, and Designer. <br /> {age} years old
-						this year.
-					</p>
-				)
-			}
 			<section class="max-w-[580px] px-4">
-				<div class="px-4 md:px-8">
+				<h2 class="text-center tracking-wide mb-5 font-bold">
+					{about.name}
+				</h2>
+				{
+					age && (
+						<p class="text-center mb-10">
+							Japanese Software Engineer, and Designer. <br /> {age} years old
+							this year.
+						</p>
+					)
+				}
+				<div class="text-center">
 					<Fragment set:html={parseHtml(about.summery)} />
 				</div>
 				{
@@ -64,7 +64,7 @@ const age = about.birth_year ? getDate().year() - about.birth_year : null;
 					))
 				}
 			</section>
-		</div>
+		</article>
 	</main>
 	<Footer />
 </Meta>
