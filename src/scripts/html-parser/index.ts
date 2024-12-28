@@ -4,7 +4,7 @@ import type { OgObject } from "../og-scraper";
 
 import OgLink from "../../components/Routes/Blog/Content/OgLink";
 
-export const parseHtml = (html: string, ogMap: Map<string, OgObject> ) => {
+export const parseHtml = (html: string, ogMap?: Map<string, OgObject> ) => {
 	const $ = cheerio.load(html);
 
 	$("p").addClass("paragraph");
@@ -32,7 +32,7 @@ export const parseHtml = (html: string, ogMap: Map<string, OgObject> ) => {
 		const anchor = $(elem).find("a");
 		const url = anchor.attr("href");
 
-		if (url) {
+		if (url && ogMap) {
 			const result = ogMap.get(url);
 			if (result === undefined) {
 				return $(elem).replaceWith("");
