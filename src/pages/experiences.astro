@@ -5,11 +5,6 @@ import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import ExperiencesContainer from "../components/Routes/Experiences/Experiences.astro";
 
-Astro.response.headers.set(
-	"Cache-Control",
-	"public, s-maxage=86400, stale-while-revalidate=86400",
-);
-
 export const prerender = false;
 ---
 
