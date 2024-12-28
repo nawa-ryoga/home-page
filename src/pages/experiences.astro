@@ -8,7 +8,9 @@ import ExperiencesContainer from "../components/Routes/Experiences/Experiences.a
 <Meta title={"NAARY.ME"} content={"Personal website of naary"}>
 	<Header title="Experiences" />
 	<main>
-		<ExperiencesContainer server:defer />
+		<ExperiencesContainer server:defer>
+			<div slot="fallback">Loading...</div>
+		</ExperiencesContainer>
 	</main>
 	<Footer />
 </Meta>
