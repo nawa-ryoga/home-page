@@ -32,8 +32,7 @@ const content = parseHtml(blog.content, ogMap);
 const og: SiteOg = {
 	description: blog.summary,
 	type: "blog",
-	image: blog.eyecatch.url,
-	url: blogId,
+	url: `blogs/${blogId}`,
 };
 ---
 
