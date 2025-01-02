@@ -5,11 +5,19 @@ import Footer from "../components/Layouts/Footer";
 import ErrorPageContainer from "../components/Routes/Error/Container";
 import ErrorMessage from "../components/Routes/Error/Message";
 import NotFound from "../components/Routes/Error/Message/NotFound";
+import type { SiteOg } from "../components/Layouts/Meta";
 
 const requestedUrl = Astro.url.pathname;
+
+const og: SiteOg = {
+	description: "",
+	type: "website",
+	image: `${Astro.url.origin}/icon.svg`,
+	url: `${Astro.url.origin}/404`,
+};
 ---
 
-<Meta title="404 | NAARY.ME" content="not found">
+<Meta title="404" og={og}>
 	<Header title="404" />
 	<main class="secondIn">
 		<ErrorPageContainer>

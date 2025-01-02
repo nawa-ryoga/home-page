@@ -6,12 +6,20 @@ import "../styles/about/html-content.css";
 import { getAboutContent } from "../../lib/cms-client";
 import { getDate } from "../../lib/day-js";
 import { parseHtml } from "../scripts/html-parser";
+import type { SiteOg } from "../components/Layouts/Meta";
 
 const about = await getAboutContent();
 const age = about.birth_year ? getDate().year() - about.birth_year : null;
+
+const og: SiteOg = {
+	description: "about NAARY.ME",
+	type: "article",
+	image: `${Astro.url.origin}/icon.svg`,
+	url: Astro.url.href,
+};
 ---
 
-<Meta title={"About"} content={"about NAARY.ME"}>
+<Meta title={"About"} og={og}>
 	<Header title={"About"} />
 	<main class="secondIn">
 		<article class="flex flex-col justify-center items-center py-10 h-auto">

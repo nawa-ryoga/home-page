@@ -5,11 +5,19 @@ import Footer from "../components/Layouts/Footer";
 import Empty from "../components/Routes/Blogs/Empty";
 import ListItem from "../components/Routes/Blogs/ListItem";
 import { getBlogList } from "../../lib/cms-client";
+import type { SiteOg } from "../components/Layouts/Meta";
 
 const blogs = await getBlogList();
+
+const og: SiteOg = {
+	description: "NAARY.ME's blog entries",
+	type: "website",
+	image: `${Astro.url.origin}/icon.svg`,
+	url: Astro.url.href,
+};
 ---
 
-<Meta title={"blogs"} content={"NAARY.ME's blog entries"}>
+<Meta title={"Blogs"} og={og}>
 	<Header title={"Blogs"} />
 	<main class="secondIn">
 		<div class="flex flex-col gap-12 sm:gap-24 pt-[56px] pb-[96px]">

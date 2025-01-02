@@ -5,11 +5,19 @@ import Footer from "../components/Layouts/Footer";
 import ErrorPageContainer from "../components/Routes/Error/Container";
 import ErrorMessage from "../components/Routes/Error/Message";
 import ServerError from "../components/Routes/Error/Message/ServerError";
+import type { SiteOg } from "../components/Layouts/Meta";
 
 const requestedUrl = Astro.url.pathname;
+
+const og: SiteOg = {
+	description: "",
+	type: "website",
+	image: `${Astro.url.origin}/icon.svg`,
+	url: `${Astro.url.origin}/404`,
+};
 ---
 
-<Meta title="500 | NAARY.ME" content="server error">
+<Meta title="500" og={og}>
 	<Header title="500" />
 	<main class="secondIn">
 		<ErrorPageContainer>
