@@ -24,25 +24,26 @@ export default function FeedItem({ feed, favicon }: Props) {
 					height={60}
 				/>
 			</a>
-
-			<a
-				href={feed.link}
-				target="_blank"
-				rel="noopener nofollow noreferrer"
-				className="text-text-darken-1 visited:text-text-darken-2 font-bold"
-			>
-				{feed.title}
-			</a>
-			{feed.isoDate && (
+			<span className="flex flex-col items-center">
 				<a
 					href={feed.link}
 					target="_blank"
 					rel="noopener nofollow noreferrer"
-					className=""
+					className="text-text-darken-1 visited:text-text-darken-2 font-bold"
 				>
-					{formatDate(feed.isoDate, "MMM D, YYYY")}
+					{feed.title}
 				</a>
-			)}
+				{feed.isoDate && (
+					<a
+						href={feed.link}
+						target="_blank"
+						rel="noopener nofollow noreferrer"
+						className="text-text-darken-1 visited:text-text-darken-2 text-sm"
+					>
+						{formatDate(feed.isoDate, "MMM D, YYYY")}
+					</a>
+				)}
+			</span>
 		</li>
 	);
 }
