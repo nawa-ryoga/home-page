@@ -1,5 +1,6 @@
 import HeaderText from "./Text";
 import HeaderTextContainer from "./Text/Container";
+import "../../../styles/animation.css";
 
 type Props = {
 	isTopPage?: boolean;
@@ -9,7 +10,7 @@ type Props = {
 export default function Header({ isTopPage = false, title }: Props) {
 	return (
 		<>
-			<header className="flex flex-col justify-center">
+			<header className="firstIn opacity-0 flex flex-col justify-center">
 				<div className="max-w-[1200px]flex justify-center items-center">
 					{isTopPage ? (
 						<HeaderTextContainer>
