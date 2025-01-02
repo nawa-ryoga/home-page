@@ -20,9 +20,6 @@ importers:
       '@astrojs/vercel':
         specifier: ^8.0.1
         version: 8.0.1(astro@5.1.1(@types/node@22.10.2)(jiti@2.4.2)(rollup@4.29.1)(typescript@5.7.2)(yaml@2.6.1))(react@18.3.1)(rollup@4.29.1)
-      '@fontsource-variable/noto-sans-jp':
-        specifier: ^5.1.0
-        version: 5.1.0
       '@types/react':
         specifier: ^18.3.18
         version: 18.3.18
@@ -748,9 +745,6 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
-
-  '@fontsource-variable/noto-sans-jp@5.1.0':
-    resolution: {integrity: sha512-VmEW0dlHsC0tQOlZlzcrUj+9HL73pANKneMrsZD8X6Jg3XhysOYY6R2VRGO4cTYwp5iVznt1crzGUEWM+/xQuA==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -3647,8 +3641,6 @@ snapshots:
 
   '@esbuild/win32-x64@0.24.2':
     optional: true
-
-  '@fontsource-variable/noto-sans-jp@5.1.0': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
