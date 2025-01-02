@@ -28,7 +28,7 @@ const { blog, about, experiences, socials } = await getTopMenuImages();
 			<ThridLineContainer>
 				{
 					socials.map((s) => (
-						<IconContainer href={s.url} imageUrl={s.logo.url} />
+						<IconContainer href={s.url} imageUrl={s.logo.url} alt={s.name} />
 					))
 				}
 			</ThridLineContainer>
