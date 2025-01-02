@@ -3,7 +3,6 @@ import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import "../styles/about/html-content.css";
-import { secondIn } from "../styles/animation.css";
 import { getAboutContent } from "../../lib/cms-client";
 import { getDate } from "../../lib/day-js";
 import { parseHtml } from "../scripts/html-parser";
@@ -14,7 +13,7 @@ const age = about.birth_year ? getDate().year() - about.birth_year : null;
 
 <Meta title={"About"} content={"about NAARY.ME"}>
 	<Header title={"About"} />
-	<main class={secondIn}>
+	<main>
 		<article class="flex flex-col justify-center items-center py-10 h-auto">
 			<img
 				alt=""
