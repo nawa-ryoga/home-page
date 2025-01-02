@@ -1,0 +1,29 @@
+---
+import Meta from "../components/Layouts/Meta";
+import Header from "../components/Layouts/Header";
+import Footer from "../components/Layouts/Footer";
+import ErrorPageContainer from "../components/Routes/Error/Container";
+import ErrorMessage from "../components/Routes/Error/Message";
+import NotFound from "../components/Routes/Error/Message/NotFound";
+
+const requestedUrl = Astro.url.pathname;
+---
+
+<Meta title="404 | NAARY.ME" content="not found">
+	<Header title="404" />
+	<main class="secondIn">
+		<ErrorPageContainer>
+			<img
+				src={"https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/e0ab32414bb94d8e9d56121c9a2dc0b6/404.png"}
+				alt=""
+				width="360"
+				height="360"
+				class="rounded-lg max-w-full h-auto"
+			/>
+			<ErrorMessage>
+				<NotFound requestedUrl={requestedUrl} />
+			</ErrorMessage>
+		</ErrorPageContainer>
+	</main>
+	<Footer />
+</Meta>
