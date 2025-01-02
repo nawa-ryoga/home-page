@@ -12,8 +12,7 @@ const blogs = await getBlogList();
 const og: SiteOg = {
 	description: "NAARY.ME's blog entries",
 	type: "website",
-	image: `${Astro.url.origin}/og.png`,
-	url: Astro.url.href,
+	url: "blogs"
 };
 ---
 
