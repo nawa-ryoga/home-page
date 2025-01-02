@@ -1,0 +1,51 @@
+---
+import Meta from "../../components/Layouts/Meta";
+import Header from "../../components/Layouts/Header";
+import ArticleContainer from "../../components/Routes/Blog/Article";
+import BlogHeader from "../../components/Routes/Blog/Header";
+import Footer from "../../components/Layouts/Footer";
+import { formatDate } from "../../../lib/day-js";
+import { createOgMap } from "../../scripts/og-scraper";
+import { getBlogList } from "../../../lib/cms-client";
+import { parseHtml } from "../../scripts/html-parser";
+import "../../styles/blog/html-content.css";
+
+export async function getStaticPaths() {
+	const blogs = await getBlogList();
+	return blogs.map((blog) => ({
+		params: { blogId: blog.id },
+	}));
+}
+
+const blogs = await getBlogList();
+const { blogId } = Astro.params;
+const blog = blogs.find((b) => b.id === blogId);
+
+if (blog === undefined || !blog) {
+	return Astro.redirect("/404");
+}
+
+const ogMap = await createOgMap(blog.content);
+const content = parseHtml(blog.content, ogMap);
+---
+
+<Meta title={`${blog.title} | NAARY.ME`} content={blog.summary}>
+	<Header title={"Blog"} />
+	<main class="secondIn">
+		<ArticleContainer>
+			<BlogHeader
+				image={blog.eyecatch}
+				title={blog.title}
+				summery={blog.summary}
+				publishedAtYear={blog.publishedAt
+					? formatDate(blog.publishedAt, "MMM D")
+					: "Xxx X"}
+				publishedAtDate={blog.publishedAt
+					? formatDate(blog.publishedAt, "YYYY")
+					: "XXXX"}
+			/>
+			<Fragment set:html={content} />
+		</ArticleContainer>
+	</main>
+	<Footer />
+</Meta>

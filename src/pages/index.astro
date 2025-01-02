@@ -1,0 +1,38 @@
+---
+import Meta from "../components/Layouts/Meta";
+import Header from "../components/Layouts/Header";
+import Footer from "../components/Layouts/Footer";
+import GridContainer from "../components/Routes/Top/Menu/Container";
+import FirstLineContainer from "../components/Routes/Top/Menu/FirstLine/Container";
+import FirstLineItem from "../components/Routes/Top/Menu/FirstLine/Item";
+import SecondLineContainer from "../components/Routes/Top/Menu/SecondLine/Container";
+import SecondLineItem from "../components/Routes/Top/Menu/SecondLine/Item";
+import ThridLineContainer from "../components/Routes/Top/Menu/ThridLine/Container";
+import IconContainer from "../components/Routes/Top/Menu/ThridLine/Icon/Container";
+import { getTopMenuImages } from "../../lib/cms-client";
+
+const { blog, about, experiences, socials } = await getTopMenuImages();
+---
+
+<Meta title={"NAARY.ME"} content={"Personal website of naary"}>
+	<Header isTopPage={true} title="NAARY.ME" />
+	<main class="secondIn">
+		<GridContainer>
+			<FirstLineContainer>
+				<FirstLineItem image={blog} href={"blogs"} title={"Blog"} />
+				<FirstLineItem image={about} href={"about"} title={"About"} />
+			</FirstLineContainer>
+			<SecondLineContainer>
+				<SecondLineItem image={experiences} title={"Experiences"} />
+			</SecondLineContainer>
+			<ThridLineContainer>
+				{
+					socials.map((s) => (
+						<IconContainer href={s.url} imageUrl={s.logo.url} alt={s.name} />
+					))
+				}
+			</ThridLineContainer>
+		</GridContainer>
+	</main>
+	<Footer />
+</Meta>

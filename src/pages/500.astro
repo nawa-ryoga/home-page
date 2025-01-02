@@ -1,0 +1,30 @@
+---
+import Meta from "../components/Layouts/Meta";
+import Header from "../components/Layouts/Header";
+import Footer from "../components/Layouts/Footer";
+import ErrorPageContainer from "../components/Routes/Error/Container";
+import ErrorMessage from "../components/Routes/Error/Message";
+import ServerError from "../components/Routes/Error/Message/ServerError";
+
+const requestedUrl = Astro.url.pathname;
+---
+
+<Meta title="500 | NAARY.ME" content="server error">
+	<Header title="500" />
+	<main class="secondIn">
+		<ErrorPageContainer>
+			<img
+				src={"https://images.microcms-assets.io/assets/c987b67b4da34a3d8860df3dc1a06811/c4f45147f3754fb0b886d21aef8364f7/500.png"}
+				alt=""
+				width="360"
+				height="360"
+				class="rounded-lg max-w-full h-auto"
+				fetch-priority="high"
+			/>
+			<ErrorMessage>
+				<ServerError requestedUrl={requestedUrl} />
+			</ErrorMessage>
+		</ErrorPageContainer>
+	</main>
+	<Footer />
+</Meta>

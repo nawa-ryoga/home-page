@@ -1,0 +1,14 @@
+---
+import Meta from "../components/Layouts/Meta";
+import Header from "../components/Layouts/Header";
+import Footer from "../components/Layouts/Footer";
+import ExperienceContainer from "../components/Routes/Experiences/Container";
+---
+
+<Meta title={"NAARY.ME"} content={"Personal website of naary"}>
+	<Header title="Experiences" />
+	<main class="secondIn">
+		<ExperienceContainer client:only />
+	</main>
+	<Footer />
+</Meta>

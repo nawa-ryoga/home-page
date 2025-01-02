@@ -1,0 +1,22 @@
+---
+import Meta from "../components/Layouts/Meta";
+import Header from "../components/Layouts/Header";
+import Footer from "../components/Layouts/Footer";
+import Empty from "../components/Routes/Blogs/Empty";
+import ListItem from "../components/Routes/Blogs/ListItem";
+import { getBlogList } from "../../lib/cms-client";
+
+const blogs = await getBlogList();
+---
+
+<Meta title={"blogs"} content={"NAARY.ME's blog entries"}>
+	<Header title={"Blogs"} />
+	<main class="secondIn">
+		<div class="flex flex-col gap-12 sm:gap-24 pt-[56px] pb-[96px]">
+			{!blogs && <Empty />}
+
+			{blogs && blogs.map((blog) => <ListItem blog={blog} />)}
+		</div>
+	</main>
+	<Footer />
+</Meta>
