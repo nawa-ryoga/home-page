@@ -16,6 +16,20 @@ export default function Meta({ title, content, children }: Props) {
 				<link rel="icon" href="/icon.svg" type="image/svg+xml" />
 				<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 				<link rel="manifest" href="/manifest.webmanifest.txt" />
+				<link
+					rel="preload"
+					href="/fonts/noto-sans-jp-regular.woff2"
+					as="font"
+					type="font/woff2"
+					crossOrigin=""
+				/>
+				<link
+					rel="preload"
+					href="/fonts/noto-sans-jp-700.woff2"
+					as="font"
+					type="font/woff2"
+					crossOrigin=""
+				/>
 				<meta name="viewport" content="width=device-width" />
 				<meta name="description" content={content} />
 				<title>{title}</title>
