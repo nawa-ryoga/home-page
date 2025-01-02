@@ -9,7 +9,7 @@ import SecondLineContainer from "../components/Routes/Top/Menu/SecondLine/Contai
 import SecondLineItem from "../components/Routes/Top/Menu/SecondLine/Item";
 import ThridLineContainer from "../components/Routes/Top/Menu/ThridLine/Container";
 import IconContainer from "../components/Routes/Top/Menu/ThridLine/Icon/Container";
-import "../styles/animation.css";
+import { secondIn } from "../styles/animation.css";
 
 import { getTopMenuImages } from "../../lib/cms-client";
 const { blog, about, experiences, socials } = await getTopMenuImages();
@@ -17,7 +17,7 @@ const { blog, about, experiences, socials } = await getTopMenuImages();
 
 <Meta title={"NAARY.ME"} content={"Personal website of naary"}>
 	<Header isTopPage={true} title="NAARY.ME" />
-	<main class="secondIn">
+	<main class={secondIn}>
 		<GridContainer>
 			<FirstLineContainer>
 				<FirstLineItem image={blog} href={"blogs"} title={"Blog"} />
