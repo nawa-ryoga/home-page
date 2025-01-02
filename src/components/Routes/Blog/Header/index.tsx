@@ -25,6 +25,7 @@ export default function HeaderContainer({
 						className="max-w-full min-h-[320px] sm:min-h-[480px] h-auto aspect-square"
 						width={image.width}
 						height={image.height}
+						fetchPriority="high"
 					/>
 				</div>
 				<div className="mx-[-16px] md:mx-[-32px] mt-[-42px] md:mt-[-78px] px-[16px] md:px-0">

@@ -19,6 +19,7 @@ const requestedUrl = Astro.url.pathname;
 				width="360"
 				height="360"
 				class="rounded-lg max-w-full h-auto"
+				fetch-priority="high"
 			/>
 			<ErrorMessage>
 				<NotFound requestedUrl={requestedUrl} />

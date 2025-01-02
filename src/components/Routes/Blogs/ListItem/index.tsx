@@ -18,6 +18,7 @@ export default function ListItem({ blog }: Props) {
 						alt=""
 						width={blog.eyecatch.width}
 						height={blog.eyecatch.height}
+						fetchPriority="high"
 					/>
 				</a>
 			</span>

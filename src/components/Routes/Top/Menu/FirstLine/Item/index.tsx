@@ -13,6 +13,7 @@ export default function FirstLineItem({ image, href, title }: Props) {
 				className="object-cover h-auto max-h-[8rem] w-full rounded-xl z-10"
 				src={`${image.url}?w=360`}
 				alt=""
+				fetchPriority="high"
 			/>
 			<a
 				href={`/${href}`}
