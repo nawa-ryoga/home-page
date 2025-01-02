@@ -3,9 +3,17 @@ import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import ExperienceContainer from "../components/Routes/Experiences/Container";
+import type { SiteOg } from "../components/Layouts/Meta";
+
+const og: SiteOg = {
+	description: "my history",
+	type: "article",
+	image: `${Astro.url.origin}/icon.svg`,
+	url: Astro.url.href,
+};
 ---
 
-<Meta title={"NAARY.ME"} content={"Personal website of naary"}>
+<Meta title={"Experiences"} og={og}>
 	<Header title="Experiences" />
 	<main class="secondIn">
 		<ExperienceContainer client:only />

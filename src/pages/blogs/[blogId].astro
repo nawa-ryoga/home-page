@@ -8,6 +8,7 @@ import { formatDate } from "../../../lib/day-js";
 import { createOgMap } from "../../scripts/og-scraper";
 import { getBlogList } from "../../../lib/cms-client";
 import { parseHtml } from "../../scripts/html-parser";
+import type { SiteOg } from "../../components/Layouts/Meta";
 import "../../styles/blog/html-content.css";
 
 export async function getStaticPaths() {
@@ -27,9 +28,16 @@ if (blog === undefined || !blog) {
 
 const ogMap = await createOgMap(blog.content);
 const content = parseHtml(blog.content, ogMap);
+
+const og: SiteOg = {
+	description: blog.summary,
+	type: "blog",
+	image: blog.eyecatch.url,
+	url: Astro.url.href,
+};
 ---
 
-<Meta title={`${blog.title} | NAARY.ME`} content={blog.summary}>
+<Meta title={blog.title} og={og}>
 	<Header title={"Blog"} />
 	<main class="secondIn">
 		<ArticleContainer>
