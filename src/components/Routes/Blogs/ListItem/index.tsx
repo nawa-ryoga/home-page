@@ -16,6 +16,8 @@ export default function ListItem({ blog }: Props) {
 						src-set={`${blog.eyecatch.url}?w=180 180w, ${blog.eyecatch.url}?w=280 280w`}
 						className="max-w-full h-auto min-h-[180px] md:min-h-[240px] aspect-square"
 						alt=""
+						width={blog.eyecatch.width}
+						height={blog.eyecatch.height}
 					/>
 				</a>
 			</span>
