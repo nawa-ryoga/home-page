@@ -6,8 +6,8 @@ import "../../styles/global.css";
 export type SiteOg = {
 	description: string;
 	type: "article" | "website" | "blog";
-	image: string;
-	url: string;
+	image?: string;
+	url?: string;
 };
 
 type Props = {
@@ -43,11 +43,14 @@ export default function Meta({ title, og, children }: Props) {
 				/>
 				<meta name="viewport" content="width=device-width" />
 				<meta name="description" content={og.description} />
-				<meta property="og:url" content={og.url} />
+				<meta property="og:url" content={og.url ? `https://naary.me/${og.url}`: "https://naary.me"} />
 				<meta property="og:type" content={og.type} />
 				<meta property="og:description" content={og.description} />
 				<meta property="og:title" content={title} />
-				<meta property="og:image" content={og.image} />
+				<meta
+					property="og:image"
+					content={og.image ? og.image : "https://naary.me/og.png"}
+				/>
 				<meta property="og:site_name" content={SITE_NAME} />
 				<meta name="twitter:card" content="summary" />
 				<title>{title ? `${title} | ${SITE_NAME}` : SITE_NAME}</title>
