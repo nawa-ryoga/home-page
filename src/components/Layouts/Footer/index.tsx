@@ -4,7 +4,7 @@ export default function Footer() {
 			<div className="text-text-darken-2 flex flex-col text-center">
 				<span>2024 naary</span>
 				<div className="flex justify-center gap-2">
-					<a href="/pribacy">Privacy</a>
+					<a href="/privacy">Privacy</a>
 					<span>|</span>
 					<span>nawaryoga@gmail.com</span>
 				</div>
