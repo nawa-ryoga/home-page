@@ -1,8 +1,16 @@
 
 @font-face {
-  font-family: 'IPAEX';
-  src: url('/fonts/ipaexg.woff') format('woff');
-  font-weight: normal;
+  font-family: 'Noto Sans JP';
+  src: url('/fonts/noto-sans-jp-regular.woff2') format('woff2');
+  font-weight: 400; /* Regularのフォントウェイト */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/fonts/noto-sans-jp-700.woff2') format('woff2');
+  font-weight: 700; /* Boldのフォントウェイト */
   font-style: normal;
   font-display: swap;
 }
