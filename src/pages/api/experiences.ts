@@ -63,11 +63,15 @@ const groupItems = (items: Item[]): GroupedPerYear[] => {
 		{},
 	);
 
-	return Object.entries(yearGroups).map(([year, months]) => ({
-		year: Number(year),
-		months: Object.entries(months).map(([month, items]) => ({
-			month: Number(month),
-			items,
-		})),
-	}));
+	return Object.entries(yearGroups)
+		.sort(([yearA], [yearB]) => Number(yearB) - Number(yearA)) // 年を降順にソート
+		.map(([year, months]) => ({
+			year: Number(year),
+			months: Object.entries(months)
+				.sort(([monthA], [monthB]) => Number(monthB) - Number(monthA)) // 月も降順にソート
+				.map(([month, items]) => ({
+					month: Number(month),
+					items,
+				})),
+		}));
 };
