@@ -4,11 +4,11 @@ import "../../styles/animation.css";
 import "../../styles/global.css";
 
 export type SiteOg = {
-		description: string;
-		type: "article" | "website" | "blog";
-		image: string;
-		url: string;
-	};
+	description: string;
+	type: "article" | "website" | "blog";
+	image: string;
+	url: string;
+};
 
 type Props = {
 	title?: string;
@@ -16,7 +16,7 @@ type Props = {
 	children: React.ReactNode;
 };
 
-const SITE_NAME = "NAARY.ME"
+const SITE_NAME = "NAARY.ME";
 
 export default function Meta({ title, og, children }: Props) {
 	return (
