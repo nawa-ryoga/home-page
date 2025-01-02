@@ -1,6 +1,5 @@
 import HeaderText from "./Text";
 import HeaderTextContainer from "./Text/Container";
-import "../../../styles/animation.css";
 
 type Props = {
 	isTopPage?: boolean;

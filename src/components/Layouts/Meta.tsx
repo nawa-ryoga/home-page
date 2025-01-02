@@ -1,5 +1,7 @@
 import type React from "react";
 import "../../styles/font.css";
+import "../../styles/animation.css";
+import "../../styles/global.css";
 
 type Props = {
 	title: string;
