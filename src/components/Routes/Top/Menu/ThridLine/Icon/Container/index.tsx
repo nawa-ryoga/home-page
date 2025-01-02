@@ -6,14 +6,16 @@ type Props = {
 
 export default function IconContainer({ imageUrl, href, alt }: Props) {
 	return (
-		<li className="aspect-square flex items-center justify-center rounded-xl bg-background-lighten-1">
+		<li className="aspect-square flex items-center justify-center">
 			<a
 				href={href}
 				target="_blank"
 				rel="noopener nofollow noreferrer"
 				className="w-[48px] sm:w-[84px] aspect-square"
 			>
-				<img className="" src={imageUrl} alt={alt} />
+				<span className="flex items-center aspect-square rounded-xl justify-center bg-text-darken-1">
+					<img className="w-[80%] h-[80%]" src={imageUrl} alt={alt} />
+				</span>
 			</a>
 		</li>
 	);
