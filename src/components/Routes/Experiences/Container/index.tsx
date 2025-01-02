@@ -3,6 +3,7 @@ import FeedList from "../FeedList";
 import FeedItem from "../FeedItem";
 import FeedYear from "../FeedYear";
 import FeedMonth from "../FeedMonth";
+import Fallback from "../Fallback";
 
 import type { SocialIcon } from "../../../../../lib/cms-client";
 import type { GroupedPerYear } from "../../../../pages/api/experiences";
@@ -36,15 +37,27 @@ export default function ExperienceContainer() {
 		fetchData();
 	}, []);
 
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error: {error}</p>;
+	if (loading) return (
+		<Fallback>
+			<p>Loading...</p>
+		</Fallback>
+	);
+	if (error) return (
+		<Fallback>
+			<p>Error: {error}</p>
+		</Fallback>
+	);
 
-	if (!data) return <p>No data available</p>;
+	if (!data) return (
+		<Fallback>
+			<p>No data available</p>
+		</Fallback>
+	);
 
 	const { rss, socials } = data;
 
 	return (
-		<>
+		<div className="secondIn opacity-0">
 			{rss.map((groupedByYear) => (
 				<FeedYear year={groupedByYear.year} key={groupedByYear.year}>
 					{groupedByYear.months.map((groupedByMonth) => (
@@ -61,6 +74,6 @@ export default function ExperienceContainer() {
 					))}
 				</FeedYear>
 			))}
-		</>
+		</div>
 	);
 }
