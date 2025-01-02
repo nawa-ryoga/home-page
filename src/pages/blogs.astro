@@ -11,7 +11,7 @@ const blogs = await getBlogList();
 
 <Meta title={"blogs"} content={"NAARY.ME's blog entries"}>
 	<Header title={"Blogs"} />
-	<main>
+	<main class="secondIn">
 		<div class="flex flex-col gap-12 sm:gap-24 pt-[56px] pb-[96px]">
 			{!blogs && <Empty />}
 
