@@ -49,7 +49,7 @@ export default function Meta({ title, og, children }: Props) {
 				<meta property="og:title" content={title} />
 				<meta property="og:image" content={og.image} />
 				<meta property="og:site_name" content={SITE_NAME} />
-				<meta property="twitter:card" content="summary" />
+				<meta name="twitter:card" content="summary" />
 				<title>{title ? `${title} | ${SITE_NAME}` : SITE_NAME}</title>
 			</head>
 			<body className="bg-background-default m-0 text-text-default font-sans">
