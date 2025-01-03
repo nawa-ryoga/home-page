@@ -8,7 +8,7 @@ type Props = {
 
 export default function ListItem({ blog }: Props) {
 	return (
-		<div className="flex flex-col justify-center items-center relative">
+		<div className="flex flex-col justify-center items-center relative px-20">
 			<span className="flex justify-center items-center max-w-[180px] sm:max-w-[280px]">
 				<a href={`/blogs/${blog.id}`}>
 					<img

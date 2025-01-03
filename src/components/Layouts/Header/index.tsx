@@ -26,7 +26,7 @@ export default function Header({ isTopPage = false, title }: Props) {
 					)}
 				</div>
 				<div className="flex justify-center items-center">
-					<h1 className="font-bold text-[42px] sm:text-[96px]">{title}</h1>
+					<h1 className="font-bold text-[64px] sm:text-[96px]">{title}</h1>
 				</div>
 			</header>
 		</>

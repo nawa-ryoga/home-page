@@ -14,12 +14,12 @@ h3 + .paragraph {
 
 /* H2 styles */
 .heading-2 {
-  @apply text-2xl font-bold text-text-default text-center mt-[4em] first:mt-0 underline underline-offset-8 decoration-text-darken-2;
+  @apply text-text-darken-1 text-2xl font-bold text-text-default text-center mt-[4em] first:mt-0 underline underline-offset-8 decoration-text-darken-2;
 }
 
 /* H3 styles */
 .heading-3 {
-  @apply text-xl font-bold mt-[2.4em] first:mt-0 text-center;
+  @apply text-text-darken-1 text-xl font-bold mt-[2.4em] first:mt-0 text-center;
 }
 
 /* Unordered list styles */
