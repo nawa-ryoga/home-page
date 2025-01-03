@@ -4,9 +4,8 @@ import FeedItem from "../FeedItem";
 import FeedYear from "../FeedYear";
 import FeedMonth from "../FeedMonth";
 import Fallback from "../Fallback";
-
 import type { SocialIcon } from "../../../../lib/cms-client";
-import type { GroupedPerYear } from "../../../../pages/api/experiences";
+import type { GroupedPerYear } from "../../../../lib/rss-reader";
 
 type ApiResponse = {
 	rss: GroupedPerYear[];
