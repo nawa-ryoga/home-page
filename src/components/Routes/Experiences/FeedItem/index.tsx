@@ -14,11 +14,11 @@ export default function FeedItem({ feed, favicon }: Props) {
 				href={feed.link}
 				target="_blank"
 				rel="noopener nofollow noreferrer"
-				className="w-[4rem] flex items-center justify-center bg-text-darken-1 aspect-square p-4 rounded-xl"
+				className="w-[4rem] flex items-center justify-center bg-text-darken-1 aspect-square p-2 rounded-xl"
 			>
 				<img
 					className="w-full h-auto"
-					src={favicon.find((f) => feed.link.includes(f.name))?.logo.url}
+					src={favicon.find((f) => feed.link.includes(f.name))?.logo.url || "/icon.svg"}
 					alt=""
 					width={60}
 					height={60}
