@@ -27,6 +27,7 @@ export default function Meta({ title, og, children }: Props) {
 				<link rel="icon" href="/icon.svg" type="image/svg+xml" />
 				<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 				<link rel="manifest" href="/manifest.webmanifest.txt" />
+				<link rel="sitemap" href="/sitemap-index.xml" />
 				<link
 					rel="preload"
 					href="/fonts/noto-sans-jp-regular.woff2"
@@ -43,7 +44,10 @@ export default function Meta({ title, og, children }: Props) {
 				/>
 				<meta name="viewport" content="width=device-width" />
 				<meta name="description" content={og.description} />
-				<meta property="og:url" content={og.url ? `https://naary.me/${og.url}`: "https://naary.me"} />
+				<meta
+					property="og:url"
+					content={og.url ? `https://naary.me/${og.url}` : "https://naary.me"}
+				/>
 				<meta property="og:type" content={og.type} />
 				<meta property="og:description" content={og.description} />
 				<meta property="og:title" content={title} />
