@@ -1,4 +1,4 @@
-import type { OgObject } from "../../../../../scripts/og-scraper";
+import type { OgObject } from "../../../../../lib/og-scraper";
 type Props = {
 	result: OgObject;
 };

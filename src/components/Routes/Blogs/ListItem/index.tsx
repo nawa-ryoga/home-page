@@ -1,5 +1,5 @@
-import type { Blog } from "../../../../../lib/cms-client";
-import { formatDate } from "../../../../../lib/day-js";
+import type { Blog } from "../../../../lib/cms-client";
+import { formatDate } from "../../../../lib/day-js";
 import PublishedDate from "../Date";
 
 type Props = {

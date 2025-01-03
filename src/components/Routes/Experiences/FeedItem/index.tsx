@@ -1,6 +1,6 @@
-import type { FeedItem as Feed } from "../../../../../lib/rss-reader";
-import type { SocialIcon } from "../../../../../lib/cms-client";
-import { formatDate } from "../../../../../lib/day-js";
+import type { FeedItem as Feed } from "../../../../lib/rss-reader";
+import type { SocialIcon } from "../../../../lib/cms-client";
+import { formatDate } from "../../../../lib/day-js";
 
 type Props = {
 	feed: Feed;

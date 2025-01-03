@@ -1,4 +1,5 @@
 import { getDate } from "../day-js";
+import dayjs from "dayjs";
 import type { RssUrl } from "../cms-client";
 import * as cheerio from "cheerio";
 
@@ -65,4 +66,54 @@ export const getRssTimeline = async (
 	return items.length
 		? items.sort((a, b) => b.dateMiliSeconds - a.dateMiliSeconds)
 		: items;
+};
+
+export type GroupedPerYear = {
+	year: number;
+	months: {
+		month: number;
+		items: FeedItem[];
+	}[];
+};
+
+/**
+ * アイテムを年と月でグループ化する
+ * @param items - フィードアイテムの配列
+ * @returns 年月単位でネストされたデータ構造
+ */
+export const groupItems = (items: FeedItem[]): GroupedPerYear[] => {
+	const yearGroups = items.reduce<Record<number, Record<number, FeedItem[]>>>(
+		(acc, item) => {
+			const year = dayjs(item.isoDate).year();
+			const month = dayjs(item.isoDate).month() + 1; // 月は0ベースなので1を加算
+
+			// 年が存在しない場合は初期化
+			if (!acc[year]) {
+				acc[year] = {};
+			}
+
+			// 月が存在しない場合は初期化
+			if (!acc[year][month]) {
+				acc[year][month] = [];
+			}
+
+			// アイテムを追加
+			acc[year][month].push(item);
+
+			return acc;
+		},
+		{},
+	);
+
+	return Object.entries(yearGroups)
+		.sort(([yearA], [yearB]) => Number(yearB) - Number(yearA)) // 年を降順にソート
+		.map(([year, months]) => ({
+			year: Number(year),
+			months: Object.entries(months)
+				.sort(([monthA], [monthB]) => Number(monthB) - Number(monthA)) // 月も降順にソート
+				.map(([month, items]) => ({
+					month: Number(month),
+					items,
+				})),
+		}));
 };
