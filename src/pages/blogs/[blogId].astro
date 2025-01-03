@@ -3,6 +3,7 @@ import Meta from "../../components/Layouts/Meta";
 import Header from "../../components/Layouts/Header";
 import ArticleContainer from "../../components/Routes/Blog/Article";
 import BlogHeader from "../../components/Routes/Blog/Header";
+import ContentContainer from "../../components/Routes/Blog/Content";
 import Footer from "../../components/Layouts/Footer";
 import { formatDate } from "../../lib/day-js";
 import { createOgMap } from "../../lib/og-scraper";
@@ -51,7 +52,9 @@ const og: SiteOg = {
 					? formatDate(blog.publishedAt, "YYYY")
 					: "XXXX"}
 			/>
-			<Fragment set:html={content} />
+			<ContentContainer>
+				<Fragment set:html={content} />
+			</ContentContainer>
 		</ArticleContainer>
 	</main>
 	<Footer />
