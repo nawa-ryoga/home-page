@@ -1,5 +1,5 @@
 import rss from "@astrojs/rss";
-import { getBlogList } from "../../lib/cms-client";
+import { getBlogList } from "../lib/cms-client";
 import type { APIContext } from "astro";
 
 export async function GET(context: APIContext) {

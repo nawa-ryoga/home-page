@@ -5,7 +5,7 @@ import FeedYear from "../FeedYear";
 import FeedMonth from "../FeedMonth";
 import Fallback from "../Fallback";
 
-import type { SocialIcon } from "../../../../../lib/cms-client";
+import type { SocialIcon } from "../../../../lib/cms-client";
 import type { GroupedPerYear } from "../../../../pages/api/experiences";
 
 type ApiResponse = {

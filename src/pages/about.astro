@@ -3,9 +3,9 @@ import Meta from "../components/Layouts/Meta";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import "../styles/about/html-content.css";
-import { getAboutContent } from "../../lib/cms-client";
-import { getDate } from "../../lib/day-js";
-import { parseHtml } from "../scripts/html-parser";
+import { getAboutContent } from "../lib/cms-client";
+import { getDate } from "../lib/day-js";
+import { parseHtml } from "../lib/html-parser";
 import type { SiteOg } from "../components/Layouts/Meta";
 
 const about = await getAboutContent();

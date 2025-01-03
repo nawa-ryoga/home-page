@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
-import { getTopMenuImages, getAboutContent } from "../../../lib/cms-client";
-import { getRssTimeline } from "../../../lib/rss-reader";
-import type { FeedItem as Item } from "../../../lib/rss-reader";
+import { getTopMenuImages, getAboutContent } from "../../lib/cms-client";
+import { getRssTimeline } from "../../lib/rss-reader";
+import type { FeedItem as Item } from "../../lib/rss-reader";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async () => {
