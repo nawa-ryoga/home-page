@@ -50,13 +50,16 @@ export default function Meta({ title, og, children }: Props) {
 				/>
 				<meta property="og:type" content={og.type} />
 				<meta property="og:description" content={og.description} />
-				<meta property="og:title" content={title} />
+				<meta property="og:title" content={title ? `${title} | ${SITE_NAME}` : SITE_NAME} />
 				<meta
 					property="og:image"
-					content={og.image ? og.image : "https://naary.me/og.png"}
+					content={og.image ? og.image : "/og.png"}
 				/>
 				<meta property="og:site_name" content={SITE_NAME} />
 				<meta name="twitter:card" content="summary" />
+				<meta name="twitter:title" content={title ? `${title} | ${SITE_NAME}` : SITE_NAME} />
+				<meta name="twitter:description" content={og.description} />
+				<meta name="twitter:image" content="/og.png" />
 				<title>{title ? `${title} | ${SITE_NAME}` : SITE_NAME}</title>
 			</head>
 			<body className="bg-background-default m-0 text-text-default font-sans">
