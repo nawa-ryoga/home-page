@@ -7,9 +7,14 @@
   @apply text-text-darken-1 mt-[1em] first:mt-0 leading-[1.7rem];
 }
 
+h2 + .paragraph, 
+h3 + .paragraph {
+  @apply mt-[1.6em]
+}
+
 /* H2 styles */
 .heading-2 {
-  @apply text-2xl font-bold text-text-default text-center mt-[4em] first:mt-0;
+  @apply text-2xl font-bold text-text-default text-center mt-[4em] first:mt-0 underline underline-offset-8 decoration-text-darken-2;
 }
 
 /* H3 styles */
