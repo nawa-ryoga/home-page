@@ -16,17 +16,8 @@ export const parseHtml = (html: string, ogMap?: Map<string, OgObject> ) => {
 	$("figcaption").addClass("figcaption");
 	$("figure").addClass("figure");
 	$("blockquote").addClass("blockquote");
-
-	$("img").each((_, elem) => {
-		$(elem).addClass("image");
-	});
-
-	$("a").each((_, elem) => {
-		$(elem)
-			.addClass("anchor")
-			.attr("target", "_blank")
-			.attr("rel", "noreferrer");
-	});
+	$("img").addClass("image");
+	$("a").addClass("anchor").attr("target", "_blank").attr("rel", "noreferrer");
 
 	$("div.iframely-embed").each((_, elem) => {
 		const anchor = $(elem).find("a");
