@@ -8,7 +8,7 @@ type Props = {
 
 export default function FirstLineItem({ image, href, title }: Props) {
 	return (
-		<li className="relative">
+		<li className="relative min-h-[8rem]">
 			<img
 				className="object-cover h-auto max-h-[8rem] w-full rounded-xl z-10"
 				src={`${image.url}?w=360`}
